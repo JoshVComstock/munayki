@@ -11,6 +11,10 @@ export const SectionNav = styled.section`
     justify-content:space-around;
     height: 4em;
     gap: 2em;
+    box-shadow: 0 5px 10px #0005;
+    position: sticky;
+    top: 0;
+    left: 0;
     .login {
       border-radius: 1em;
       padding: 0.5em 3em;
@@ -32,6 +36,7 @@ export const SectionNav = styled.section`
 export const Sectionav = styled.section`
   ${FlexComun}
   flex-direction:row;
+
   & > nav {
     ${FlexComun}
     flex-direction:column;
@@ -40,6 +45,10 @@ export const Sectionav = styled.section`
     height: 100vh;
     background-color: ${colors.CC};
     color: ${colors.light};
+    box-shadow: 0 5px 10px #0005;
+    position: sticky;
+    top: 0;
+    left: 0;
     & h1 {
       margin: 2em;
     }
