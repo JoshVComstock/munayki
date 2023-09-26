@@ -66,8 +66,8 @@ export const Section = styled.section`
       flex-direction:column;
       padding: 2em;
       gap: 1em;
-    box-shadow: 0 5px 10px #0005;
-background-color:${colors.gris2};
+      box-shadow: 0 5px 10px #0005;
+      background-color: ${colors.gris2};
       & > h1 {
         width: 100%;
         text-align: center;
@@ -76,25 +76,32 @@ background-color:${colors.gris2};
       & > label {
         width: 100%;
       }
-      & > input {
+      & > div {
+        ${FlexComun}
+        gap:1em;
         width: 100%;
-        padding: 0.5em;
-        border: solid 1px #0005;
-        outline: none;
-        border-radius: 1em;
-        background-color: ${colors.trasparent};
-      }
-      & > input:focus {
-        border: none;
-        border-radius: 0;
-        border-bottom: solid 1px ${colors.CC};
+        & > input {
+          width: 80%;
+          padding: 0.5em;
+          border: solid 1px #0005;
+          outline: none;
+          border-radius: 1em;
+          background-color: ${colors.trasparent};
+        }
+        & > input:focus {
+          border: none;
+          border-radius: 0;
+          border-bottom: solid 1px ${colors.CC};
+        }
       }
       & button {
         padding: 0.5em 2em;
         border-radius: 1em;
         border: solid 1px ${colors.CC};
         cursor: pointer;
-        margin-top:1em;
+        margin-top: 1em;
+        ${FlexComun}
+        gap:1em;
         &:hover {
           background-color: ${colors.CC};
           border: solid 1px transparent;
@@ -107,13 +114,25 @@ background-color:${colors.gris2};
         text-align: center;
         border-bottom: solid 1px #0005;
         padding: 1em;
-        font-size:0.8em;
+        font-size: 0.8em;
         &:hover {
           /* background-color: ${colors.CC}; */
-          border-bottom: solid 1px  ${colors.CC};
+          border-bottom: solid 1px ${colors.CC};
 
           color: ${colors.CC};
         }
+      }
+      position: relative;
+      & .volver {
+        ${FlexComun}
+        gap:1em;
+        background-color: ${colors.CC};
+        border: solid 1px transparent;
+        color: ${colors.light};
+        border-radius: 0;
+        position: absolute;
+        top: 0;
+        right: 0;
       }
     }
   }
