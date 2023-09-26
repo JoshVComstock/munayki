@@ -8,9 +8,9 @@ const NavBar = () => {
   <SectionNav>
     <nav>
       <img src="#" alt="logo" />
-        <Link to="/">home</Link>
+     <section>   <Link to="/">home</Link>
         <Link to="/ubicaciones">Ubicaciones</Link>
-        <Link to="/dashboard" className='login'>Login</Link>
+        <Link to="/login" className='login'>Login</Link></section>
     </nav>
     <Outlet/>
   </SectionNav>

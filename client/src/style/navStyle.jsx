@@ -22,10 +22,14 @@ export const SectionNav = styled.section`
       background-color: ${colors.light};
       font-size: 0.9em;
     }
+   & section{
+    ${FlexComun}
+gap:2em;
     & > a {
       color: ${colors.light};
       text-decoration: none;
     }
+   }
   }
   ${FlexComun}
   flex-direction:column;
