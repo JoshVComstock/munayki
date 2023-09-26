@@ -46,7 +46,7 @@ const Login = () => {
 
         </form>
       </div>
-      <ComRegister irLogin={irLogin} Evaluando={Evaluando} />
+      <ComRegister irLogin={irLogin} Evaluando={Evaluando}  ingresar = {ingresar}/>
     </Section>
   );
 };
