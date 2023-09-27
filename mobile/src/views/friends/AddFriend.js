@@ -3,25 +3,32 @@ import { View, Text, TextInput, StyleSheet, Alert, Image, Pressable } from 'reac
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-const Login = ({navigation}) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const AddFriend = ({navigation}) => {
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [relation, setRelation] = useState('');
   const [errors, setErrors] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
 
   const validateForm = () => {
       let errors = {};
 
-      if (!email) {
-          errors.email = 'Ingrese su email';
-      } else if (!/\S+@\S+\.\S+/.test(email)) {
-          errors.email = 'Email no valido';
+      if (!name) {
+          errors.name = 'Ingrese su nombre';
+      } else if (name.length < 1 || !/^[a-zA-Z\s]+$/.test(name)) {
+          errors.name = 'Nombre no valido';
       }
 
-      if (!password) {
-          errors.password = 'Ingrese su contraseña';
-      } else if (password.length < 6) {
-          errors.password = 'La contraseña debe ser mayor a 6 caracteres';
+      if (!phone) {
+          errors.phone = 'Ingrese su telefono';
+      } else if (phone.length < 8) {
+          errors.phone = 'El telefono debe tener 8 numeros';
+      }
+
+      if (!relation) {
+          errors.relation = 'Ingrese la relacion con el contacto';
+      } else if (relation.length < 1 || !/^[a-zA-Z\s]+$/.test(relation)) {
+          errors.name = 'Relacion no valida';
       }
 
       setErrors(errors);
@@ -54,39 +61,49 @@ const Login = ({navigation}) => {
 
   return (
       <View style={styles.home}>
+            <Image
+                source={require('D:/Users/Administrador/AndroidStudioProjects/munayki_app/mobile/assets/chat.webp')}
+                style={{width: 160, height: 160, marginLeft:35,marginTop: 40}}
+            />
             <View style={styles.container}>
                 <View>
-                    <Image
-                        source={require('D:/Users/Administrador/AndroidStudioProjects/munayki_app/mobile/assets/user.png')}
-                        style={{width: 140, height: 120, marginLeft:40}}
-                    />
                     <Text style={styles.text}>
-                        Correo Electronico
+                        Nombre
                     </Text>
                     <TextInput
                       style={styles.input}
-                      placeholder="Email"
-                      value={email}
-                      onChangeText={setEmail}
+                      placeholder="Nombre"
+                      value={name}
+                      onChangeText={setName}
                       activeUnderlineColor="yellow"
                       underlineColor="red"
                     />
                     <Text style={styles.text}>
-                        Contraseña
+                        Telefono
                     </Text>
                     <TextInput
                       style={styles.input}
-                      placeholder="Contraseña"
-                      value={password}
-                      onChangeText={setPassword}
-                      secureTextEntry
+                      placeholder="Telefono"
+                      value={phone}
+                      onChangeText={setPhone}
+                      inputMode="numeric"
+                      maxLength={8}
+                    />
+                    <Text style={styles.text}>
+                        Relacion
+                    </Text>
+                    <TextInput
+                      style={styles.input}
+                      placeholder="Relacion"
+                      value={relation}
+                      onChangeText={setRelation}
                     />
                 </View>
                 <Pressable style={styles.button} onPress={handleSubmit}>
-                    <Text style={styles.text}>Entrar</Text>
+                    <Text style={styles.text}>Agregar Contacto</Text>
                 </Pressable>
-                <Text style={styles.link} onPress={() => navigation.navigate('Register')}>
-                    No tienes cuenta?
+                <Text style={styles.link} onPress={() => navigation.navigate('Index')}>
+                    Cancelar
                 </Text>
             </View>
       </View>
@@ -95,16 +112,17 @@ const Login = ({navigation}) => {
 
 const styles = StyleSheet.create({
   home:{
-    backgroundColor:'#E7E0E8',
-    flex:1,
+    backgroundColor:'#FFF',
     width: '100%',
-    justifyContent:'center',
+    height:'100%',
+    justifyContent:'flex-start',
     alignItems:'center',
   },
   container: {
-    height: 400,
+    marginTop:30,
+    height: 350,
     width: 250,
-    backgroundColor: '#FFF',
+    backgroundColor: '#E7E0E8',
     padding: 16,
     borderRadius: 10,
     justifyContent: 'space-evenly',
@@ -112,8 +130,9 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     borderColor: 'gray',
+    backgroundColor:"#FFF",
     borderWidth: 1,
-    marginBottom: 20,
+    marginBottom: 15,
     padding: 8,
     borderRadius:6,
   },
@@ -134,11 +153,11 @@ const styles = StyleSheet.create({
       color: 'black',
   },
   link:{
-    color:'#B7D2EF',
+    color:'#30A6B1',
     marginTop:20,
     textDecorationLine: 'underline',
     fontSize:15,
   },
 });
 
-export default Login;
+export default AddFriend;

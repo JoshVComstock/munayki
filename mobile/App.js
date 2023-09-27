@@ -6,6 +6,9 @@ import HomeLayout from './src/layouts/Home'
 import FriendsLayout from './src/layouts/Friends'
 import Login from './src/views/auth/Login'
 import Register from './src/views/auth/Register';
+import Index from './src/views/friends/Index';
+import AddFriend from './src/views/friends/AddFriend';
+import EditFriend from './src/views/friends/EditFriend';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +28,30 @@ function RegisterScreen({ navigation }) {
   );
 }
 
+function IndexFriendsScreen({ navigation }) {
+  return (
+    <FriendsLayout>
+      <Index navigation={navigation} />
+    </FriendsLayout>
+  );
+}
+
+function AddFriendsScreen({ navigation }) {
+  return (
+    <FriendsLayout>
+      <AddFriend navigation={navigation} />
+    </FriendsLayout>
+  );
+}
+
+function EditFriendsScreen({ navigation }) {
+  return (
+    <FriendsLayout>
+      <EditFriend navigation={navigation} />
+    </FriendsLayout>
+  );
+}
+
 export default function App() {
   return (
     <NavigationContainer>
@@ -32,6 +59,9 @@ export default function App() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Friends" component={FriendsLayout} />
+        <Stack.Screen name="Index" component={IndexFriendsScreen} />
+        <Stack.Screen name="AddFriend" component={AddFriendsScreen} />
+        <Stack.Screen name="EditFriend" component={EditFriendsScreen} />
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>

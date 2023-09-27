@@ -3,11 +3,11 @@ import React from 'react'
 
 const FriendsLayout = ({children}) => {
     return (
-        <View>
+        <View style={{flex: 1}}>
             <View style={styles.header}>
                 <Text style={styles.textHeader}>Amistades</Text>
             </View>
-            <View style={styles.container}>
+            <View style={styles.children}>
                 {children}
             </View>
         </View>
@@ -18,11 +18,11 @@ export default FriendsLayout
 
 const styles = StyleSheet.create({
   header: {
-    flex: 1,
-    backgroundColor: '#FFF',
+    backgroundColor: '#371364',
     alignItems: 'center',
     justifyContent: 'flex-start',
     paddingTop: 50,
+    width: "100%",
   },
   textHeader: {
     fontSize: 30,
@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   container:{
+    flex:1,
     alignItems: 'center',
     justifyContent: 'center',
   }

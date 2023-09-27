@@ -34,7 +34,7 @@ const Register=({navigation})=>{
           if (!phone) {
              errors.phone = 'Ingrese su telefono';
           } else if (phone.length < 8) {
-             errors.phone = 'Telefono no valido';
+             errors.phone = 'El telefono debe tener 8 numeros';
           }
           if (!age) {
              errors.age = 'Ingrese su edad';
@@ -62,7 +62,7 @@ const Register=({navigation})=>{
 
           if (Object.keys(errors).length === 0) {
               setIsFormValid(true);
-              console.log('Te registraste!');
+              navigation.navigate('Index')
           } else {
               setIsFormValid(false);
 
