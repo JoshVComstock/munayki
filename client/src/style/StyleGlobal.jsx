@@ -50,6 +50,12 @@ export const LoginGlobal = css`
       overflow: hidden;
       box-shadow: 0 5px 10px #0008;
       z-index: 10;
+      ${FlexComun}
+
+      & > img{
+     
+    width:20em;
+  }
       & > div:nth-child(1) {
         ${PositcionComun}
         width:10em;
@@ -74,6 +80,7 @@ export const LoginGlobal = css`
         height: 5em;
         background-color: ${colors.DD};
         bottom: 10em;
+        left:-2em;
         border-radius: 50%;
       }
       & > div:nth-child(4) {
@@ -85,6 +92,7 @@ export const LoginGlobal = css`
         left: -4em;
         border-radius: 50%;
       }
+     
     }
     & > form {
       width: 50%;
@@ -112,7 +120,7 @@ export const LoginGlobal = css`
           padding: 0.5em;
           border: solid 1px #0005;
           outline: none;
-          border-radius: 1em;
+          border-radius: .2em;
           background-color: ${colors.trasparent};
         }
         & > input:focus {
@@ -123,7 +131,7 @@ export const LoginGlobal = css`
       }
       & button {
         padding: 0.5em 2em;
-        border-radius: 1em;
+        border-radius: .2em;
         border: solid 1px ${colors.CC};
         cursor: pointer;
         margin-top: 1em;

@@ -6,7 +6,9 @@ const app = express();
 const prisma = new PrismaClient();
 
 app.get('/alertausuario', async (req, res) => {
-    const alerta = await prisma.alertasUsuario.findMany({});
+    const alerta = await prisma.alertasUsuario.findMany({
+        
+    });
     res.json(alerta);
 });
 
@@ -19,6 +21,7 @@ app.post('/alertausuario', async (req, res) => {
             audio: req.body.audio,
             fecha: req.body.fecha,
             estado: req.body.estado
+            
         }
     });
     res.json({

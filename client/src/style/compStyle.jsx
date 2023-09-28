@@ -24,11 +24,14 @@ export const Section = styled.section`
     height: 70vh;
     transform: translateX(-200%);
     transition: transform 0.4s ease-in-out;
+
     ${LoginGlobal}
     & article {
       width: 40%;
     }
+   
   }
+
   & .Register > form {
     width: 60%;
     gap: 0.5em;

@@ -13,7 +13,6 @@ import { colorsSlider } from "../style/StyleGlobal";
 const Inicio = () => {
   const images = [
     imgf,
-    imgh,
     imgv,
   ];
 

@@ -6,7 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
-
+import logo from "../../assets/logoChocha.png"
 const ComRegister = ({ irLogin, ingresar,Evaluando }) => {
     const navigate = useNavigate();
     const volver =()=>{
@@ -19,7 +19,7 @@ const ComRegister = ({ irLogin, ingresar,Evaluando }) => {
         <div></div>
         <div></div>
         <div></div>
-        <img src="logo" alt="logo" />
+        <img src={logo} alt="logo" className="logoimg"/>
       </article>
       <form>
       <h1> Formuario de inicio</h1>
