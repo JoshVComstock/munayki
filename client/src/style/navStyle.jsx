@@ -3,33 +3,39 @@ import { FlexComun, colors } from "./StyleGlobal";
 
 export const SectionNav = styled.section`
   width: 100%;
-
+  background-color: ${colors.light};
   & nav {
-    background-color: ${colors.CC};
     width: 100%;
+    box-shadow: 0 2px 5px #0005;
+    z-index: 100;
     ${FlexComun}
     justify-content:space-around;
     height: 4em;
     gap: 2em;
-    box-shadow: 0 5px 10px #0005;
     position: sticky;
     top: 0;
     left: 0;
+    background-color: ${colors.light};
+    & img {
+      height: 30px;
+    }
     .login {
-      border-radius: 1em;
-      padding: 0.5em 3em;
-      color: ${colors.CC};
-      background-color: ${colors.light};
+      ${FlexComun}
+      gap:1em;
+      border-radius: 0.3em;
+      padding: 0.5em 2.5em;
+      color: ${colors.light};
+      background-color: ${colors.C};
       font-size: 0.9em;
     }
-   & section{
-    ${FlexComun}
-gap:2em;
-    & > a {
-      color: ${colors.light};
-      text-decoration: none;
+    & section {
+      ${FlexComun}
+      gap:2em;
+      & > a {
+        color: ${colors.FF};
+        text-decoration: none;
+      }
     }
-   }
   }
   ${FlexComun}
   flex-direction:column;
@@ -40,7 +46,6 @@ gap:2em;
 export const Sectionav = styled.section`
   ${FlexComun}
   flex-direction:row;
-
   & > nav {
     ${FlexComun}
     flex-direction:column;
@@ -66,19 +71,17 @@ export const Sectionav = styled.section`
         width: 70%;
         padding: 0.5em;
         color: ${colors.CC};
+        position: relative;
       }
       & > a {
         ${FlexComun}
         justify-content:start;
-
         gap: 1em;
         color: ${colors.light};
         text-decoration: none;
         width: 80%;
         padding: 0.5em;
         margin-left: 1em;
-        /* border-left: ${colors.light} 2px solid; */
-        /* border:solid 1px red; */
       }
     }
   }

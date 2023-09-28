@@ -37,8 +37,9 @@ function App() {
         <Route path="/" element={<NavBar />}>
           <Route path="/" element={<Inicio />} />
           <Route path="/ubicaciones" element={<UbiciacionesCli />} />
-        </Route>
         <Route path="/login" element={<Login />} />
+
+        </Route>
       </Routes>
       <Routes>
         <Route

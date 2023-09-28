@@ -12,7 +12,6 @@ const ComRegister = ({ irLogin, ingresar,Evaluando }) => {
     const volver =()=>{
         navigate('/login');
       }
-
   return (
     <div className={`Register ${irLogin ? "" : "active"}`}>
       <article>
