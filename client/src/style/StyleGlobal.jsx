@@ -11,11 +11,14 @@ export const colors = {
   DD: "rgb(1,173,217)",
   F: "rgb(79,184,167)",
   FF: "rgb(0,152,120)",
-  light: "#F0F1F1",
+  light: "#eaf4f4",
   black: "#000",
   trasparent: "transparent",
-  gris:"#0001",
+  gris:"#282727d8",
   gris2:"#00000011",
+  gray100:"#cce3de",
+  gray200:"#a4c3b2",
+  gray300:"#6b9080",
 };
 
 export const colorsSlider = {
