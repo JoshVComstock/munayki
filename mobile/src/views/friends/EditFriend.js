@@ -61,10 +61,10 @@ const EditFriend = ({navigation}) => {
 
   return (
       <View style={styles.home}>
-            <Image
+            {/* <Image
                 source={require('D:/Users/Administrador/AndroidStudioProjects/munayki_app/mobile/assets/chat.webp')}
                 style={{width: 160, height: 160, marginLeft:35,marginTop: 40}}
-            />
+            /> */}
             <View style={styles.container}>
                 <View>
                     <Text style={styles.text}>

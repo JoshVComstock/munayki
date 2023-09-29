@@ -19,7 +19,7 @@ const Inicio = () => {
   return (
     <>
       <Iniciodiv>
-        <p>MUNAIKY</p>
+        <p>MUNAYKI</p>
         <section>
           <h1>
             No +<br />

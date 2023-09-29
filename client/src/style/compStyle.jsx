@@ -24,11 +24,14 @@ export const Section = styled.section`
     height: 70vh;
     transform: translateX(-200%);
     transition: transform 0.4s ease-in-out;
+
     ${LoginGlobal}
     & article {
       width: 40%;
     }
+   
   }
+
   & .Register > form {
     width: 60%;
     gap: 0.5em;
@@ -66,7 +69,7 @@ export const Iniciodiv = styled.div`
     font-weight: bold;
     color: #fff;
     -webkit-text-stroke: 2px ${colors.CC};
-    opacity: 0.3;
+    opacity: 0.2;
     z-index: 1;
     top: 20%;
     text-shadow: 5px 6px 2px ${colors.CC};
@@ -115,7 +118,6 @@ export const Iniciodiv = styled.div`
     padding: 5em 8em;
     gap: 1em;
     animation: DesdeIsquierdaRE 1s ease-in;
-
     & > div {
       ${FlexComun}
       flex-direction:column;
@@ -153,6 +155,49 @@ export const Iniciodiv = styled.div`
     }
   }
 `;
+
+
+export const ViolentimetroA = styled.div`
+& > section{
+width:20em;
+height:20em;
+border-radius:50%;
+${FlexComun}
+position:relative;
+z-index:2;
+&::after{
+${PositcionComun}
+animation:escalado 2s infinite;
+width:100%;
+height:100%;
+border-radius:50%;
+z-index:1;
+box-shadow:0px 5px 10px #0005;
+
+@keyframes escalado {
+  0% {
+    transform: scale(1)
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50%{
+    transform: scale(1.4);
+
+  }
+  75%{
+    transform: scale(1.2);
+
+  }
+  100%{
+    transform: scale(1);
+
+  }
+}
+}
+}
+`;
+
 export const Filtro = styled.div`
   ${FlexComun}
   width: 100%;
