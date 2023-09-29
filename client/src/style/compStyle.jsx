@@ -101,6 +101,7 @@ export const Iniciodiv = styled.div`
         height: 28em;
         object-fit: cover;
         filter: grayscale(1);
+        background-color:transparent;
       }
     }
 
