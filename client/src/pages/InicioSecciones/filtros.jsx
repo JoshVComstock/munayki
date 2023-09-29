@@ -1,5 +1,7 @@
 import React from "react";
 import { Filtro } from "../../style/compStyle";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Filtros = () => {
   const datos = [
@@ -24,7 +26,8 @@ const Filtros = () => {
       {datos.map((registro, index) => (
         <div key={index}>
           <h2>{registro.titulo}</h2>
-          <p>{registro.descripcion}</p>
+          <p>{registro.descripcion} <FontAwesomeIcon icon={faHeart} /></p>
+   
         </div>
       ))}
     </Filtro>

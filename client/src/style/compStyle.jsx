@@ -88,7 +88,7 @@ export const Iniciodiv = styled.div`
       height: 100%;
       position: absolute;
       top: 0;
-      left: 150%; 
+      left: 150%;
       transition: left 0.5s ease;
       z-index: -1;
       img {
@@ -97,7 +97,7 @@ export const Iniciodiv = styled.div`
         width: 45em;
         height: 28em;
         object-fit: cover;
-        filter:grayscale(1);
+        filter: grayscale(1);
       }
     }
 
@@ -132,11 +132,9 @@ export const Iniciodiv = styled.div`
         color: ${colors.light};
         position: relative;
         border-radius: 0.3em;
-        z-index:5;
+        z-index: 5;
         background-color: ${colors.BB};
-
       }
-
     }
     & > h1 {
       width: 30%;
@@ -158,20 +156,19 @@ export const Iniciodiv = styled.div`
 export const Filtro = styled.div`
   ${FlexComun}
   width: 100%;
-  gap: 2em;
   z-index: 5;
   position: relative;
   height: 20em;
+  flex-wrap: wrap;
   & > div {
     ${FlexComun}
-
     position: absolute;
-    width: calc(70% / 3);
+    width: 25em;
     height: 15em;
     padding: 2em;
     background-color: ${colors.DD};
     font-size: 0.9em;
-    box-shadow: 0 5px 10px #0005;
+    box-shadow: 0 5px 5px #0008;
     top: -2rem;
     & h2 {
       color: ${colors.light};
@@ -180,8 +177,10 @@ export const Filtro = styled.div`
       white-space: nowrap;
       transform: rotate(180deg);
       margin-right: 1em;
-
       font-size: 16px;
+      padding: 1em;
+      height: 100%;
+      text-align: center;
     }
     &:nth-child(2) {
       left: 10em;
