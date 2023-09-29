@@ -126,7 +126,6 @@ export const Iniciodiv = styled.div`
       font-size: 0.9em;
       font-weight: 300;
       gap: 1em;
-
       & > button {
         padding: 0.8em 2em;
         border: none;
@@ -155,8 +154,6 @@ export const Iniciodiv = styled.div`
     }
   }
 `;
-
-
 export const ViolentimetroA = styled.div`
 & > section{
 width:20em;

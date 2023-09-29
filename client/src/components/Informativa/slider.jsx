@@ -12,7 +12,7 @@ const Slider = ({ images, colors }) => {
       setCurrentColorIndex((prevColorIndex) =>
         (prevColorIndex + 1) % Object.keys(colors).length
       );
-    }, 3000);
+    }, 4000);
 
     return () => {
       clearInterval(interval);
