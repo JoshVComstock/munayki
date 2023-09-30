@@ -11,7 +11,6 @@ import UbiciacionesCli from "./pages/ubiciaciones";
 import mainStore from "./components/zustand/stores/storeUno";
 import { useEffect, useState } from "react";
 function App() {
-  // como es un huck debemos instanciarlos de esta forma se puede manejar el destruring  para traer lo que quieres 
   // const { fetchPhotos, photos } = mainStore();
   // const [photosFetched, setPhotosFetched] = useState(false);
 

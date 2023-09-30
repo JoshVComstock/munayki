@@ -11,10 +11,10 @@ const Index=({navigation})=>{
     const renderContact = ({item}) => (
         <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <Image
+                {/* <Image
                     source={require('D:/Users/Administrador/AndroidStudioProjects/munayki_app/mobile/assets/user.png')}
                     style={{width: 40, height: 40}}
-                />
+                /> */}
                 <View style={{marginLeft: 10}}>
                     <Text style={{fontSize: 18, fontWeight: 'bold', letterSpacing: 0.25, color: '#000'}}>{item.name}</Text>
                     <Text style={styles.text}>{item.phone}</Text>
@@ -36,10 +36,10 @@ const Index=({navigation})=>{
                 />
             </View>
             <View style={styles.container}>
-                <Image
+                {/* <Image
                     source={require('D:/Users/Administrador/AndroidStudioProjects/munayki_app/mobile/assets/chat.webp')}
                     style={{width: 160, height: 160, margin:30}}
-                />
+                /> */}
                 <Text style={styles.text}>
                     Agregar a tus amistades de confianza
                     para que esten enterados de cualquier

@@ -9,6 +9,7 @@ import imgh0 from "../assets/hombre-sf.png";
 import Filtros from "./InicioSecciones/filtros";
 import Slider from "../components/Informativa/slider";
 import { colorsSlider } from "../style/StyleGlobal";
+import Violentimetro from "./InicioSecciones/violentimetro";
 
 const Inicio = () => {
   const images = [
@@ -19,7 +20,7 @@ const Inicio = () => {
   return (
     <>
       <Iniciodiv>
-        <p>MUNAIKY</p>
+        <p>MUNAYKI</p>
         <section>
           <h1>
             No +<br />
@@ -36,6 +37,8 @@ const Inicio = () => {
         </div>
       </Iniciodiv>
       <Filtros />
+      <Violentimetro/>
+
     </>
   );
 };

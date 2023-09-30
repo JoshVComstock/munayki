@@ -3,12 +3,16 @@ const { PrismaClient } = require("@prisma/client")
 const app = express();
 const prisma = new PrismaClient();
 
-app.get('/user', async (res) => {
-    const usuarios = await prisma.Usuario.findMany({
-        
-    });
-    res.json(usuarios);
-})
+app.get('/user', async (req, res) => { // Utiliza req para la solicitud y res para la respuesta
+    try {
+        const usuarios = await prisma.Usuario.findMany({});
+        res.json(usuarios);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error al obtener usuarios' });
+    }
+});
+
 
 app.post('/user', async (req, res) => {
     const newUser = await prisma.Usuario.create({

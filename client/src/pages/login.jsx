@@ -4,7 +4,7 @@ import ComRegister from "../components/Informativa/comRegister";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faAt, faEnvelope, faKey, faSignInAlt } from "@fortawesome/free-solid-svg-icons";
-
+import logo from "../../src/assets/logoChocha.png"
 const Login = () => {
   const [irLogin, setIrLogin] = useState(true);
   const navigate = useNavigate();
@@ -25,7 +25,8 @@ const Login = () => {
           <div></div>
           <div></div>
           <div></div>
-          <img src="logo" alt="logo" />
+          <img src={logo} alt="logo" className="logoimg"/>
+
         </article>
         <form>
           <h1 htmlFor="Login"> Iniciar Secion</h1>
