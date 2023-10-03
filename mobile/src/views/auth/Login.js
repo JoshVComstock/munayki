@@ -56,11 +56,11 @@ const Login = ({navigation}) => {
       <View style={styles.home}>
             <View style={styles.container}>
                 <View>
-                    <Image
-                        source={require('D:/Users/Administrador/AndroidStudioProjects/munayki_app/mobile/assets/user.png')}
-                        style={{width: 140, height: 120, marginLeft:40}}
-                    />
-                    <Text style={styles.text}>
+                    {/* <Image
+                        source={require('../../../assets/user.png')}
+                        style={{width: 80, height: 80,justifyContent: 'center', paddingLeft:20,}}
+                    /> */}
+                    <Text style={styles.texto}>
                         Correo Electronico
                     </Text>
                     <TextInput
@@ -71,7 +71,7 @@ const Login = ({navigation}) => {
                       activeUnderlineColor="yellow"
                       underlineColor="red"
                     />
-                    <Text style={styles.text}>
+                    <Text style={styles.texto}>
                         Contraseña
                     </Text>
                     <TextInput
@@ -95,7 +95,7 @@ const Login = ({navigation}) => {
 
 const styles = StyleSheet.create({
   home:{
-    backgroundColor:'#E7E0E8',
+    backgroundColor:'#fff',
     flex:1,
     width: '100%',
     justifyContent:'center',
@@ -117,6 +117,9 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius:6,
   },
+  texto:{
+
+  },
   button: {
       alignItems: 'center',
       justifyContent: 'center',
@@ -124,14 +127,15 @@ const styles = StyleSheet.create({
       paddingHorizontal: 32,
       borderRadius: 4,
       elevation: 3,
-      backgroundColor: '#FFDE59',
+      backgroundColor: 'blue',
+      color:'#fff',
   },
   text: {
       fontSize: 16,
       lineHeight: 21,
       fontWeight: 'bold',
       letterSpacing: 0.25,
-      color: 'black',
+      color: '#fff',
   },
   link:{
     color:'#B7D2EF',

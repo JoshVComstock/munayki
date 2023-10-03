@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import { FlexComun, colors } from "./StyleGlobal";
-import { Link } from "react-ionicons";
+import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
 export const SectionNav = styled.section`
@@ -36,6 +36,7 @@ export const SectionNav = styled.section`
       & > a {
         color: ${colors.FF};
         text-decoration: none;
+        font-size:.9em;
       }
     }
   }

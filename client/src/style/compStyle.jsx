@@ -69,7 +69,7 @@ export const Iniciodiv = styled.div`
     font-weight: bold;
     color: #fff;
     -webkit-text-stroke: 2px ${colors.CC};
-    opacity: 0.3;
+    opacity: 0.2;
     z-index: 1;
     top: 20%;
     text-shadow: 5px 6px 2px ${colors.CC};
@@ -91,7 +91,7 @@ export const Iniciodiv = styled.div`
       height: 100%;
       position: absolute;
       top: 0;
-      left: 150%; 
+      left: 150%;
       transition: left 0.5s ease;
       z-index: -1;
       img {
@@ -100,7 +100,8 @@ export const Iniciodiv = styled.div`
         width: 45em;
         height: 28em;
         object-fit: cover;
-        filter:grayscale(1);
+        filter: grayscale(1);
+        background-color:transparent;
       }
     }
 
@@ -118,7 +119,6 @@ export const Iniciodiv = styled.div`
     padding: 5em 8em;
     gap: 1em;
     animation: DesdeIsquierdaRE 1s ease-in;
-
     & > div {
       ${FlexComun}
       flex-direction:column;
@@ -127,7 +127,6 @@ export const Iniciodiv = styled.div`
       font-size: 0.9em;
       font-weight: 300;
       gap: 1em;
-
       & > button {
         padding: 0.8em 2em;
         border: none;
@@ -135,11 +134,9 @@ export const Iniciodiv = styled.div`
         color: ${colors.light};
         position: relative;
         border-radius: 0.3em;
-        z-index:5;
+        z-index: 5;
         background-color: ${colors.BB};
-
       }
-
     }
     & > h1 {
       width: 30%;
@@ -158,23 +155,63 @@ export const Iniciodiv = styled.div`
     }
   }
 `;
+export const ViolentimetroA = styled.div`
+& > section{
+width:20em;
+height:20em;
+border-radius:50%;
+${FlexComun}
+position:relative;
+z-index:2;
+&::after{
+${PositcionComun}
+animation:escalado 2s infinite;
+width:100%;
+height:100%;
+border-radius:50%;
+z-index:1;
+box-shadow:0px 5px 10px #0005;
+
+@keyframes escalado {
+  0% {
+    transform: scale(1)
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50%{
+    transform: scale(1.4);
+
+  }
+  75%{
+    transform: scale(1.2);
+
+  }
+  100%{
+    transform: scale(1);
+
+  }
+}
+}
+}
+`;
+
 export const Filtro = styled.div`
   ${FlexComun}
   width: 100%;
-  gap: 2em;
   z-index: 5;
   position: relative;
   height: 20em;
+  flex-wrap: wrap;
   & > div {
     ${FlexComun}
-
     position: absolute;
-    width: calc(70% / 3);
+    width: 25em;
     height: 15em;
     padding: 2em;
     background-color: ${colors.DD};
     font-size: 0.9em;
-    box-shadow: 0 5px 10px #0005;
+    box-shadow: 0 5px 5px #0008;
     top: -2rem;
     & h2 {
       color: ${colors.light};
@@ -183,8 +220,10 @@ export const Filtro = styled.div`
       white-space: nowrap;
       transform: rotate(180deg);
       margin-right: 1em;
-
       font-size: 16px;
+      padding: 1em;
+      height: 100%;
+      text-align: center;
     }
     &:nth-child(2) {
       left: 10em;

@@ -18,10 +18,11 @@ export default HomeLayout
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#E7E0E8',
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingTop: 50,
+    padding: 60,
+    elevation: 5,
   },
   textHeader: {
     fontSize: 30,

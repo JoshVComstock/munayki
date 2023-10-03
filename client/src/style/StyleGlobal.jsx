@@ -14,25 +14,24 @@ export const colors = {
   light: "#eaf4f4",
   black: "#000",
   trasparent: "transparent",
-  gris:"#282727d8",
-  gris2:"#00000011",
+  gris:"#0002",
+  gris2:"#0001",
   gray100:"#cce3de",
   gray200:"#a4c3b2",
   gray300:"#6b9080",
 };
 
 export const colorsSlider = {
-  A: "rgb(251,177,82)",
-  AA: "rgb(241,134,32)",
-  B: "rgb(234,85,123)",
   BB: "rgb(174,25,89)",
   C: "rgb(108,85,158)",
+  B: "rgb(234,85,123)",
   CC: "rgb(73,39,121)",
   D: "rgb(77,192,223)",
   DD: "rgb(1,173,217)",
   F: "rgb(79,184,167)",
   FF: "rgb(0,152,120)",
-
+  A: "rgb(251,177,82)",
+  AA: "rgb(241,134,32)",
 };
 
 export const FlexComun = css`

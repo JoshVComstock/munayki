@@ -20,9 +20,9 @@ const Admin = () => {
   return (
     <>
       <div>
-        <Linkes to="/dashboard/ubicaciones">
+        <Linkes to="/dashboard/organizacion">
          <img src={Location} alt="" />
-          Ubicaciones
+         Organizacion
         </Linkes>
         <Linkes to="/dashboard/alertas">
           <img src={Alert} alt="" /> Alertas
