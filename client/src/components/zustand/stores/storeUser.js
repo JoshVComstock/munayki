@@ -1,9 +1,10 @@
 import { create } from "zustand";
-const url = import.meta.env.VITE_BACKEND_URL;
+const url = "http://localhost:3000/user";
+
 const useStoreUser = create((set) => ({
   datos: [],
-  fetchedUser: () => {
-    fetch(`${url}user`)
+  fetchedUser: () =>{
+    fetch(url)
       .then((response) => response.json())
       .then((result) => {
         if (Array.isArray(result)) {
