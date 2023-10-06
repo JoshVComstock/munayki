@@ -18,7 +18,7 @@ export default FriendsLayout
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#371364',
+    backgroundColor: '#6d559f',
     alignItems: 'center',
     justifyContent: 'flex-start',
     paddingTop: 50,
@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
   },
   textHeader: {
     fontSize: 30,
-    backgroundColor: '#371364',
     color: '#fff',
     fontWeight: 'bold',
   },

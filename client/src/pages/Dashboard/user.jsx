@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import useStoreUser from "../../components/zustand/stores/storeUser";
 import { ContainerUbicacion } from "./organizaciones";
 const User = () => {
-  // como es un huck debemos instanciarlos de esta forma se puede manejar el destruring  para traer lo que quieres
-
-  const { fetchedUser, datos,eliminarUser} = useStoreUser();
+  const { fetchedUser, datos, deleteUsuario } = useStoreUser();
   const [datosFetched, setDatosFetched] = useState(false);
   useEffect(() => {
     if (!datosFetched) {
@@ -15,10 +13,15 @@ const User = () => {
   if (!datos.length) {
     return <span className="loader"></span>;
   }
-  const elimianruser =(id)=>{
-    eliminarUser(id)
+  const eliminarUser = async (id) => {
+    try {
+      await deleteUsuario(id);
+      await fetchedUser();
+    } catch (error) {
+      console.error("Error al eliminar el usuario:", error);
     }
-  console.log(datos);
+  };
+
   const renderDatos = () => {
     if (datos && datos.length)
       return datos.map((datos) => (
@@ -29,12 +32,12 @@ const User = () => {
           <td>{datos.edad}</td>
           <td>{datos.telefono}</td>
           <td>{datos.carnet}</td>
-          <td>{datos.correo}</td> 
+          <td>{datos.correo}</td>
           <td>{datos.password}</td>
           <td>{datos.rol}</td>
           <td>{datos.genero}</td>
           <td>
-            <button onClick={elimianruser(datos.id)}>Eliminar</button>
+            <button onClick={() => eliminarUser(datos.id)}>Eliminar</button>
           </td>
         </tr>
       ));

@@ -4,14 +4,13 @@ import { FlexComun, LoginGlobal, PositcionComun, colors } from "./StyleGlobal";
 export const Section = styled.section`
   ${FlexComun}
   width:100%;
-  height: 80vh;
+  height: 90vh;
   background-color: ${colors.gris};
   position: relative;
   & .login {
     ${FlexComun}
     width:60vw;
     height: 70vh;
-    /* background-color:${colors.BB}; */
     transform: translateX(-200%);
     transition: transform 1s ease-in-out;
     position: absolute;
@@ -29,7 +28,6 @@ export const Section = styled.section`
     & article {
       width: 40%;
     }
-   
   }
 
   & .Register > form {
@@ -101,7 +99,7 @@ export const Iniciodiv = styled.div`
         height: 28em;
         object-fit: cover;
         filter: grayscale(1);
-        background-color:transparent;
+        background-color: transparent;
       }
     }
 
@@ -156,44 +154,41 @@ export const Iniciodiv = styled.div`
   }
 `;
 export const ViolentimetroA = styled.div`
-& > section{
-width:20em;
-height:20em;
-border-radius:50%;
-${FlexComun}
-position:relative;
-z-index:2;
-&::after{
-${PositcionComun}
-animation:escalado 2s infinite;
-width:100%;
-height:100%;
-border-radius:50%;
-z-index:1;
-box-shadow:0px 5px 10px #0005;
+  & > section {
+    width: 20em;
+    height: 20em;
+    border-radius: 50%;
+    ${FlexComun}
+    position:relative;
+    z-index: 2;
+    &::after {
+      ${PositcionComun}
+      animation:escalado 2s infinite;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      z-index: 1;
+      box-shadow: 0px 5px 10px #0005;
 
-@keyframes escalado {
-  0% {
-    transform: scale(1)
+      @keyframes escalado {
+        0% {
+          transform: scale(1);
+        }
+        25% {
+          transform: scale(1.2);
+        }
+        50% {
+          transform: scale(1.4);
+        }
+        75% {
+          transform: scale(1.2);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+    }
   }
-  25% {
-    transform: scale(1.2);
-  }
-  50%{
-    transform: scale(1.4);
-
-  }
-  75%{
-    transform: scale(1.2);
-
-  }
-  100%{
-    transform: scale(1);
-
-  }
-}
-}
-}
 `;
 
 export const Filtro = styled.div`

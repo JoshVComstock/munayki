@@ -61,10 +61,10 @@ const EditFriend = ({navigation}) => {
 
   return (
       <View style={styles.home}>
-            {/* <Image
-                source={require('D:/Users/Administrador/AndroidStudioProjects/munayki_app/mobile/assets/chat.webp')}
+            <Image
+                source={require('../../../assets/chat.webp')}
                 style={{width: 160, height: 160, marginLeft:35,marginTop: 40}}
-            /> */}
+            />
             <View style={styles.container}>
                 <View>
                     <Text style={styles.text}>
@@ -72,18 +72,16 @@ const EditFriend = ({navigation}) => {
                     </Text>
                     <TextInput
                       style={styles.input}
-                      placeholder="Nombre"
+                      placeholder="Ejem: Pedro"
                       value={name}
                       onChangeText={setName}
-                      activeUnderlineColor="yellow"
-                      underlineColor="red"
                     />
                     <Text style={styles.text}>
                         Telefono
                     </Text>
                     <TextInput
                       style={styles.input}
-                      placeholder="Telefono"
+                      placeholder="Ejem: 12345678"
                       value={phone}
                       onChangeText={setPhone}
                       inputMode="numeric"
@@ -94,17 +92,17 @@ const EditFriend = ({navigation}) => {
                     </Text>
                     <TextInput
                       style={styles.input}
-                      placeholder="Relacion"
+                      placeholder="Ejem: Progenitor"
                       value={relation}
                       onChangeText={setRelation}
                     />
                 </View>
                 <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
                     <Pressable style={styles.chillButton} onPress={handleSubmit}>
-                        <Text style={styles.text}>Editar</Text>
+                        <Text style={styles.buttonText}>Editar</Text>
                     </Pressable>
                     <Pressable style={styles.dangerButton} onPress={handleSubmit}>
-                        <Text style={styles.text}>Eliminar</Text>
+                        <Text style={styles.buttonText}>Eliminar</Text>
                     </Pressable>
                 </View>
                 <Text style={styles.link} onPress={() => navigation.navigate('Index')}>
@@ -127,19 +125,19 @@ const styles = StyleSheet.create({
     marginTop:30,
     height: 350,
     width: 250,
-    backgroundColor: '#E7E0E8',
+    borderColor:'#ea547a',
+    borderWidth:1,
     padding: 16,
     borderRadius: 10,
     justifyContent: 'space-evenly',
   },
   input: {
     height: 40,
-    borderColor: 'gray',
-    backgroundColor:"#FFF",
-    borderWidth: 1,
+    borderBottomColor: 'gray',
+    borderBottomWidth: 1,
     marginBottom: 15,
     padding: 8,
-    borderRadius:6,
+    borderRadius:2,
   },
   chillButton: {
       alignItems: 'center',
@@ -148,7 +146,7 @@ const styles = StyleSheet.create({
       paddingHorizontal: 22,
       borderRadius: 4,
       elevation: 3,
-      backgroundColor: '#FFDE59',
+      backgroundColor: '#00add8',
   },
   dangerButton: {
       alignItems: 'center',
@@ -157,17 +155,24 @@ const styles = StyleSheet.create({
       paddingHorizontal: 22,
       borderRadius: 4,
       elevation: 3,
-      backgroundColor: '#FF3131',
+      backgroundColor: '#af1958',
   },
   text: {
       fontSize: 16,
       lineHeight: 21,
       fontWeight: 'bold',
       letterSpacing: 0.25,
-      color: 'black',
+      color: '#3c3c3c',
+  },
+  buttonText:{
+      fontSize: 16,
+      lineHeight: 21,
+      fontWeight: 'bold',
+      letterSpacing: 0.25,
+      color: '#fff',
   },
   link:{
-    color:'#30A6B1',
+    color:'#069478',
     marginTop:20,
     textDecorationLine: 'underline',
     fontSize:15,
