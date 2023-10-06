@@ -1,8 +1,8 @@
 import { View, Text, StyleSheet, Button } from 'react-native'
 import React from 'react'
-import { NormalButton, SquareButton, RectButton, LowButton, SquareButtona, SquareButtone, SquareButton1, LowButton1} from './Button'
+import { NormalButton, RectButton, LowButton, LowButton1} from './Button'
 
-const Menu = () => {
+const Menu = ({navigation}) => {
     return (
         <View style={styles.container}>
            <View>
@@ -14,7 +14,7 @@ const Menu = () => {
            </View>
            <View style={styles.container2}>
            <LowButton1 onPress={()=>alert('acabas de oprimir el botonde panico boton de zona?')} text =""/>
-           <LowButton onPress={()=>alert('acabas de oprimir el botonde panico boton de perfil')} text =""/> 
+           <LowButton onPress={()=>navigation.navigate('Index')} text =""/>
            </View>
         </View>
     )
