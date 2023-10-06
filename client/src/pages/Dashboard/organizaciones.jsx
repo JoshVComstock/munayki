@@ -4,7 +4,6 @@ import { colors } from "../../style/StyleGlobal";
 import storeUno from "../../components/zustand/stores/storeUno";
 import { usePost } from "../../hook/usePost";
 const Organizaciones = () => {
-
   const { datos, fetchedBody } = storeUno();
   const [datosFetched, setDatosFetched] = useState(false);
   useEffect(() => {
@@ -12,13 +11,7 @@ const Organizaciones = () => {
       fetchedBody();
       setDatosFetched(true);
     }
-  }, [datosFetched, fetchedBody]);
-  const [form, setForm] = useState({
-    nombre: "",
-    ubicacion: "",
-    areavul: "",
-    usuario: 0
-  });
+  }, []);
   const renderDatos = () => {
     if (datos && datos.length)
       return datos.map((datos) => (
@@ -27,20 +20,18 @@ const Organizaciones = () => {
           <td>{datos.nombre}</td>
           <td>{datos.ubicacion}</td>
           <td>{datos.areVulnerable}</td>
-          <td>{datos.usuario.nombre}</td>
           <td>
             <button>Eliminar</button>
           </td>
         </tr>
       ));
   };
-
+  console.log(datos);
   return (
     <ContainerUbicacion>
       <div>
         <h1>Organizacion</h1>
         <button>Nueva ubicacion</button>
-
       </div>
       <table>
         <thead>
@@ -55,31 +46,6 @@ const Organizaciones = () => {
         </thead>
         <tbody>{renderDatos()}</tbody>
       </table>
-      <label htmlFor="">nombre</label>
-      <input type="text" value={form.nombre} />
-      <label htmlFor="">Ubicacion</label>
-      <input type="text" value={form.ubicacion} onChange={(e) => setForm({
-        ...form,
-        [e.target.name]: e.target.value
-      })} />
-      <label htmlFor="Area vulnerable">Area vulnerable</label>
-      <input type="text" value={form.areavul} onChange={(e) => setForm({
-        ...form,
-        [e.target.name]: e.target.value
-      })} />
-      <label htmlFor="">Usuario</label>
-      <select onChange={(e) => setForm({
-        ...form,
-        [e.target.name]: e.target.value
-      })}>
-        <option>Busque usuario</option>
-        {
-          datos.map((v) => (
-            <option key={v.usuarioId} value={v.usuarioId}>{v.usuario.nombre}</option>
-          ))
-        }
-      </select>
-      <button onClick={() => { console.log(form) }}>Agregar</button>
     </ContainerUbicacion>
   );
 };
