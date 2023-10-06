@@ -9,6 +9,7 @@ import Register from './src/views/auth/Register';
 import Index from './src/views/friends/Index';
 import AddFriend from './src/views/friends/AddFriend';
 import EditFriend from './src/views/friends/EditFriend';
+import Menu from './src/layouts/menu';
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,14 @@ function RegisterScreen({ navigation }) {
       <Register navigation={navigation} />
     </HomeLayout>
   );
+}
+
+function MenuScreen({ navigation }){
+  return (
+    <HomeLayout>
+        <Menu navigation={navigation}/>
+    </HomeLayout>
+  )
 }
 
 function IndexFriendsScreen({ navigation }) {
@@ -62,6 +71,7 @@ export default function App() {
         <Stack.Screen name="Index" component={IndexFriendsScreen} />
         <Stack.Screen name="AddFriend" component={AddFriendsScreen} />
         <Stack.Screen name="EditFriend" component={EditFriendsScreen} />
+        <Stack.Screen name="Menu" component={MenuScreen}/>
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>

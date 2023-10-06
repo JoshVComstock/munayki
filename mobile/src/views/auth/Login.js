@@ -28,7 +28,7 @@ const Login = ({navigation}) => {
 
       if (Object.keys(errors).length === 0) {
           setIsFormValid(true);
-          navigation.navigate('Index')
+          navigation.navigate('Menu')
       } else {
           setIsFormValid(false);
 
@@ -56,27 +56,29 @@ const Login = ({navigation}) => {
       <View style={styles.home}>
             <View style={styles.container}>
                 <View>
-                    {/* <Image
+                    <Image
                         source={require('../../../assets/user.png')}
-                        style={{width: 80, height: 80,justifyContent: 'center', paddingLeft:20,}}
-                    /> */}
-                    <Text style={styles.texto}>
+                        style={{width: 140, height: 120, marginLeft:40}}
+                    />
+                    <Text style={styles.text}>
                         Correo Electronico
                     </Text>
                     <TextInput
                       style={styles.input}
                       placeholder="Email"
+                      placeholderTextColor="#706e6f"
                       value={email}
                       onChangeText={setEmail}
                       activeUnderlineColor="yellow"
                       underlineColor="red"
                     />
-                    <Text style={styles.texto}>
+                    <Text style={styles.text}>
                         Contraseña
                     </Text>
                     <TextInput
                       style={styles.input}
                       placeholder="Contraseña"
+                      placeholderTextColor="#706e6f"
                       value={password}
                       onChangeText={setPassword}
                       secureTextEntry
@@ -104,21 +106,19 @@ const styles = StyleSheet.create({
   container: {
     height: 400,
     width: 250,
-    backgroundColor: '#FFF',
+    borderColor:'#ea547a',
+    borderWidth:1,
     padding: 16,
     borderRadius: 10,
     justifyContent: 'space-evenly',
   },
   input: {
     height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
+    borderBottomColor: 'gray',
+    borderBottomWidth: 1,
     marginBottom: 20,
     padding: 8,
-    borderRadius:6,
-  },
-  texto:{
-
+    borderRadius:2,
   },
   button: {
       alignItems: 'center',
@@ -127,18 +127,17 @@ const styles = StyleSheet.create({
       paddingHorizontal: 32,
       borderRadius: 4,
       elevation: 3,
-      backgroundColor: 'blue',
-      color:'#fff',
+      backgroundColor: '#fab153',
   },
   text: {
       fontSize: 16,
       lineHeight: 21,
       fontWeight: 'bold',
       letterSpacing: 0.25,
-      color: '#fff',
+      color: '#3c3c3c',
   },
   link:{
-    color:'#B7D2EF',
+    color:'#069478',
     marginTop:20,
     textDecorationLine: 'underline',
     fontSize:15,
