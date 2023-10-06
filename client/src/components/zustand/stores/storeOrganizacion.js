@@ -2,10 +2,10 @@ import { create } from "zustand";
 
 const url = import.meta.env.VITE_BACKEND_URL;
 
-const useStore = create((set) => ({
+const  = create((set) => ({
   datos: [],
-  fetchedBody: () => {
-    fetch(`http://localhost:3000/organizacion`)
+  fetchedOrganacion: () => {
+    fetch(`${url}organizacion`)
       .then((response) => response.json())
       .then((result) => {
         if (Array.isArray(result)) {
@@ -17,7 +17,6 @@ const useStore = create((set) => ({
       .catch((error) => {
         console.error("Error al cargar la ubicación:", error);
       });
-      
   },
   crearUbicacion: (nuevaUbicacion) => {
     fetch(`${url}ubicacion`, {

@@ -6,7 +6,11 @@ const app = express();
 const prisma = new PrismaClient();
 
 app.get('/organizacion', async (req, res) => {
-    const organizacion = await prisma.organizacion.findMany({});
+    const organizacion = await prisma.organizacion.findMany({
+        include:{
+            usuario:true
+        }
+    });
     res.send(organizacion);
 })
 app.post('/organizacion', async (req, res) => {

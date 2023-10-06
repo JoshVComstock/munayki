@@ -2,7 +2,7 @@ import { Routes, Route, HashRouter } from "react-router-dom";
 import NavBar from "./components/Informativa/navBar";
 import Inicio from "./pages/inicio";
 import NabarDash from "./components/dashboard/nabarDash";
-import Ubicaciones from "./pages/Dashboard/ubicaciones";
+import Organacion from "./pages/Dashboard/organizaciones";
 import User from "./pages/Dashboard/user";
 import Admin from "./Routes/admin";
 import Alertas from "./pages/Dashboard/alertas";
@@ -49,7 +49,7 @@ function App() {
             </NabarDash>
           }
         >
-          <Route path="/dashboard/ubicaciones" element={<Ubicaciones />} />
+          <Route path="/dashboard/organizacion" element={<Organacion />} />
           <Route path="/dashboard/alertas" element={<Alertas />} />
           <Route path="/dashboard/user" element={<User />} />
         </Route>

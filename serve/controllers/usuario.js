@@ -5,7 +5,9 @@ const prisma = new PrismaClient();
 
 app.get('/user', async (req, res) => { // Utiliza req para la solicitud y res para la respuesta
     try {
-        const usuarios = await prisma.Usuario.findMany({});
+        const usuarios = await prisma.usuario.findMany({
+            
+        });
         res.json(usuarios);
     } catch (error) {
         console.error(error);
@@ -15,24 +17,31 @@ app.get('/user', async (req, res) => { // Utiliza req para la solicitud y res pa
 
 
 app.post('/user', async (req, res) => {
-    const newUser = await prisma.Usuario.create({
+    try {
+      const newuser = await prisma.usuario.create({
         data: {
-            nombre:req.body.nombre,
-            apellido:req.body.apellido,
-            edad:req.body.edad,
-            telefono:req.body.telefono,
-            carnet:req.body.carnet,
-            correo:req.body.correo,
-            password:req.body.password,
-            rol:req.body.rol,
-            genero:req.body.genero,
+          nombre: req.body.nombre,
+          apellido: req.body.apellido,
+          edad: req.body.edad,
+          telefono: req.body.telefono,
+          carnet: req.body.carnet,
+          correo: req.body.correo,
+          password: req.body.password,
+          rol: req.body.rol,
+          genero: req.body.genero,
         },
-    })
-    res.json({
-        message:"sucessully create",
-        data:newUser
-    });
-});
+      });
+  
+      res.json({
+        message: "sucessully create",
+        data: newuser,
+      });
+    } catch (error) {
+      res.status(500).json({
+        error: error.message,
+      });
+    }
+  });
 
 app.put('/user/:id',async(req,res)=>{
     const id=parseInt(req.params.id);

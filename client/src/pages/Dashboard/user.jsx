@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useStoreUser from "../../components/zustand/stores/storeUser";
-import { ContainerUbicacion } from "./ubicaciones";
+import { ContainerUbicacion } from "./organizaciones";
 const User = () => {
   // como es un huck debemos instanciarlos de esta forma se puede manejar el destruring  para traer lo que quieres
 

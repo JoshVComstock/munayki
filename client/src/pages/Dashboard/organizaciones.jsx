@@ -1,35 +1,35 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../style/StyleGlobal";
+import storeUno from "../../components/zustand/stores/storeUno";
+import { usePost } from "../../hook/usePost";
+const Organizaciones = () => {
 
-import mainStore from "../../components/zustand/stores/storeUno";
-const Ubicaciones = () => {
-  // como es un huck debemos instanciarlos de esta forma se puede manejar el destruring  para traer lo que quieres
-  const { datos, fetchedUbicacion, eliminarUbicacion } = mainStore();
+  const { datos, fetchedBody } = storeUno();
   const [datosFetched, setDatosFetched] = useState(false);
   useEffect(() => {
     if (!datosFetched) {
-      fetchedUbicacion();
+      fetchedBody();
       setDatosFetched(true);
     }
-  }, [datosFetched, fetchedUbicacion]);
-  if (!datos.length) {
-    return <span className="loader"></span>;
-  }
-  const handleEliminar = (id) => {
-    eliminarUbicacion(id);
-  };
+  }, [datosFetched, fetchedBody]);
+  const [form, setForm] = useState({
+    nombre: "",
+    ubicacion: "",
+    areavul: "",
+    usuario: 0
+  });
   const renderDatos = () => {
     if (datos && datos.length)
       return datos.map((datos) => (
         <tr key={datos.id}>
           <td>{datos.id}</td>
-          <td>Jose daniel</td>
-          <td>{datos.latitud}</td> 
-          <td>{datos.longitud}</td>
-          <td>Ayuda a los mayores</td>
+          <td>{datos.nombre}</td>
+          <td>{datos.ubicacion}</td>
+          <td>{datos.areVulnerable}</td>
+          <td>{datos.usuario.nombre}</td>
           <td>
-            <button onClick={() => handleEliminar(datos.id)}>Eliminar</button>
+            <button>Eliminar</button>
           </td>
         </tr>
       ));
@@ -38,27 +38,53 @@ const Ubicaciones = () => {
   return (
     <ContainerUbicacion>
       <div>
-        <h1>Ubicaciones</h1>
+        <h1>Organizacion</h1>
         <button>Nueva ubicacion</button>
+
       </div>
       <table>
         <thead>
           <tr>
             <th>Nro</th>
             <th>Nombre</th>
-            <th>Latitud</th>
-            <th>Longitud</th>
+            <th>Ubicacion</th>
             <th>Area vulnerable</th>
+            <th>usuario</th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>{renderDatos()}</tbody>
       </table>
+      <label htmlFor="">nombre</label>
+      <input type="text" value={form.nombre} />
+      <label htmlFor="">Ubicacion</label>
+      <input type="text" value={form.ubicacion} onChange={(e) => setForm({
+        ...form,
+        [e.target.name]: e.target.value
+      })} />
+      <label htmlFor="Area vulnerable">Area vulnerable</label>
+      <input type="text" value={form.areavul} onChange={(e) => setForm({
+        ...form,
+        [e.target.name]: e.target.value
+      })} />
+      <label htmlFor="">Usuario</label>
+      <select onChange={(e) => setForm({
+        ...form,
+        [e.target.name]: e.target.value
+      })}>
+        <option>Busque usuario</option>
+        {
+          datos.map((v) => (
+            <option key={v.usuarioId} value={v.usuarioId}>{v.usuario.nombre}</option>
+          ))
+        }
+      </select>
+      <button onClick={() => { console.log(form) }}>Agregar</button>
     </ContainerUbicacion>
   );
 };
 
-export default Ubicaciones;
+export default Organizaciones;
 export const ContainerUbicacion = styled.div`
   padding: 20px;
   width: 100%;
