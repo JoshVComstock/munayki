@@ -154,9 +154,14 @@ export const Iniciodiv = styled.div`
   }
 `;
 export const ViolentimetroA = styled.div`
+    ${FlexComun}
+    background-color:${colors.C};
+    height:60vh;
+color:#fff;
+width:100vw;
   & > section {
-    width: 20em;
-    height: 20em;
+    width: 15em;
+    height: 15em;
     border-radius: 50%;
     ${FlexComun}
     position:relative;
@@ -174,60 +179,61 @@ export const ViolentimetroA = styled.div`
         0% {
           transform: scale(1);
         }
-        25% {
-          transform: scale(1.2);
-        }
+       
         50% {
-          transform: scale(1.4);
+          transform: scale(1.1);
         }
-        75% {
-          transform: scale(1.2);
-        }
+       
         100% {
           transform: scale(1);
         }
       }
     }
   }
+  & div{
+    ${FlexComun}
+    width:calc(80% / 3);
+    margin:0 auto;
+    height:100%;
+  }
 `;
 
 export const Filtro = styled.div`
   ${FlexComun}
   width: 100%;
-  z-index: 5;
-  position: relative;
-  height: 20em;
+  z-index: 8;
+  height: auto;
   flex-wrap: wrap;
-  & > div {
-    ${FlexComun}
-    position: absolute;
-    width: 25em;
-    height: 15em;
-    padding: 2em;
-    background-color: ${colors.DD};
-    font-size: 0.9em;
-    box-shadow: 0 5px 5px #0008;
-    top: -2rem;
-    & h2 {
-      color: ${colors.light};
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      white-space: nowrap;
-      transform: rotate(180deg);
-      margin-right: 1em;
-      font-size: 16px;
-      padding: 1em;
-      height: 100%;
-      text-align: center;
-    }
-    &:nth-child(2) {
-      left: 10em;
-      background-color: ${colors.FF};
-    }
-    &:nth-child(3) {
-      right: 10em;
-      background-color: ${colors.B};
-    }
-  }
-  /* background-color: ${colors.BB}; */
+box-shadow: 0 -4px 5px #0005;
+flex-direction:column;
+& > div{
+width:100%;
+padding:1em;
+
+& > section{
+  ${FlexComun}
+  justify-content:start;
+  margin:1em;
+  gap:2em;
+& a{
+  ${FlexComun}
+  text-decoration:none;
+  padding:.5em;
+  width:10em;
+  background-color:${colors.C};
+  color:#fff;
+  position:sticky;
+  z-index:2;
+
+}
+}
+
+& article{
+  ${FlexComun}
+
+}
+}
+`;
+export const Mapasstyle =styled.section`
+height:100vh;
 `;

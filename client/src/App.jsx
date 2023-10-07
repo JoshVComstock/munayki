@@ -11,6 +11,8 @@ import UbiciacionesCli from "./pages/ubiciaciones";
 import { UserContextProvider } from "./context/userContextProvider";
 import { Navcontextprovider } from "./context/navContextProvider";
 import Routing from "./Routes/Routing";
+import Mapas from "./pages/mapas";
+import Violentimetro from "./pages/InicioSecciones/violentimetro";
 
 function App() {
   return (
@@ -19,7 +21,13 @@ function App() {
         <Navcontextprovider>
           <Routes>
             <Route path="/" element={<NavBar />}>
-              <Route path="/" element={<Inicio />} />
+              <Route path="/" element={<Inicio />} >
+              <Route path="/Violentimetro" element={<Violentimetro />} />
+              <Route path="/mapas" element={<Mapas />} />
+              <Route path="/Formulario" element={<Inicio />} />
+              <Route path="/app" element={<Inicio />} />
+              <Route path="/Informate" element={<Inicio />} />
+              </Route>
               <Route path="/ubicaciones" element={<UbiciacionesCli />} />
               <Route path="/login" element={<Login />} />
             </Route>

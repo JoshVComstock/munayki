@@ -10,8 +10,8 @@ const NavBar = () => {
       <nav>
         <img src={logo} alt="logo" />
         <section>
-          <Link to="/">home</Link>
-          <Link to="/ubicaciones">Ubicaciones</Link>
+          {/* <Link to="/">home</Link>
+          <Link to="/ubicaciones">Ubicaciones</Link> */}
           <Link to="/login" className="login">
             Login
           <FontAwesomeIcon icon={faLongArrowAltRight} />
