@@ -12,17 +12,17 @@ datasource db {
 
 model Usuario {
   id             Int              @id @default(autoincrement())
-  nombre         String           @db.VarChar(255)
-  apellido       String
-  edad           Int
-  telefono       Int
-  carnet         Int
-  correo         String
-  password       String
-  rol            String
-  genero         String
-  Organizacion   Organizacion[]
-  AlertasUsuario AlertasUsuario[]
+    nombre         String           @db.VarChar(255)
+    apellido       String
+    edad           Int
+    telefono       Int
+    carnet         Int
+    correo         String
+    password       String
+    rol            String
+    genero         String
+    Organizacion   Organizacion[]
+    AlertasUsuario AlertasUsuario[]
 }
 
 model Organizacion {

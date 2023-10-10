@@ -170,3 +170,32 @@ export const Linkes = styled(NavLink)`
       brightness(96%) contrast(101%);
   }
 `;
+
+
+export const Footerstyle = styled.section`
+height:40vh;
+background-color:${colors.BB};
+z-index:100;
+width:100%;
+padding:5em;
+${FlexComun}
+justify-content:start;
+gap:1em;
+& img{
+  width:100px;
+}
+& > section{
+  width: 50%;
+  ${FlexComun}
+gap:1em;
+flex-direction:column;
+& > a{
+  width:50%;
+  color:#fff;
+text-decoration:none;
+border-left:solid 1px #fff;
+padding: .2em 1em;
+}
+}
+`;
+
