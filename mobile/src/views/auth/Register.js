@@ -106,14 +106,14 @@ const Register=({navigation})=>{
                         <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
                             <TextInput
                               style={styles.inputRow}
-                              placeholder="Nombre"
+                              placeholder="Ej: Pedro"
                               placeholderTextColor="#706e6f"
                               value={name}
                               onChangeText={setName}
                             />
                             <TextInput
                               style={styles.inputRow}
-                              placeholder="Apellido"
+                              placeholder="Ej: Rejas"
                               placeholderTextColor="#706e6f"
                               value={lastname}
                               onChangeText={setLastname}
@@ -124,7 +124,7 @@ const Register=({navigation})=>{
                         </Text>
                         <TextInput
                           style={styles.input}
-                          placeholder="Email"
+                          placeholder="ejemplo@gmail.com"
                           placeholderTextColor="#706e6f"
                           value={email}
                           onChangeText={setEmail}
@@ -162,7 +162,7 @@ const Register=({navigation})=>{
                         </Text>
                         <TextInput
                           style={styles.input}
-                          placeholder="CI"
+                          placeholder="Carnet de Identidad"
                           placeholderTextColor="#706e6f"
                           value={ci}
                           onChangeText={setCI}
@@ -200,7 +200,7 @@ const Register=({navigation})=>{
                         <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
                             <TextInput
                               style={styles.inputRow}
-                              placeholder="Telefono"
+                              placeholder="Ej: 12345678"
                               placeholderTextColor="#706e6f"
                               value={phone}
                               onChangeText={setPhone}
@@ -209,7 +209,7 @@ const Register=({navigation})=>{
                             />
                             <TextInput
                               style={styles.inputRow}
-                              placeholder="Edad"
+                              placeholder="Ej: 21"
                               placeholderTextColor="#706e6f"
                               value={age}
                               onChangeText={setAge}

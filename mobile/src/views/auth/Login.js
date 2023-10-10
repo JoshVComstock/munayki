@@ -65,7 +65,7 @@ const Login = ({navigation}) => {
                     </Text>
                     <TextInput
                       style={styles.input}
-                      placeholder="Email"
+                      placeholder="ejemplo@gmail.com"
                       placeholderTextColor="#706e6f"
                       value={email}
                       onChangeText={setEmail}
@@ -77,7 +77,7 @@ const Login = ({navigation}) => {
                     </Text>
                     <TextInput
                       style={styles.input}
-                      placeholder="Contraseña"
+                      placeholder="Tu contraseña"
                       placeholderTextColor="#706e6f"
                       value={password}
                       onChangeText={setPassword}
