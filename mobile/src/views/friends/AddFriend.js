@@ -61,10 +61,10 @@ const AddFriend = ({navigation}) => {
 
   return (
       <View style={styles.home}>
-            {/* <Image
-                source={require('D:/Users/Administrador/AndroidStudioProjects/munayki_app/mobile/assets/chat.webp')}
+            <Image
+                source={require('../../../assets/chat.webp')}
                 style={{width: 160, height: 160, marginLeft:35,marginTop: 40}}
-            /> */}
+            />
             <View style={styles.container}>
                 <View>
                     <Text style={styles.text}>
@@ -72,10 +72,9 @@ const AddFriend = ({navigation}) => {
                     </Text>
                     <TextInput
                       style={styles.input}
-                      placeholder="Nombre"
+                      placeholder="Ejem: Pedro"
                       value={name}
                       onChangeText={setName}
-                      activeUnderlineColor="yellow"
                       underlineColor="red"
                     />
                     <Text style={styles.text}>
@@ -83,7 +82,7 @@ const AddFriend = ({navigation}) => {
                     </Text>
                     <TextInput
                       style={styles.input}
-                      placeholder="Telefono"
+                      placeholder="Ejem: 12345678"
                       value={phone}
                       onChangeText={setPhone}
                       inputMode="numeric"
@@ -94,7 +93,7 @@ const AddFriend = ({navigation}) => {
                     </Text>
                     <TextInput
                       style={styles.input}
-                      placeholder="Relacion"
+                      placeholder="Ejem: Progenitor"
                       value={relation}
                       onChangeText={setRelation}
                     />
@@ -122,19 +121,19 @@ const styles = StyleSheet.create({
     marginTop:30,
     height: 350,
     width: 250,
-    backgroundColor: '#E7E0E8',
+    borderColor:'#ea547a',
+    borderWidth:1,
     padding: 16,
     borderRadius: 10,
     justifyContent: 'space-evenly',
   },
   input: {
     height: 40,
-    borderColor: 'gray',
-    backgroundColor:"#FFF",
-    borderWidth: 1,
+    borderBottomColor: 'gray',
+    borderBottomWidth: 1,
     marginBottom: 15,
     padding: 8,
-    borderRadius:6,
+    borderRadius:2,
   },
   button: {
       alignItems: 'center',
@@ -143,17 +142,17 @@ const styles = StyleSheet.create({
       paddingHorizontal: 32,
       borderRadius: 4,
       elevation: 3,
-      backgroundColor: '#FFDE59',
+      backgroundColor: '#fab153',
   },
   text: {
       fontSize: 16,
       lineHeight: 21,
       fontWeight: 'bold',
       letterSpacing: 0.25,
-      color: 'black',
+      color: '#3c3c3c',
   },
   link:{
-    color:'#30A6B1',
+    color:'#069478',
     marginTop:20,
     textDecorationLine: 'underline',
     fontSize:15,

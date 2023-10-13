@@ -11,16 +11,16 @@ const Index=({navigation})=>{
     const renderContact = ({item}) => (
         <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                {/* <Image
-                    source={require('D:/Users/Administrador/AndroidStudioProjects/munayki_app/mobile/assets/user.png')}
+                <Image
+                    source={require('../../../assets/user.png')}
                     style={{width: 40, height: 40}}
-                /> */}
+                />
                 <View style={{marginLeft: 10}}>
-                    <Text style={{fontSize: 18, fontWeight: 'bold', letterSpacing: 0.25, color: '#000'}}>{item.name}</Text>
+                    <Text style={{fontSize: 18, fontWeight: 'bold', letterSpacing: 0.25, color: '#3c3c3c'}}>{item.name}</Text>
                     <Text style={styles.text}>{item.phone}</Text>
                 </View>
             </View>
-            <Pressable style={{justifyContent:'center', alignItems:'center',marginLeft:'20%', backgroundColor: '#30A6B1', paddingHorizontal:24, paddingVertical:8, elevation:6, borderRadius: 4}} onPress={() => navigation.navigate('EditFriend',{contact:item})}>
+            <Pressable style={{justifyContent:'center', alignItems:'center',marginLeft:'20%', backgroundColor: '#019879', paddingHorizontal:24, paddingVertical:8, elevation:6, borderRadius: 4}} onPress={() => navigation.navigate('EditFriend',{contact:item})}>
                 <Text>Editar</Text>
             </Pressable>
         </View>
@@ -36,10 +36,10 @@ const Index=({navigation})=>{
                 />
             </View>
             <View style={styles.container}>
-                {/* <Image
-                    source={require('D:/Users/Administrador/AndroidStudioProjects/munayki_app/mobile/assets/chat.webp')}
+                <Image
+                    source={require('../../../assets/chat.webp')}
                     style={{width: 160, height: 160, margin:30}}
-                /> */}
+                />
                 <Text style={styles.text}>
                     Agregar a tus amistades de confianza
                     para que esten enterados de cualquier
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
         lineHeight: 21,
         fontWeight: 'bold',
         letterSpacing: 0.25,
-        color: '#A6A6A6',
+        color: '#706e6f',
     },
     buttonText: {
         fontSize: 16,
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
           paddingHorizontal: 32,
           borderRadius: 8,
           elevation: 3,
-          backgroundColor: '#E7E0E8',
+          backgroundColor: '#fab153',
           marginTop:30,
     },
 });

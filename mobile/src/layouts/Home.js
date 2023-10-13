@@ -18,14 +18,15 @@ export default HomeLayout
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#fff',
+    backgroundColor: '#ea547a',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    padding: 60,
+    padding: 40,
     elevation: 5,
   },
   textHeader: {
     fontSize: 30,
+    color:'#FFF',
     fontWeight: 'bold',
   },
   children:{

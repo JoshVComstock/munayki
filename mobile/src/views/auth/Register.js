@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, Alert, Image, Pressable } from 'react-native';
+import SelectDropdown from 'react-native-select-dropdown'
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const Register=({navigation})=>{
     const [ci, setCI] = useState('');
@@ -8,8 +10,10 @@ const Register=({navigation})=>{
     const [phone, setPhone] = useState('');
     const [age, setAge] = useState('');
     const [email, setEmail] = useState('');
+    const generos= ["Mujer","Hombre"];
     const [password, setPassword] = useState('');
     const [confirmPwd, setConfirmPwd] = useState('');
+    const [isFirstStep, setIsFirstStep] = useState(true);
     const [errors, setErrors] = useState({});
     const [isFormValid, setIsFormValid] = useState(false);
 
@@ -89,93 +93,138 @@ const Register=({navigation})=>{
     return(
         <View style={styles.home}>
             <View style={styles.container}>
-                <View>
-                    <Text style={styles.text}>
-                        Carnet de Identidad
-                    </Text>
-                    <TextInput
-                      style={styles.input}
-                      placeholder="CI"
-                      value={ci}
-                      onChangeText={setCI}
-                    />
-                    <Text style={styles.text}>
-                        Nombre
-                    </Text>
-                    <TextInput
-                      style={styles.input}
-                      placeholder="Nombre"
-                      value={name}
-                      onChangeText={setName}
-                    />
-                    <Text style={styles.text}>
-                        Apellido
-                    </Text>
-                    <TextInput
-                      style={styles.input}
-                      placeholder="Apellido"
-                      value={lastname}
-                      onChangeText={setLastname}
-                    />
-                    <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
+                {isFirstStep ? (
+                    <View>
+                        <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
+                            <Text style={styles.text}>
+                                Nombre
+                            </Text>
+                            <Text style={styles.text}>
+                                Apellido
+                            </Text>
+                        </View>
+                        <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
+                            <TextInput
+                              style={styles.inputRow}
+                              placeholder="Nombre"
+                              placeholderTextColor="#706e6f"
+                              value={name}
+                              onChangeText={setName}
+                            />
+                            <TextInput
+                              style={styles.inputRow}
+                              placeholder="Apellido"
+                              placeholderTextColor="#706e6f"
+                              value={lastname}
+                              onChangeText={setLastname}
+                            />
+                        </View>
                         <Text style={styles.text}>
-                            Telefono
+                            Correo Electronico
                         </Text>
-                        <Text style={styles.text}>
-                            Edad
-                        </Text>
-                    </View>
-                    <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
                         <TextInput
                           style={styles.input}
-                          placeholder="Telefono"
-                          value={phone}
-                          onChangeText={setPhone}
-                          inputMode="numeric"
-                          maxLength={8}
+                          placeholder="Email"
+                          placeholderTextColor="#706e6f"
+                          value={email}
+                          onChangeText={setEmail}
                         />
+                        <Text style={styles.text}>
+                            Contraseña
+                        </Text>
                         <TextInput
                           style={styles.input}
-                          placeholder="Edad"
-                          value={age}
-                          onChangeText={setAge}
-                          inputMode="numeric"
-                          maxLength={3}
+                          placeholder="Contraseña"
+                          placeholderTextColor="#706e6f"
+                          value={password}
+                          onChangeText={setPassword}
+                          secureTextEntry
                         />
+                        <Text style={styles.text}>
+                            Confirmar contraseña
+                        </Text>
+                        <TextInput
+                          style={styles.input}
+                          placeholder="Confirmar contraseña"
+                          placeholderTextColor="#706e6f"
+                          value={confirmPwd}
+                          onChangeText={setConfirmPwd}
+                          secureTextEntry
+                        />
+                        <Pressable style={styles.nextButton} onPress={() => setIsFirstStep(false)}>
+                            <Text style={styles.text}>Siguiente</Text>
+                        </Pressable>
                     </View>
-                    <Text style={styles.text}>
-                        Correo Electronico
-                    </Text>
-                    <TextInput
-                      style={styles.input}
-                      placeholder="Email"
-                      value={email}
-                      onChangeText={setEmail}
-                    />
-                    <Text style={styles.text}>
-                        Contraseña
-                    </Text>
-                    <TextInput
-                      style={styles.input}
-                      placeholder="Contraseña"
-                      value={password}
-                      onChangeText={setPassword}
-                      secureTextEntry
-                    />
-                    <Text style={styles.text}>
-                        Confirmar contraseña
-                    </Text>
-                    <TextInput
-                      style={styles.input}
-                      placeholder="Confirmar contraseña"
-                      value={confirmPwd}
-                      onChangeText={setConfirmPwd}
-                      secureTextEntry
-                    />
-                </View>
-                <Pressable style={styles.button} onPress={handleSubmit}>
-                    <Text style={styles.text}>Registrarse</Text>
-                </Pressable>
+                ):(
+                    <View>
+                        <Text style={styles.text}>
+                            CI
+                        </Text>
+                        <TextInput
+                          style={styles.input}
+                          placeholder="CI"
+                          placeholderTextColor="#706e6f"
+                          value={ci}
+                          onChangeText={setCI}
+                        />
+                        <Text style={styles.text}>
+                            Genero
+                        </Text>
+                        <SelectDropdown
+                            buttonStyle={styles.dropdown}
+                            buttonTextStyle={{color:'#706e6f'}}
+                            defaultButtonText= "Escoge tu genero"
+                            data={generos}
+                            renderDropdownIcon={isOpened => {
+                              return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={'#706e6f'} size={18} />;
+                            }}
+                            dropdownIconPosition={'right'}
+                            onSelect={(selectedItem, index) => {
+                                console.log(selectedItem, index)
+                            }}
+                            buttonTextAfterSelection={(selectedItem, index) => {
+                                return selectedItem
+                            }}
+                            rowTextForSelection={(item, index) => {
+                                return item
+                            }}
+                        />
+                        <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
+                            <Text style={styles.text}>
+                                Telefono
+                            </Text>
+                            <Text style={styles.text}>
+                                Edad
+                            </Text>
+                        </View>
+                        <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
+                            <TextInput
+                              style={styles.inputRow}
+                              placeholder="Telefono"
+                              placeholderTextColor="#706e6f"
+                              value={phone}
+                              onChangeText={setPhone}
+                              inputMode="numeric"
+                              maxLength={8}
+                            />
+                            <TextInput
+                              style={styles.inputRow}
+                              placeholder="Edad"
+                              placeholderTextColor="#706e6f"
+                              value={age}
+                              onChangeText={setAge}
+                              inputMode="numeric"
+                              maxLength={3}
+                            />
+                        </View>
+                        <Pressable style={styles.nextButton} onPress={() => setIsFirstStep(true)}>
+                            <Text style={styles.text}>Anterior</Text>
+                        </Pressable>
+                        <Pressable style={styles.button} onPress={handleSubmit}>
+                            <Text style={styles.text}>Registrarse</Text>
+                        </Pressable>
+                    </View>
+                )}
                 <Text style={styles.link} onPress={() => navigation.navigate('Login')}>
                     Ya tienes una cuenta?
                 </Text>
@@ -186,27 +235,37 @@ const Register=({navigation})=>{
 
 const styles = StyleSheet.create({
     home:{
-        backgroundColor:'#E7E0E8',
+        backgroundColor:'#fff',
         flex:1,
         width: '100%',
         justifyContent:'center',
         alignItems:'center',
       },
   container: {
-      height: 650,
+      height: 500,
       width: 250,
-      backgroundColor: '#FFF',
+      borderColor:'#ea547a',
+      borderWidth:1,
       padding: 16,
       borderRadius: 10,
       justifyContent: 'space-evenly',
     },
     input: {
       height: 40,
-      borderColor: 'gray',
-      borderWidth: 1,
+      borderBottomColor: 'gray',
+      borderBottomWidth: 1,
       marginBottom: 20,
       padding: 8,
-      borderRadius:6,
+      borderRadius:2,
+    },
+    inputRow:{
+      height: 40,
+      borderBottomColor: 'gray',
+      borderBottomWidth: 1,
+      marginBottom: 20,
+      padding: 8,
+      borderRadius:2,
+      width:105,
     },
     button: {
         alignItems: 'center',
@@ -215,17 +274,37 @@ const styles = StyleSheet.create({
         paddingHorizontal: 32,
         borderRadius: 4,
         elevation: 3,
-        backgroundColor: '#FFC9BB',
+        backgroundColor: '#fab153',
+        marginTop:20,
+    },
+    nextButton: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 8,
+        paddingHorizontal: 12,
+        borderRadius: 4,
+        elevation: 3,
+        backgroundColor: '#4dc0df',
+    },
+    dropdown:{
+        width:"100%",
+        height:40,
+        backgroundColor: 'transparent',
+        borderWidth:1,
+        borderRadius:4,
+        borderColor: 'gray',
+        marginBottom: 20,
+        color: '#706e6f'
     },
     text: {
         fontSize: 16,
         lineHeight: 21,
         fontWeight: 'bold',
         letterSpacing: 0.25,
-        color: 'black',
+        color: '#3c3c3c',
     },
     link:{
-      color:'#B7D2EF',
+      color:'#069478',
       marginTop:20,
       textDecorationLine: 'underline',
       fontSize:15,
