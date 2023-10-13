@@ -21,7 +21,6 @@ app.post('/alertausuario', async (req, res) => {
             audio: req.body.audio,
             fecha: req.body.fecha,
             estado: req.body.estado
-            
         }
     });
     res.json({

@@ -3,7 +3,6 @@ import { Iniciodiv } from "../style/compStyle";
 import imgf from "../assets/img-mujer1.png";
 import imgh from "../assets/img-hombre01.png";
 import imgv from "../assets/violencia-sf.png";
-
 import img0 from "../assets/adulto-mayor.png";
 import img1 from "../assets/adultomayorMujer-transformed.png";
 import img2 from "../assets/hombre-boca-transformed.png";
@@ -36,7 +35,7 @@ const Inicio = () => {
       </Iniciodiv>
       <Filtros />
       <Violentometro />
-
+     
     </>
   );
 };

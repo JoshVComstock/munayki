@@ -2,7 +2,6 @@ const express = require("express");
 const { PrismaClient } = require("@prisma/client")
 const app = express();
 const prisma = new PrismaClient();
-
 app.get('/user', async (req, res) => { // Utiliza req para la solicitud y res para la respuesta
     try {
         const usuarios = await prisma.usuario.findMany({
@@ -42,7 +41,6 @@ app.post('/user', async (req, res) => {
       });
     }
   });
-
 app.put('/user/:id',async(req,res)=>{
     const id=parseInt(req.params.id);
     const userUpdate= await prisma.usuario.update({

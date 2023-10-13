@@ -1,14 +1,23 @@
-import { useState,useEffect } from "react"
-const urlback = import.meta.env.VITE_BACKEND_URL;
-export const usePost = async(url,body)=>{
-    const res= await fetch(`${urlback+url}`,{
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json",
+import { useEffect } from "react";
+
+export const usePost = (url, data) => {
+    const fetchData = async () => {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-        body:JSON.stringify(body),
-    });
-    if(res.ok){
-        return res.json();
-    }
-}
+        body: JSON.stringify(data),
+        
+      });
+      if (response.ok) {
+        console.log("Agregado");
+      } else {
+        console.log("error al enviar datos");
+      }
+      
+    };
+    fetchData();
+ console.log(data);
+
+};
