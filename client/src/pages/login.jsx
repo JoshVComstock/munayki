@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Section } from "../style/compStyle";
 import ComRegister from "../components/Informativa/comRegister";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // Cambiado a useNavigate
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
@@ -14,10 +14,11 @@ import { useNavContext } from "../context/navContextProvider";
 import { useContextUser } from "../context/userContextProvider";
 import useStoreUser from "../components/zustand/stores/storeUser";
 const url = import.meta.env.VITE_BACKEND_URL;
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navegate = useNavigate();
+  const navegate = useNavigate(); // Cambiado a useNavigate
   const { setLogged } = useNavContext();
   const { user, setUser } = useContextUser();
   const [irLogin, setIrLogin] = useState(true);
@@ -33,7 +34,7 @@ const Login = () => {
         localStorage.setItem("user", JSON.stringify(response.user[0]));
         setLogged(true);
         setUser((user) => ({ ...user, isLogged: true }));
-        navegate("/");
+        navegate("/"); // Cambiado a navegate("/")
         toast.success("¡Bienvenido al sistema!");
       } else {
         console.log("Datos incorrectos");
@@ -46,9 +47,15 @@ const Login = () => {
   const Evaluando = () => {
     setIrLogin(!irLogin);
   };
+
   const ingresar = () => {
-    Navigate("/dashboard");
+    navegate("/dashboard"); // Cambiado a navegate("/dashboard")
   };
+
+  const volver = () => {
+    navegate("/"); // Cambiado a navegate("/")
+  };
+
   return (
     <Section>
       <div className={`login ${irLogin ? "active" : ""}`}>
@@ -60,7 +67,7 @@ const Login = () => {
           <img src={logo} alt="logo" className="logoimg" />
         </article>
         <form>
-          <h1 htmlFor="Login"> Iniciar Secion</h1>
+          <h1 htmlFor="Login"> Iniciar Sesión</h1>
           <label htmlFor="email"> Correo Electrónico:</label>
           <div>
             <FontAwesomeIcon icon={faEnvelope} />
@@ -73,7 +80,7 @@ const Login = () => {
               }}
             />
           </div>
-          <label htmlFor="email"> Contraseña:</label>
+          <label htmlFor="password"> Contraseña:</label>
           <div>
             <FontAwesomeIcon icon={faKey} />
             <input
@@ -85,14 +92,14 @@ const Login = () => {
               }}
             />
           </div>
-          <button onClick={logout}>
+          <button onClick={ingresar}>
             <FontAwesomeIcon icon={faSignInAlt} />
-            Iniciar Secion
+            Iniciar Sesión
           </button>
           <p onClick={Evaluando}>Registrarse</p>
-          <button className="volver">
+          <button className="volver" onClick={volver}>
             <FontAwesomeIcon icon={faArrowLeft} />
-            volver
+            Volver
           </button>
         </form>
       </div>

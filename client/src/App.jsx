@@ -14,10 +14,13 @@ import Routing from "./Routes/Routing";
 import Mapas from "./pages/mapas";
 import Violentimetro from "./pages/InicioSecciones/violentimetro";
 import Quizz from "./pages/quizz";
+import { ModalContextProvider } from "./context/modalContext";
+import Modal from "./modal";
 
 function App() {
   return (
     <HashRouter>
+      <ModalContextProvider>
       <UserContextProvider>
         <Navcontextprovider>
           <Routes>
@@ -37,11 +40,9 @@ function App() {
             <Route
               path="/dashboard"
               element={
-                <Routing>
                   <NabarDash>
                     <Admin />
                   </NabarDash>
-                </Routing>
               }
             >
               <Route path="/dashboard/organizacion" element={<Organacion />} />
@@ -49,8 +50,10 @@ function App() {
               <Route path="/dashboard/user" element={<User />} />
             </Route>
           </Routes>
+          <Modal />
         </Navcontextprovider>
       </UserContextProvider>
+      </ModalContextProvider>
     </HashRouter>
   );
 }

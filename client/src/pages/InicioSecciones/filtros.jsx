@@ -39,7 +39,6 @@ const Filtros = () => {
           <Link to="/"> Violentimetro</Link>
         </article>
         <article>
-          {" "}
           <Link to="/mapas"> Lugares de ayuda</Link>
         </article>
         <article>

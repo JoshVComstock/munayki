@@ -2,6 +2,9 @@ const express = require("express");
 const { PrismaClient } = require("@prisma/client")
 const app = express();
 const prisma = new PrismaClient();
+
+
+
 app.get('/user', async (req, res) => { 
     try {
         const usuarios = await prisma.usuario.findMany({

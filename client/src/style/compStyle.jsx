@@ -149,44 +149,7 @@ export const Iniciodiv = styled.div`
       }
     }
   }
-  /* & > div {
-    width: 75%;
-    z-index: 3;
-    ${FlexComun}
-    justify-content:end;
-    height: 100%;
-    .slider-container {
-      position: relative;
-      width: 50%;
-      height: 100%;
-      z-index: 3;
-    }
-    .slide {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 150%;
-      transition: left 0.5s ease;
-      z-index: -1;
-      img {
-        bottom: 0;
-        position: absolute;
-        width: 45em;
-        height: 28em;
-        object-fit: cover;
-        filter: grayscale(1);
-        background-color: transparent;
-      }
-    }
-
-    .slide.active {
-      left: 10%;
-      & img {
-        left: -80%;
-      }
-    }
-  } */
+  
   & > section {
     ${FlexComun}
     justify-content:start;
@@ -298,7 +261,7 @@ export const Filtro = styled.div`
       position: relative;
       &::before {
         content: "";
-        background-color: #000;
+        background-color: #0005;
         width: 100%;
         height: 100%;
         position: absolute;

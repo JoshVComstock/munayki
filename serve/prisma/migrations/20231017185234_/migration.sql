@@ -15,6 +15,15 @@ CREATE TABLE `Usuario` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
+CREATE TABLE `ResultadoCuestionario` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `puntuacion` INTEGER NOT NULL,
+    `respuestas` JSON NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
 CREATE TABLE `Organizacion` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `nombre` VARCHAR(191) NOT NULL,
