@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 const url = import.meta.env.VITE_BACKEND_URL;
 
-const  = create((set) => ({
+const  useStore= create((set) => ({
   datos: [],
   fetchedOrganacion: () => {
     fetch(`${url}organizacion`)

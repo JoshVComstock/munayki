@@ -149,7 +149,7 @@ export const Iniciodiv = styled.div`
       }
     }
   }
-  
+
   & > section {
     ${FlexComun}
     justify-content:start;
@@ -254,10 +254,10 @@ export const Filtro = styled.div`
     gap: 2em;
     width: 100%;
     & > article {
-    ${FlexComun}
+      ${FlexComun}
       background-color: ${colors.C};
       width: 250px;
-      height:40px;
+      height: 40px;
       position: relative;
       &::before {
         content: "";
@@ -270,8 +270,12 @@ export const Filtro = styled.div`
         z-index: -1;
       }
       & a {
+      ${FlexComun}
+
         color: #fff;
         text-decoration: none;
+        width: 100%;
+        height: 100%;
       }
     }
   }
