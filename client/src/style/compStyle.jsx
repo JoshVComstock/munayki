@@ -113,14 +113,14 @@ export const Iniciodiv = styled.div`
       border-radius: 1em;
       z-index: 10;
       padding: 1em;
-      animation:animloader 1s ease;
+      animation: animloader 1s ease;
       & > img {
         height: 40px;
         width: 40px;
         filter: invert(1);
       }
       & p {
-        text-align:start;
+        text-align: start;
         width: 200px;
         color: ${colors.CC};
         content: "";
@@ -284,30 +284,37 @@ export const Filtro = styled.div`
   flex-wrap: wrap;
   box-shadow: 0 -4px 5px #0005;
   flex-direction: column;
-  & > div {
+  & > section {
+    ${FlexComun}
+    justify-content:start;
+    margin: 1em;
+    gap: 2em;
     width: 100%;
-    padding: 1em;
-
-    & > section {
-      ${FlexComun}
-      justify-content:start;
-      margin: 1em;
-      gap: 2em;
+    & > article {
+    ${FlexComun}
+      background-color: ${colors.C};
+      width: 250px;
+      height:40px;
+      position: relative;
+      &::before {
+        content: "";
+        background-color: #000;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0.5em;
+        left: -0.5em;
+        z-index: -1;
+      }
       & a {
-        ${FlexComun}
-        text-decoration:none;
-        padding: 0.5em;
-        width: 10em;
-        background-color: ${colors.C};
         color: #fff;
-        position: sticky;
-        z-index: 2;
+        text-decoration: none;
       }
     }
+  }
 
-    & article {
-      ${FlexComun}
-    }
+  & > article {
+    ${FlexComun}
   }
 `;
 export const Mapasstyle = styled.section`

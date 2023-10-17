@@ -34,13 +34,18 @@ const Filtros = () => {
   }
   return (
     <Filtro>
-      <div>
-        <section>
+      <section>
+        <article>
           <Link to="/"> Violentimetro</Link>
+        </article>
+        <article>
+          {" "}
           <Link to="/mapas"> Lugares de ayuda</Link>
+        </article>
+        <article>
           <Link to="/quizz"> Quizz</Link>
-        </section>
-      </div>
+        </article>
+      </section>
       <article>
         <Outlet />
       </article>
