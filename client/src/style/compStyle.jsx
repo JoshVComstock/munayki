@@ -1,5 +1,11 @@
 import { styled } from "styled-components";
-import { FlexComun, LoginGlobal, PositcionComun, colors } from "./StyleGlobal";
+import {
+  BackgraundQuizz,
+  FlexComun,
+  LoginGlobal,
+  PositcionComun,
+  colors,
+} from "./StyleGlobal";
 
 export const Section = styled.section`
   ${FlexComun}
@@ -196,10 +202,26 @@ export const Iniciodiv = styled.div`
 `;
 export const ViolentimetroA = styled.div`
   ${FlexComun}
-  background-color:${colors.C};
-  height: 60vh;
-  color: #fff;
   width: 100vw;
+  margin: 0;
+  flex-direction: column;
+  gap: 2em;
+  & aside {
+    width: 100%;
+    ${FlexComun}
+    gap: 2em;
+    margin: 2em 0;
+    & > article {
+      width: 25em;
+    }
+    ${FlexComun}
+    & > div {
+      width: 50%;
+      & > h2 {
+        margin: 1em 0;
+      }
+    }
+  }
   & > section {
     width: 15em;
     height: 15em;
@@ -231,16 +253,52 @@ export const ViolentimetroA = styled.div`
       }
     }
   }
-  & div {
+  & > div {
     ${FlexComun}
-    width:calc(80% / 3);
+    width:100%;
     margin: 0 auto;
-    height: 100%;
+    height: 25em;
+    padding: 2em;
+    ${BackgraundQuizz}
+    box-shadow: 0 5px 10px #0005;
+    gap: 4em;
+
+    & > section {
+      ${FlexComun}
+      flex-direction:column;
+      width: 40%;
+      gap: 2em;
+      & > div {
+        width: 100%;
+        ${FlexComun}
+        justify-content:space-around;
+        & button {
+          padding: 1em 2em;
+          cursor: pointer;
+          border: none;
+          border-radius: 0.5em;
+          background-color: ${colors.BB};
+          color: #fff;
+          position: relative;
+          &::before {
+            content: "";
+            background-color: #0005;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0.5em;
+            left: -0.5em;
+            z-index: -1;
+          border-radius: 0.5em;
+
+          }
+        }
+      }
+    }
   }
 `;
 
 export const Filtro = styled.div`
-  ${FlexComun}
   width: 100%;
   z-index: 8;
   height: auto;
@@ -255,7 +313,7 @@ export const Filtro = styled.div`
     width: 100%;
     & > article {
       ${FlexComun}
-      background-color: ${colors.C};
+      background-color: ${colors.CC};
       width: 250px;
       height: 40px;
       position: relative;
@@ -270,8 +328,7 @@ export const Filtro = styled.div`
         z-index: -1;
       }
       & a {
-      ${FlexComun}
-
+        ${FlexComun}
         color: #fff;
         text-decoration: none;
         width: 100%;
@@ -281,6 +338,7 @@ export const Filtro = styled.div`
   }
 
   & > article {
+    width: 100%;
     ${FlexComun}
   }
 `;
