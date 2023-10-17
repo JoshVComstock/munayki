@@ -1,18 +1,13 @@
 import React from "react";
 import { Iniciodiv } from "../style/compStyle";
 import imgf from "../assets/img-mujer1.png";
-import imgv from "../assets/violencia-sf.png";
-import img0 from "../assets/adulto-mayor.png";
-import img1 from "../assets/adultomayorMujer-transformed.png";
-import img2 from "../assets/hombre-boca-transformed.png";
-import img4 from "../assets/mujerMano.png";
+import term from "../assets/icons/termometro.png";
+import cam from "../assets/icons/camino.png";
+import ayu from "../assets/icons/ayuda.png";
+import leg from "../assets/icons/legal.png";
+import tel from "../assets/icons/telefono.png";
 import Filtros from "./InicioSecciones/filtros";
-import Slider from "../components/Informativa/slider";
-import { colorsSlider } from "../style/StyleGlobal";
-import Footer from "../components/Informativa/footer";
-
 const Inicio = () => {
-  const images = [imgf, img2, imgv, img1, img4];
   return (
     <>
       <Iniciodiv>
@@ -27,13 +22,33 @@ const Inicio = () => {
             <button>Descargar App</button>
           </div>
         </section>
-        <div>
-          <Slider images={images} colors={colorsSlider} />
-        </div>
+        <article>
+          <img src={imgf} />
+        </article>
+        <aside>
+          <div>
+            <img src={tel} alt="" />
+            <p> Aplicación móvil </p>
+          </div>
+          <div>
+            <img src={term} />
+            <p> Violentometro</p>
+          </div>
+          <div>
+            <img src={cam} />
+            <p> Ruta de Denuncias</p>
+          </div>
+          <div>
+            <img src={ayu} />
+            <p>¿Comó ayuda Slim?</p>
+          </div>
+          <div>
+            <img src={leg} />
+            <p> Ámbito legal </p>
+          </div>
+        </aside>
       </Iniciodiv>
       <Filtros />
-      <Violentometro />
-     
     </>
   );
 };

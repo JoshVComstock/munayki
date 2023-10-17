@@ -36,11 +36,9 @@ const Filtros = () => {
     <Filtro>
       <div>
         <section>
-          <Link to="/Violentimetro"> Violentimetro</Link>
-          <Link to="/mapas"> Mapas</Link>
-          <Link to="/Formulario"> Quizz</Link>
-          <Link to="/app"> App</Link>
-          <Link to="/Informate"> Informate</Link>
+          <Link to="/"> Violentimetro</Link>
+          <Link to="/mapas"> Lugares de ayuda</Link>
+          <Link to="/quizz"> Quizz</Link>
         </section>
       </div>
       <article>

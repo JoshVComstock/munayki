@@ -1,20 +1,16 @@
+import { ViolentimetroA } from "../../style/compStyle";
 
-import { ViolentimetroA } from '../../style/compStyle'
-
-const Violentimetro = () => {
+const Violentimetro = (props) => {
+  const { puntuacionTotal } = props;
+  console.log(puntuacionTotal);
   return (
     <ViolentimetroA>
-      <div>
-        graficas
-      </div>
-    <section>
-        151%
-    </section>
-    <div>
-      datos especificos del violentimetro 
-    </div>
-    </ViolentimetroA>
-  )
-}
+      <div>graficas</div>
 
-export default Violentimetro
+      <section>{puntuacionTotal}</section>
+      <div>datos especificos del violentimetro</div>
+    </ViolentimetroA>
+  );
+};
+
+export default Violentimetro;

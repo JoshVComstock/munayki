@@ -61,7 +61,17 @@ export const Iniciodiv = styled.div`
   width:100%;
   position: relative;
   justify-content: space-evenly;
+  &::after {
+    position: absolute;
+    content: "";
+    width: 50%;
+    height: 100%;
+    background-color: #0008;
+    right: 0;
+    z-index: 5;
+  }
   & > p {
+    display: none;
     position: absolute;
     font-size: 7em;
     font-weight: bold;
@@ -69,10 +79,77 @@ export const Iniciodiv = styled.div`
     -webkit-text-stroke: 2px ${colors.CC};
     opacity: 0.2;
     z-index: 1;
-    top: 20%;
+    top: 5%;
     text-shadow: 5px 6px 2px ${colors.CC};
   }
-  & > div {
+  & > article {
+    z-index: 2;
+    background-color: #2e2e2e;
+    width: 25em;
+    height: 25em;
+    ${FlexComun}
+    border-radius: 50%;
+    box-shadow: 9px 9px 18px #3d116152, -9px -9px 18px #4815714e;
+    & img {
+      width: 50em;
+      bottom: 0;
+      position: absolute;
+    }
+  }
+  & > aside {
+    height: 100%;
+    width: calc(90% / 3);
+    position: relative;
+    margin-top: 4em;
+    & div {
+      position: absolute;
+      height: 55px;
+      width: 55px;
+      content: "";
+      background-color: ${colors.CC};
+      top: 10%;
+      ${FlexComun}
+      flex-direction:row;
+      border-radius: 1em;
+      z-index: 10;
+      padding: 1em;
+      animation:animloader 1s ease;
+      & > img {
+        height: 40px;
+        width: 40px;
+        filter: invert(1);
+      }
+      & p {
+        text-align:start;
+        width: 200px;
+        color: ${colors.CC};
+        content: "";
+        position: absolute;
+        transform: translateX(70%);
+      }
+      &:nth-child(1) {
+        left: -15%;
+        top: 5%;
+      }
+      &:nth-child(2) {
+        left: -5%;
+        top: 20%;
+      }
+      &:nth-child(3) {
+        left: 5%;
+        top: 35%;
+      }
+      &:nth-child(4) {
+        left: -5%;
+        top: 50%;
+      }
+      &:nth-child(5) {
+        left: -15%;
+        top: 65%;
+      }
+    }
+  }
+  /* & > div {
     width: 75%;
     z-index: 3;
     ${FlexComun}
@@ -109,7 +186,7 @@ export const Iniciodiv = styled.div`
         left: -80%;
       }
     }
-  }
+  } */
   & > section {
     ${FlexComun}
     justify-content:start;
@@ -117,6 +194,7 @@ export const Iniciodiv = styled.div`
     padding: 5em 8em;
     gap: 1em;
     animation: DesdeIsquierdaRE 1s ease-in;
+    width: calc(90% / 3);
     & > div {
       ${FlexComun}
       flex-direction:column;
@@ -154,11 +232,11 @@ export const Iniciodiv = styled.div`
   }
 `;
 export const ViolentimetroA = styled.div`
-    ${FlexComun}
-    background-color:${colors.C};
-    height:60vh;
-color:#fff;
-width:100vw;
+  ${FlexComun}
+  background-color:${colors.C};
+  height: 60vh;
+  color: #fff;
+  width: 100vw;
   & > section {
     width: 15em;
     height: 15em;
@@ -179,22 +257,22 @@ width:100vw;
         0% {
           transform: scale(1);
         }
-       
+
         50% {
           transform: scale(1.1);
         }
-       
+
         100% {
           transform: scale(1);
         }
       }
     }
   }
-  & div{
+  & div {
     ${FlexComun}
     width:calc(80% / 3);
-    margin:0 auto;
-    height:100%;
+    margin: 0 auto;
+    height: 100%;
   }
 `;
 
@@ -204,36 +282,34 @@ export const Filtro = styled.div`
   z-index: 8;
   height: auto;
   flex-wrap: wrap;
-box-shadow: 0 -4px 5px #0005;
-flex-direction:column;
-& > div{
-width:100%;
-padding:1em;
+  box-shadow: 0 -4px 5px #0005;
+  flex-direction: column;
+  & > div {
+    width: 100%;
+    padding: 1em;
 
-& > section{
-  ${FlexComun}
-  justify-content:start;
-  margin:1em;
-  gap:2em;
-& a{
-  ${FlexComun}
-  text-decoration:none;
-  padding:.5em;
-  width:10em;
-  background-color:${colors.C};
-  color:#fff;
-  position:sticky;
-  z-index:2;
+    & > section {
+      ${FlexComun}
+      justify-content:start;
+      margin: 1em;
+      gap: 2em;
+      & a {
+        ${FlexComun}
+        text-decoration:none;
+        padding: 0.5em;
+        width: 10em;
+        background-color: ${colors.C};
+        color: #fff;
+        position: sticky;
+        z-index: 2;
+      }
+    }
 
-}
-}
-
-& article{
-  ${FlexComun}
-
-}
-}
+    & article {
+      ${FlexComun}
+    }
+  }
 `;
-export const Mapasstyle =styled.section`
-height:100vh;
+export const Mapasstyle = styled.section`
+  height: 100vh;
 `;
