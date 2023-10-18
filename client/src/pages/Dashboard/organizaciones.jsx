@@ -3,30 +3,44 @@ import styled from "styled-components";
 import { colors } from "../../style/StyleGlobal";
 import storeUno from "../../components/zustand/stores/storeUno";
 import { usePost } from "../../hook/usePost";
+import { useGet } from "../../hook/useGet";
+const url = import.meta.env.VITE_BACKEND_URL;
+import { useDelete } from "../../hook/useDelete";
 const Organizaciones = () => {
-  const { datos, fetchedBody } = storeUno();
-  const [datosFetched, setDatosFetched] = useState(false);
-  useEffect(() => {
+   const { datos, fetchedBody } = storeUno();
+/*   const [datosFetched, setDatosFetched] = useState(false);  */
+  const {data}=useGet(`https://express-vercel-one-mu.vercel.app/organizacion`);
+ /*  useEffect(() => {
     if (!datosFetched) {
       fetchedBody();
       setDatosFetched(true);
     }
-  }, []);
+  }, [datosFetched, fetchedBody]); */
+  const [form, setForm] = useState({
+    nombre: "",
+    ubicacion: "",
+    areVulnerable: "",
+    usuarioId: null,
+  });
+
   const renderDatos = () => {
-    if (datos && datos.length)
-      return datos.map((datos) => (
+    if (data && data.length)
+      return data.map((datos,v) => (
         <tr key={datos.id}>
-          <td>{datos.id}</td>
+          <td>{v+1}</td>
           <td>{datos.nombre}</td>
           <td>{datos.ubicacion}</td>
           <td>{datos.areVulnerable}</td>
+          <td>hanz</td>
           <td>
-            <button>Eliminar</button>
+            <button onClick={()=>{
+              useDelete('https://express-vercel-one-mu.vercel.app/organizacion',datos.id)
+            }}
+            >Eliminar</button>
           </td>
         </tr>
       ));
   };
-  console.log(datos);
   return (
     <ContainerUbicacion>
       <div>
@@ -44,7 +58,75 @@ const Organizaciones = () => {
             <th>Acciones</th>
           </tr>
         </thead>
-        <tbody>{renderDatos()}</tbody>
+        <tbody>
+          <tr>
+            <td>
+              Nueva organizacion
+            </td>
+            <td>
+              <input type="text" value={form.nombre} onChange={(e) =>
+                setForm({
+                  ...form,
+                  nombre: e.target.value,
+                })
+              } placeholder="Organizacion" />
+            </td>
+            <td>
+              <input
+                type="text"
+                value={form.ubicacion}
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    ubicacion: e.target.value,
+                  })
+                }
+                placeholder="Ubicacion"
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                value={form.areVulnerable}
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    areVulnerable: e.target.value,
+                  })
+                }
+                placeholder="Area vulnerable"
+              />
+            </td>
+            <td>
+              <select
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    usuarioId:null,
+                  })
+                }
+              >
+                <option>Busque usuario</option>
+                {datos.map((v) => (
+                  <option key={v.usuarioId} value={v.usuarioId}>
+                    {v.usuario.nombre}
+                    
+                  </option>
+                ))}
+              </select>
+            </td>
+            <td>
+              <button
+                onClick={() => {
+                  usePost(`${url}organizacion`,form)
+                }}
+              >
+                Agregar
+              </button>
+            </td>
+          </tr>
+          {renderDatos()}
+        </tbody>
       </table>
     </ContainerUbicacion>
   );
@@ -87,6 +169,8 @@ export const ContainerUbicacion = styled.div`
         }
         & > td {
           height: 50px;
+          overflow: hidden;
+  text-overflow: ellipsis;
           & > button {
             width: 100px;
             height: 35px;

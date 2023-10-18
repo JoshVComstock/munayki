@@ -173,3 +173,34 @@ export const LoginGlobal = css`
       }
     }
 `;
+
+
+export const BackgraundQuizz = css`
+background: rgba(155, 152, 152, 0.404);
+box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+backdrop-filter: blur(4px);
+-webkit-backdrop-filter: blur(4px);
+border-radius: 10px;
+border: 1px solid rgba(255, 255, 255, 0.18);
+position: relative;
+&::after {
+  position: absolute;
+  content: "";
+  background-color: ${colors.CC};
+  width: 0px;
+  height: 0px;
+  bottom: 5em;
+  right: 5em;
+  box-shadow: 0px 10px 80px 40px ${colors.CC};
+}
+&::before {
+  position: absolute;
+  content: "";
+  background-color: ${colors.CC};
+  width: 0px;
+  height: 0px;
+  top: 5em;
+  left: 5em;
+  box-shadow: 0px 10px 80px 40px ${colors.BB};
+}
+`

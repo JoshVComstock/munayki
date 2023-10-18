@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import GetUserFromLocalStorage from "./getUserFromLocalStorage";
 
+
 export const UsersContext = createContext(null);
 
 export const useContextUser = () => {

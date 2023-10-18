@@ -8,7 +8,7 @@ export const useNavContext = () => {
   return context;
 };
 export const Navcontextprovider = ({ children }) => {
-  const [logged, setLogged] = useState(false);
+  const [logged, setLogged] = useState(true);
   return (
     <Navcontext.Provider value={{ logged, setLogged }}>
       {children}

@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import useStoreUser from "../../components/zustand/stores/storeUser";
 import { ContainerUbicacion } from "./organizaciones";
+const url = import.meta.env.VITE_BACKEND_URL;
+import { useGet } from "../../hook/useGet";
 const User = () => {
-  const { fetchedUser, datos, deleteUsuario } = useStoreUser();
-  const [datosFetched, setDatosFetched] = useState(false);
-  useEffect(() => {
+  // como es un huck debemos instanciarlos de esta forma se puede manejar el destruring  para traer lo que quieres
+
+ /*  const { fetchedUser, datos,eliminarUser} = useStoreUser(); */
+/*   const [datosFetched, setDatosFetched] = useState(false); */
+  /* useEffect(() => {
     if (!datosFetched) {
       fetchedUser();
       setDatosFetched(true);
@@ -12,19 +16,16 @@ const User = () => {
   }, []);
   if (!datos.length) {
     return <span className="loader"></span>;
-  }
-  const eliminarUser = async (id) => {
-    try {
-      await deleteUsuario(id);
-      await fetchedUser();
-    } catch (error) {
-      console.error("Error al eliminar el usuario:", error);
-    }
-  };
-
+  } */
+  const {data}=useGet(`https://express-vercel-one-mu.vercel.app/user`);
+  /* const elimianruser =(id)=>{
+    eliminarUser(id)
+    } */
+ console.log(data);
+  
   const renderDatos = () => {
-    if (datos && datos.length)
-      return datos.map((datos) => (
+    if (data && data.length)
+      return data.map((datos) => (
         <tr key={datos.id}>
           <td>{datos.id}</td>
           <td>{datos.nombre}</td>
@@ -32,12 +33,11 @@ const User = () => {
           <td>{datos.edad}</td>
           <td>{datos.telefono}</td>
           <td>{datos.carnet}</td>
-          <td>{datos.correo}</td>
-          <td>{datos.password}</td>
+          <td>{datos.correo}</td> 
           <td>{datos.rol}</td>
           <td>{datos.genero}</td>
           <td>
-            <button onClick={() => eliminarUser(datos.id)}>Eliminar</button>
+            {/* <button onClick={elimianruser(datos.id)}>Eliminar</button> */}
           </td>
         </tr>
       ));
@@ -60,7 +60,6 @@ const User = () => {
             <th>telefono</th>
             <th>carnet</th>
             <th>correo</th>
-            <th>password</th>
             <th>rol</th>
             <th>genero</th>
             <th>Acciones</th>

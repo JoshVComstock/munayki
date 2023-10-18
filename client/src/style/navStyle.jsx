@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { FlexComun, colors } from "./StyleGlobal";
+import { BackgraundQuizz, FlexComun, colors } from "./StyleGlobal";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
@@ -36,7 +36,7 @@ export const SectionNav = styled.section`
       & > a {
         color: ${colors.FF};
         text-decoration: none;
-        font-size:.9em;
+        font-size: 0.9em;
       }
     }
   }
@@ -91,7 +91,7 @@ export const Sectionav = styled.section`
         & > .active {
           transition: 0.5s;
           border-left: 5px solid ${colors.F};
-          
+
           & > img {
             filter: invert(39%) sepia(56%) saturate(1116%) hue-rotate(128deg)
               brightness(96%) contrast(101%);
@@ -117,8 +117,8 @@ export const Sectionav = styled.section`
           padding: 10px;
           background: transparent;
           cursor: pointer;
-          &:hover{
-            &>img {
+          &:hover {
+            & > img {
               filter: invert(39%) sepia(56%) saturate(1116%) hue-rotate(128deg)
                 brightness(96%) contrast(101%);
             }
@@ -158,7 +158,7 @@ export const Linkes = styled(NavLink)`
   padding: 0.5em;
   margin-left: 1em;
   border-left: 5px solid transparent;
-  
+
   & > img {
     width: 25px;
     height: 25px;
@@ -170,32 +170,29 @@ export const Linkes = styled(NavLink)`
       brightness(96%) contrast(101%);
   }
 `;
-
-
 export const Footerstyle = styled.section`
-height:40vh;
-background-color:${colors.BB};
-z-index:100;
-width:100%;
-padding:5em;
-${FlexComun}
-justify-content:start;
-gap:1em;
-& img{
-  width:100px;
-}
-& > section{
-  width: 50%;
+  height: 40vh;
+  background-color: ${colors.CC};
+  z-index: 100;
+  width: 100%;
+  padding: 5em;
   ${FlexComun}
-gap:1em;
-flex-direction:column;
-& > a{
-  width:50%;
-  color:#fff;
-text-decoration:none;
-border-left:solid 1px #fff;
-padding: .2em 1em;
-}
-}
+  justify-content:start;
+  gap: 1em;
+  & img {
+    width: 100px;
+  }
+  & > section {
+    width: 50%;
+    ${FlexComun}
+    gap:1em;
+    flex-direction: column;
+    & > a {
+      width: 50%;
+      color: #fff;
+      text-decoration: none;
+      border-left: solid 1px #fff;
+      padding: 0.2em 1em;
+    }
+  }
 `;
-
