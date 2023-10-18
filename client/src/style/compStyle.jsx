@@ -424,20 +424,20 @@ export const RutasStyle = styled.section`
   & > article {
     width: 90%;
     margin: 0 auto;
-    ${BackgraundQuizz}
     ${FlexComun}
     flex-direction:column;
     padding: 2em;
-    /* position: relative;
+    position: relative;
+
     &::before {
       position: absolute;
       content: "";
       width: 2px;
-      height: 60%;
+      height: 90%;
       background-color: #8a248a96;
-      left: 23em;
-      border-radius:0;
-    } */
+      left: 9.5em;
+      bottom: 0;
+    }
     & > p {
       font-size: 2em;
       color: ${colors.BB};
@@ -451,25 +451,37 @@ export const RutasStyle = styled.section`
       }
     }
     & > div {
-      width: 50%;
+      width: 70%;
       & > aside {
         position: relative;
+        ${FlexComun}
+        justify-content:space-around;
         &::after {
           position: absolute;
           content: "";
           width: 40px;
           height: 40px;
-          background-color: violet;
+          background-color: ${colors.CC};
           left: -8em;
+          border-radius: 50%;
         }
+       
         &:nth-child(2n) {
-          margin: 1em 4em;
+          /* margin: 1em ; */
         }
         & p {
+          padding: 1em;
+          margin:1em;
         }
         & > ul > li {
-          width: 80%;
+          width: 100%;
           list-style: none;
+          font-size:0.9em;
+          padding:1em;
+          border:1px solid #0003;
+          background-color:${colors.CC};
+          color:#fff;
+          box-shadow:0 5px 10px #0005;
         }
       }
     }
