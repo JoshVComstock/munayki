@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -9,7 +10,10 @@ import Register from './src/views/auth/Register';
 import Index from './src/views/friends/Index';
 import AddFriend from './src/views/friends/AddFriend';
 import EditFriend from './src/views/friends/EditFriend';
-import Menu from './src/layouts/menu';
+import Menu from './src/views/menu';
+import AboutUs from './src/views/AboutUs'
+import Profile from './src/views/auth/Profile'
+import NavBar from './src/layouts/NavBar';
 
 const Stack = createStackNavigator();
 
@@ -29,18 +33,42 @@ function RegisterScreen({ navigation }) {
   );
 }
 
+function ProfileScreen({ navigation }) {
+    const [currentView, setCurrentView] = useState('Profile');
+  return (
+    <HomeLayout>
+      <Profile navigation={navigation}/>
+      <NavBar navigation={navigation} currentView={currentView} onNavigate={setCurrentView}/>
+    </HomeLayout>
+  );
+}
+
 function MenuScreen({ navigation }){
+  const [currentView, setCurrentView] = useState('Menu');
   return (
     <HomeLayout>
         <Menu navigation={navigation}/>
+        <NavBar navigation={navigation} currentView={currentView} onNavigate={setCurrentView}/>
+    </HomeLayout>
+  )
+}
+
+function AboutUsScreen({ navigation }){
+  const [currentView, setCurrentView] = useState('AboutUs');
+  return (
+    <HomeLayout>
+        <AboutUs navigation={navigation}/>
+        <NavBar navigation={navigation} currentView={currentView} onNavigate={setCurrentView}/>
     </HomeLayout>
   )
 }
 
 function IndexFriendsScreen({ navigation }) {
+  const [currentView, setCurrentView] = useState('Index');
   return (
     <FriendsLayout>
       <Index navigation={navigation} />
+      <NavBar navigation={navigation} currentView={currentView} onNavigate={setCurrentView}/>
     </FriendsLayout>
   );
 }
@@ -64,25 +92,18 @@ function EditFriendsScreen({ navigation }) {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login" headerMode="none">
+      <Stack.Navigator initialRouteName="Menu" headerMode="none">
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="Friends" component={FriendsLayout} />
         <Stack.Screen name="Index" component={IndexFriendsScreen} />
         <Stack.Screen name="AddFriend" component={AddFriendsScreen} />
         <Stack.Screen name="EditFriend" component={EditFriendsScreen} />
         <Stack.Screen name="Menu" component={MenuScreen}/>
+        <Stack.Screen name="AboutUs" component={AboutUsScreen}/>
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  header: {
-    flex: 1,
-    backgroundColor: '#E7E0E8',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

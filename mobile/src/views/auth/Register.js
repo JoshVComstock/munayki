@@ -10,9 +10,12 @@ const Register=({navigation})=>{
     const [phone, setPhone] = useState('');
     const [age, setAge] = useState('');
     const [email, setEmail] = useState('');
-    const generos= ["Mujer","Hombre"];
+    const generos= ["Femenino","masculino"];
+    const [gender, setGender] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPwd, setConfirmPwd] = useState('');
+    const [isPwdHidden, setisPwdHidden] = useState(true);
+    const [isConfirmPwdHidden, setIsConfirmPwdHidden] = useState(true);
     const [isFirstStep, setIsFirstStep] = useState(true);
     const [errors, setErrors] = useState({});
     const [isFormValid, setIsFormValid] = useState(false);
@@ -66,7 +69,7 @@ const Register=({navigation})=>{
 
           if (Object.keys(errors).length === 0) {
               setIsFormValid(true);
-              navigation.navigate('Index')
+              createUser();
           } else {
               setIsFormValid(false);
 
@@ -84,6 +87,39 @@ const Register=({navigation})=>{
                   {cancelable: false}
               );
           }
+    };
+
+    const createUser = async () => {
+      try {
+        const response = await fetch('https://express-vercel-one-mu.vercel.app/user', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            nombre: name,
+            apellido: lastname,
+            edad: age,
+            telefono: phone,
+            carnet: ci,
+            correo: email,
+            password: password,
+            rol: 'usuario',
+            genero: gender,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error);
+        }
+
+        console.log(data);
+        navigation.navigate('Index')
+      } catch (error) {
+        console.error('Error:', error);
+      }
     };
 
     const handleSubmit = () => {
@@ -132,25 +168,35 @@ const Register=({navigation})=>{
                         <Text style={styles.text}>
                             Contraseña
                         </Text>
-                        <TextInput
-                          style={styles.input}
-                          placeholder="Contraseña"
-                          placeholderTextColor="#706e6f"
-                          value={password}
-                          onChangeText={setPassword}
-                          secureTextEntry
-                        />
+                        <View style={{flexDirection: 'row'}}>
+                            <TextInput
+                              style={styles.inputRowPwd}
+                              placeholder="Contraseña"
+                              placeholderTextColor="#706e6f"
+                              value={password}
+                              onChangeText={setPassword}
+                              secureTextEntry={isPwdHidden}
+                            />
+                            <Pressable onPress={() => setisPwdHidden(!isPwdHidden)}>
+                                <FontAwesome name={isPwdHidden ? 'eye' : 'eye-slash'} color={'#706e6f'} size={25} />
+                            </Pressable>
+                        </View>
                         <Text style={styles.text}>
                             Confirmar contraseña
                         </Text>
-                        <TextInput
-                          style={styles.input}
-                          placeholder="Confirmar contraseña"
-                          placeholderTextColor="#706e6f"
-                          value={confirmPwd}
-                          onChangeText={setConfirmPwd}
-                          secureTextEntry
-                        />
+                        <View style={{flexDirection: 'row'}}>
+                            <TextInput
+                              style={styles.inputRowPwd}
+                              placeholder="Confirmar contraseña"
+                              placeholderTextColor="#706e6f"
+                              value={confirmPwd}
+                              onChangeText={setConfirmPwd}
+                              secureTextEntry={isConfirmPwdHidden}
+                            />
+                            <Pressable onPress={() => setIsConfirmPwdHidden(!isConfirmPwdHidden)}>
+                                <FontAwesome name={isConfirmPwdHidden ? 'eye' : 'eye-slash'} color={'#706e6f'} size={25} />
+                            </Pressable>
+                        </View>
                         <Pressable style={styles.nextButton} onPress={() => setIsFirstStep(false)}>
                             <Text style={styles.text}>Siguiente</Text>
                         </Pressable>
@@ -180,7 +226,7 @@ const Register=({navigation})=>{
                             }}
                             dropdownIconPosition={'right'}
                             onSelect={(selectedItem, index) => {
-                                console.log(selectedItem, index)
+                                setGender(selectedItem);
                             }}
                             buttonTextAfterSelection={(selectedItem, index) => {
                                 return selectedItem
@@ -205,7 +251,7 @@ const Register=({navigation})=>{
                               value={phone}
                               onChangeText={setPhone}
                               inputMode="numeric"
-                              maxLength={8}
+                              maxLength={10}
                             />
                             <TextInput
                               style={styles.inputRow}
@@ -266,6 +312,15 @@ const styles = StyleSheet.create({
       padding: 8,
       borderRadius:2,
       width:105,
+    },
+    inputRowPwd:{
+      height: 40,
+      borderBottomColor: 'gray',
+      borderBottomWidth: 1,
+      marginBottom: 20,
+      padding: 8,
+      borderRadius:2,
+      width:'90%',
     },
     button: {
         alignItems: 'center',
