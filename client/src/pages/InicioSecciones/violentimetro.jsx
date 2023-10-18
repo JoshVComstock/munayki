@@ -21,11 +21,7 @@ const Violentimetro = () => {
   return (
     <ViolentimetroA>
       <Termometro />
-      {/* <section>
-        <p>
-          <strong>Puntuación Total:</strong> {puntuacionTotal}
-        </p>
-      </section> */}
+    
       <div>
         <CantidadRegistros datos={datos} />
         <section>

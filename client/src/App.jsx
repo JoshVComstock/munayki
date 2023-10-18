@@ -16,6 +16,10 @@ import Violentimetro from "./pages/InicioSecciones/violentimetro";
 import Quizz from "./pages/quizz";
 import { ModalContextProvider } from "./context/modalContext";
 import Modal from "./modal";
+import AppMovile from "./pages/appMovile";
+import Rutadenuncias from "./pages/rutadenuncias";
+import Slim from "./pages/slim";
+import Legal from "./pages/legal";
 
 function App() {
   return (
@@ -29,8 +33,10 @@ function App() {
                 <Route path="/" element={<Violentimetro />} />
                 <Route path="/mapas" element={<Mapas />} />
                 <Route path="/quizz" element={<Quizz />} />
-                <Route path="/app" element={<Inicio />} />
-                <Route path="/Informate" element={<Inicio />} />
+                <Route path="/appmovil" element={<AppMovile />} />
+                <Route path="/rutadenuncias" element={<Rutadenuncias />} />
+                <Route path="/legal" element={<Legal />} />
+                <Route path="/slim" element={<Slim />} />
               </Route>
               <Route path="/ubicaciones" element={<UbiciacionesCli />} />
               <Route path="/login" element={<Login />} />

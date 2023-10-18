@@ -18,8 +18,8 @@ const url = import.meta.env.VITE_BACKEND_URL;
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navegate = useNavigate(); // Cambiado a useNavigate
-  const { setLogged } = useNavContext();
+  const navegate = useNavigate();
+    const { setLogged } = useNavContext();
   const { user, setUser } = useContextUser();
   const [irLogin, setIrLogin] = useState(true);
 

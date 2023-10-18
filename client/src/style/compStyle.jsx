@@ -124,6 +124,19 @@ export const Iniciodiv = styled.div`
         height: 40px;
         width: 40px;
         filter: invert(1);
+        cursor: pointer;
+        animation: escalado 3s infinite;
+        @keyframes escalado {
+          0% {
+            transform: scale(0.8);
+          }
+          50% {
+            transform: scale(0.9);
+          }
+          100% {
+            transform: scale(0.8);
+          }
+        }
       }
       & p {
         text-align: start;
@@ -230,27 +243,13 @@ export const ViolentimetroA = styled.div`
     position:relative;
     z-index: 2;
     &::after {
-      ${PositcionComun}
-      animation:escalado 2s infinite;
+      /* ${PositcionComun} */
+      animation: escalado 2s infinite;
       width: 100%;
       height: 100%;
       border-radius: 50%;
       z-index: 1;
       box-shadow: 0px 5px 10px #0005;
-
-      @keyframes escalado {
-        0% {
-          transform: scale(1);
-        }
-
-        50% {
-          transform: scale(1.1);
-        }
-
-        100% {
-          transform: scale(1);
-        }
-      }
     }
   }
   & > div {
@@ -289,8 +288,7 @@ export const ViolentimetroA = styled.div`
             top: 0.5em;
             left: -0.5em;
             z-index: -1;
-          border-radius: 0.5em;
-
+            border-radius: 0.5em;
           }
         }
       }
@@ -340,8 +338,12 @@ export const Filtro = styled.div`
   & > article {
     width: 100%;
     ${FlexComun}
+    height:${"100vh" || "auto"}
   }
 `;
 export const Mapasstyle = styled.section`
+  height: 100vh;
+`;
+export const DivMobile = styled.section`
   height: 100vh;
 `;

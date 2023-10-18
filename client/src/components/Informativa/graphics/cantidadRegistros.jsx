@@ -5,7 +5,6 @@ import { Pie } from "react-chartjs-2";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const CantidadRegistros = ({ datos }) => {
-  console.log(datos);
   const [chartData, setChartData] = useState({
     labels: ["Anonimas", "Registradas"],
     datasets: [
@@ -26,21 +25,22 @@ const CantidadRegistros = ({ datos }) => {
         },
       ],
     });
+    console.log(datos);
   }, [datos]);
 
   return (
-      <Pie
-        data={chartData}
-        options={{
-          elements: {
-            arc: {
-              labels: {
-                color: "#fff",
-              },
+    <Pie
+      data={chartData}
+      options={{
+        elements: {
+          arc: {
+            labels: {
+              color: "#fff",
             },
           },
-        }}
-      />
+        },
+      }}
+    />
   );
 };
 
