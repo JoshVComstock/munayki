@@ -101,6 +101,7 @@ export const QuizzContent = styled.section`
             cursor: pointer;
             ${FlexComun}
             gap:1em;
+            
           }
         }
       }

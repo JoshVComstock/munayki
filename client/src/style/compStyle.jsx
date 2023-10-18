@@ -346,12 +346,12 @@ export const Mapasstyle = styled.section`
 `;
 export const DivMobile = styled.section`
   height: auto;
-  padding:2em;
+  padding: 2em;
   & div {
     ${FlexComun}
     gap:5em;
-    &:nth-child(2n){
-      flex-direction:row-reverse;
+    &:nth-child(2n) {
+      flex-direction: row-reverse;
     }
     & > img {
       width: 15em;
@@ -361,6 +361,117 @@ export const DivMobile = styled.section`
       width: 50%;
       padding: 3em;
       ${BackgraundQuizz}
+    }
+  }
+`;
+export const Recursos = styled.section`
+  ${FlexComun}
+  width:100%;
+  & > div {
+    ${FlexComun}
+    width:100vw;
+    height: 100%;
+    flex-direction: column;
+    & > p {
+      padding: 0.5em;
+      width: 90%;
+      font-size: 2em;
+      text-align: start;
+      border-bottom: solid 1px #000;
+    }
+    & article {
+      ${FlexComun}
+      position: relative;
+      & > img {
+        width: 75vw;
+        height: 60vh;
+        object-fit: cover;
+      }
+      & > iframe {
+        width: 75vw;
+        height: 60vh;
+      }
+      & > section {
+        width: 100%;
+        position: absolute;
+        ${FlexComun}
+        justify-content:space-between;
+        background-color: #0005;
+        height: 20em;
+        content: "";
+        bottom: 0;
+        & button {
+          background-color: ${colors.BB};
+          padding: 1em;
+          border: none;
+          color: #fff;
+        }
+        .estadoa {
+          position: relative;
+          padding: 1em 4em;
+          bottom: -5em;
+          background-color: transparent;
+          border-radius: 0.5em;
+          border: solid 1px ${colors.BB};
+          color: ${colors.BB};
+        }
+      }
+    }
+  }
+`;
+
+export const RutasStyle = styled.section`
+  & > article {
+    width: 90%;
+    margin: 0 auto;
+    ${BackgraundQuizz}
+    ${FlexComun}
+    flex-direction:column;
+    padding: 2em;
+    /* position: relative;
+    &::before {
+      position: absolute;
+      content: "";
+      width: 2px;
+      height: 60%;
+      background-color: #8a248a96;
+      left: 23em;
+      border-radius:0;
+    } */
+    & > p {
+      font-size: 2em;
+      color: ${colors.BB};
+      width: 60%;
+      ${FlexComun}
+      justify-content:space-around;
+      & > div {
+        width: 10%;
+        ${FlexComun}
+        color:#000;
+      }
+    }
+    & > div {
+      width: 50%;
+      & > aside {
+        position: relative;
+        &::after {
+          position: absolute;
+          content: "";
+          width: 40px;
+          height: 40px;
+          background-color: violet;
+          left: -8em;
+        }
+        &:nth-child(2n) {
+          margin: 1em 4em;
+        }
+        & p {
+        }
+        & > ul > li {
+          width: 80%;
+          list-style: none;
+        }
+      }
     }
   }
 `;

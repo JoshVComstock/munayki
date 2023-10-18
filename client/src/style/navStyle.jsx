@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { FlexComun, colors } from "./StyleGlobal";
+import { BackgraundQuizz, FlexComun, colors } from "./StyleGlobal";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
@@ -174,7 +174,8 @@ export const Linkes = styled(NavLink)`
 
 export const Footerstyle = styled.section`
 height:40vh;
-background-color:${colors.BB};
+background-color:#0005;
+
 z-index:100;
 width:100%;
 padding:5em;
