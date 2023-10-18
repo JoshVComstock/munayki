@@ -9,15 +9,10 @@ import tel from "../assets/icons/telefono.png";
 import Filtros from "./InicioSecciones/filtros";
 import Footer from "../components/Informativa/footer";
 import { Link, useNavigate } from "react-router-dom";
+import { useScroll } from "../context/ScrollContext";
 const Inicio = () => {
   const navegate = useNavigate();
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const handleScroll = () => {
-    window.scrollTo({
-      top: scrollPosition + window.innerHeight * 0.65,
-      behavior: "smooth",
-    });
-  };
+  const { scrollPosition, setScrollPosition, handleScroll } = useScroll();
 
   const ingresar = (path) => {
     setScrollPosition(window.scrollY);

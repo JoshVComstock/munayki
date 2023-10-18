@@ -20,12 +20,14 @@ import AppMovile from "./pages/appMovile";
 import Rutadenuncias from "./pages/rutadenuncias";
 import Slim from "./pages/slim";
 import Legal from "./pages/legal";
+import { ScrollProvider } from "./context/ScrollContext";
 
 function App() {
   return (
     <HashRouter>
       <ModalContextProvider>
       <UserContextProvider>
+      <ScrollProvider>
         <Navcontextprovider>
           <Routes>
             <Route path="/" element={<NavBar />}>
@@ -58,6 +60,7 @@ function App() {
           </Routes>
           <Modal />
         </Navcontextprovider>
+        </ScrollProvider>
       </UserContextProvider>
       </ModalContextProvider>
     </HashRouter>

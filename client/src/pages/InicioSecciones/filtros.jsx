@@ -1,22 +1,32 @@
 import React from "react";
 import { Filtro } from "../../style/compStyle";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { Link, Outlet } from "react-router-dom";
+import { useScroll } from "../../context/ScrollContext";
 
 const Filtros = () => {
+  const { scrollPosition, setScrollPosition, handleScroll } = useScroll();
+
+  const mover = () => {
+    setScrollPosition(window.scrollY);
+    handleScroll();
+  };
   return (
     <Filtro>
       <section>
         <article>
-          <Link to="/"> Violentimetro</Link>
+          <Link to="/" onClick={mover}>
+            Violentimetro
+          </Link>
         </article>
         <article>
-          <Link to="/mapas"> Lugares de ayuda</Link>
+          <Link to="/mapas" onClick={mover}>
+            Lugares de ayuda
+          </Link>
         </article>
         <article>
-          <Link to="/quizz"> Quizz</Link>
+          <Link to="/quizz" onClick={mover}>
+            Quizz
+          </Link>
         </article>
       </section>
       <article>

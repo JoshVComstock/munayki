@@ -338,12 +338,29 @@ export const Filtro = styled.div`
   & > article {
     width: 100%;
     ${FlexComun}
-    height:${"100vh" || "auto"}
+    height:${"100%" || "auto"}
   }
 `;
 export const Mapasstyle = styled.section`
   height: 100vh;
 `;
 export const DivMobile = styled.section`
-  height: 100vh;
+  height: auto;
+  padding:2em;
+  & div {
+    ${FlexComun}
+    gap:5em;
+    &:nth-child(2n){
+      flex-direction:row-reverse;
+    }
+    & > img {
+      width: 15em;
+      animation: moveerLado 4s infinite;
+    }
+    & p {
+      width: 50%;
+      padding: 3em;
+      ${BackgraundQuizz}
+    }
+  }
 `;
