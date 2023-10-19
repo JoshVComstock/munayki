@@ -63,7 +63,7 @@ const AppMovile = () => {
       <section>
         <img src={img[3]} alt="" />
         <article>
-          <label>Paso 3: Configuración de Botones de Pánico</label>
+          <label>Paso 3: Configuración del Botón de Pánico</label>
           <p>
             En la aplicación, encontrarás un botón de pánico. Configura este
             botón con un toque rápido para enviar alertas a las entidades de
@@ -75,7 +75,7 @@ const AppMovile = () => {
       <section>
         <img src={img[4]} alt="" />
         <article>
-          <label>Paso 4: Envío de Evidencias</label>
+          <label>Paso 4: Envío de indicios para formulación de denuncias </label>
           <p>
             En caso de una emergencia, la aplicación recopilará tres fotos y dos
             audios que serán enviados a un servidor. También se notificará a tus

@@ -15,7 +15,7 @@ const Filtros = () => {
       <section>
         <article>
           <Link to="/" onClick={mover}>
-            Violentimetro
+            Violentometro
           </Link>
         </article>
         <article>
@@ -25,7 +25,7 @@ const Filtros = () => {
         </article>
         <article>
           <Link to="/quizz" onClick={mover}>
-            Quizz
+            Quiz
           </Link>
         </article>
         {/* <article>

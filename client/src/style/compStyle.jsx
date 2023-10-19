@@ -346,7 +346,14 @@ export const Filtro = styled.div`
   }
 `;
 export const Mapasstyle = styled.section`
-  height: 100vh;
+  height: 50vh;
+  margin:0 auto;
+  width:90%;
+  ${FlexComun}
+gap:2em;
+  & > iframe{
+box-shadow:0 10px 10px #0005;
+  }
 `;
 export const DivMobile = styled.section`
   height: auto;

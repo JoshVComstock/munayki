@@ -18,17 +18,17 @@ const Footer = () => {
         <img src={logo4} alt="" />
       </div>
       <section>
-      <img src={logo} alt="" />
+        <img src={logo} alt="" />
 
-       <div> 
-        <Link to="/"> Violentometro</Link>
-        <Link to="/quizz"> Quizz</Link>
-        <Link to="/appmovil"> App</Link>
-        <Link to="/rutadenuncias"> Rutas de dencia</Link>
-        <Link to="/slim"> Silm</Link>
-        <Link to="/legal"> Ambito Legal</Link></div>
+        <div>
+          <Link to="/"> Violentometro</Link>
+          <Link to="/quizz"> Quizz</Link>
+          <Link to="/appmovil"> App</Link>
+          <Link to="/rutadenuncias"> Rutas de Denuncias</Link>
+          <Link to="/slim"> SLIM</Link>
+          <Link to="/legal"> Ámbito legal</Link>
+        </div>
       </section>
-     
     </Footerstyle>
   );
 };

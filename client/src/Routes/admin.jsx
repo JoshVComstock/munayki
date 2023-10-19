@@ -28,7 +28,7 @@ const Admin = () => {
           <img src={Alert} alt="" /> Alertas
         </Linkes>
         <Linkes to="/dashboard/user">
-         <img src={Users} alt="" /> user
+         <img src={Users} alt="" /> Usuarios
         </Linkes>
       </div>
       <section>

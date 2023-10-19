@@ -7,10 +7,8 @@ import { useNavigate } from "react-router-dom";
 
 const Violentimetro = () => {
   const navegate = useNavigate();
-
   const { getQuizz, datos } = useStoreQuizz();
   const [gestionarRender, setGestionarRender] = useState(false);
-
   useEffect(() => {
     if (!gestionarRender) {
       getQuizz();
@@ -21,7 +19,6 @@ const Violentimetro = () => {
     (total, dato) => total + dato.puntuacion,
     0
   );
-
   const ingresar = (path) => {
     navegate(`/${path}`);
   };
@@ -32,7 +29,7 @@ const Violentimetro = () => {
       <div>
         <CantidadRegistros datos={datos} />
         <section>
-          <h2>Registrate!</h2>
+          <h2>¡Registrate!</h2>
           <p>
             ¡Regístrate para nuestro cuestionario gratuito y obtén información
             valiosa sobre cómo detectar el abuso físico, emocional y sexual!
@@ -41,7 +38,7 @@ const Violentimetro = () => {
           </p>
           <div>
             <button onClick={() => ingresar("login")}>Registrate</button>
-            <button>hacer el quizz de forma anonima</button>
+            <button>hacer el quiz de forma anónima</button>
           </div>
         </section>
       </div>
