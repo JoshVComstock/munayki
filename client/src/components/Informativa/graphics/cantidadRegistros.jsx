@@ -5,11 +5,18 @@ import { Pie } from "react-chartjs-2";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const CantidadRegistros = ({ datos }) => {
+  const [loader, setLoader] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoader(false);
+    }, 1000);
+  }, []);
+
   const [chartData, setChartData] = useState({
     labels: ["Anonimas", "Registradas"],
     datasets: [
       {
-        data: [datos,1],
+        data: [datos, 1],
         backgroundColor: ["rgb(174,25,89)", "rgb(73,39,121)"],
       },
     ],
@@ -20,7 +27,7 @@ const CantidadRegistros = ({ datos }) => {
       labels: ["Anonimas", "Registradas"],
       datasets: [
         {
-          data: [datos.length, 1],
+          data: [datos.length||20, 2],
           backgroundColor: ["rgb(174,25,89)", "rgb(73,39,121)"],
         },
       ],
@@ -29,18 +36,24 @@ const CantidadRegistros = ({ datos }) => {
   }, [datos]);
 
   return (
-    <Pie
-      data={chartData}
-      options={{
-        elements: {
-          arc: {
-            labels: {
-              color: "#fff",
+    <div>
+      {loader ? (
+        <div className="loader"></div>
+      ) : (
+        <Pie
+          data={chartData}
+          options={{
+            elements: {
+              arc: {
+                labels: {
+                  color: "#fff",
+                },
+              },
             },
-          },
-        },
-      }}
-    />
+          }}
+        />
+      )}
+    </div>
   );
 };
 

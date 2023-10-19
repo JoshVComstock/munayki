@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Iniciodiv } from "../style/compStyle";
 import imgf from "../assets/img-mujer1.png";
 import term from "../assets/icons/termometro.png";
@@ -19,7 +19,7 @@ const Inicio = () => {
     navegate(`/${path}`);
     handleScroll();
   };
-
+ 
   return (
     <>
       <Iniciodiv>

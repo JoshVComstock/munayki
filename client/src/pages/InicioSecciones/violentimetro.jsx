@@ -3,8 +3,11 @@ import useStoreQuizz from "../../components/zustand/stores/storeQuizz";
 import { ViolentimetroA } from "../../style/compStyle";
 import CantidadRegistros from "../../components/Informativa/graphics/cantidadRegistros";
 import Termometro from "../../components/Informativa/graphics/termometro";
+import { useNavigate } from "react-router-dom";
 
 const Violentimetro = () => {
+  const navegate = useNavigate();
+
   const { getQuizz, datos } = useStoreQuizz();
   const [gestionarRender, setGestionarRender] = useState(false);
 
@@ -19,13 +22,13 @@ const Violentimetro = () => {
     0
   );
 
-  const ingresar = () => {
-    navegate("/dashboard"); // Cambiado a navegate("/dashboard")
+  const ingresar = (path) => {
+    navegate(`/${path}`);
   };
   return (
     <ViolentimetroA>
       <Termometro />
-    
+
       <div>
         <CantidadRegistros datos={datos} />
         <section>
@@ -36,8 +39,10 @@ const Violentimetro = () => {
             Este cuestionario es una herramienta valiosa para cualquiera que
             quiera aprender más sobre la violencia y cómo prevenirla.
           </p>
-         <div> <button>Registrate</button>
-          <button>hacer el quizz de forma anonima</button></div>
+          <div>
+            <button onClick={() => ingresar("login")}>Registrate</button>
+            <button>hacer el quizz de forma anonima</button>
+          </div>
         </section>
       </div>
     </ViolentimetroA>

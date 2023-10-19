@@ -18,9 +18,16 @@ export const SectionNav = styled.section`
     top: 0;
     left: 0;
     background-color: ${colors.light};
+   & div{
+    ${FlexComun}
+
     & img {
       height: 80px;
+      &:nth-child(2) {
+        height: 40px;
+      }
     }
+   }
     .login {
       ${FlexComun}
       gap:1em;
@@ -201,23 +208,23 @@ export const Footerstyle = styled.section`
     width: 100%;
     ${FlexComun}
     gap:1em;
-    padding:4em 2em;
-    border-top:solid 1px #1d2531;
-    & img{
-      width:20rem;
+    padding: 4em 2em;
+    border-top: solid 1px #1d2531;
+    & img {
+      width: 20rem;
     }
-  & > div{
-    width:80%;
-    ${FlexComun}
-    gap:1em;
-    flex-wrap:wrap;
-    & > a {
-      width: 40%;
-      color: #fff;
-      text-decoration: none;
-      border-left: solid 1px #fff;
-      padding: 0.2em 1em;
+    & > div {
+      width: 80%;
+      ${FlexComun}
+      gap:1em;
+      flex-wrap: wrap;
+      & > a {
+        width: 40%;
+        color: #fff;
+        text-decoration: none;
+        border-left: solid 1px #fff;
+        padding: 0.2em 1em;
+      }
     }
-  }
   }
 `;
