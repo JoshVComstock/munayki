@@ -18,6 +18,10 @@ const Violentimetro = () => {
     (total, dato) => total + dato.puntuacion,
     0
   );
+
+  const ingresar = () => {
+    navegate("/dashboard"); // Cambiado a navegate("/dashboard")
+  };
   return (
     <ViolentimetroA>
       <Termometro />

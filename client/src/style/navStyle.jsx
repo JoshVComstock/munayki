@@ -12,14 +12,14 @@ export const SectionNav = styled.section`
     z-index: 100;
     ${FlexComun}
     justify-content:space-around;
-    height: 4em;
+    height: 5em;
     gap: 2em;
     position: sticky;
     top: 0;
     left: 0;
     background-color: ${colors.light};
     & img {
-      height: 30px;
+      height: 80px;
     }
     .login {
       ${FlexComun}
@@ -171,28 +171,53 @@ export const Linkes = styled(NavLink)`
   }
 `;
 export const Footerstyle = styled.section`
-  height: 40vh;
-  background-color: ${colors.CC};
+  height: auto;
   z-index: 100;
   width: 100%;
-  padding: 5em;
   ${FlexComun}
   justify-content:start;
-  gap: 1em;
-  & img {
-    width: 100px;
+  flex-direction: column;
+  background-color: #1d2531;
+  & > div {
+    ${FlexComun}
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 2em;
+    height: 4.5em;
+    padding: 1em;
+    & h3 {
+      width: 100%;
+      color: #fff;
+    }
+    & > img {
+      height: 100%;
+      &:nth-child(2) {
+        height: 65px;
+      }
+    }
   }
+
   & > section {
-    width: 50%;
+    width: 100%;
     ${FlexComun}
     gap:1em;
-    flex-direction: column;
+    padding:4em 2em;
+    border-top:solid 1px #1d2531;
+    & img{
+      width:20rem;
+    }
+  & > div{
+    width:80%;
+    ${FlexComun}
+    gap:1em;
+    flex-wrap:wrap;
     & > a {
-      width: 50%;
+      width: 40%;
       color: #fff;
       text-decoration: none;
       border-left: solid 1px #fff;
       padding: 0.2em 1em;
     }
+  }
   }
 `;

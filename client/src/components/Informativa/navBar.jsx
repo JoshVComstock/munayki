@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import { SectionNav } from "../../style/navStyle";
-import logo from "../../assets/logoChocha.png";
+import logo from "../../assets/munayki.png";
 import { faLongArrowAltRight, faThLarge, faThList } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const NavBar = () => {

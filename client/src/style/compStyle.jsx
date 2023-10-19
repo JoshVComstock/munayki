@@ -77,13 +77,13 @@ export const Iniciodiv = styled.div`
     z-index: 5;
   }
   & > p {
-    display: none;
+    /* display: none; */
     position: absolute;
     font-size: 7em;
     font-weight: bold;
     color: #fff;
     -webkit-text-stroke: 2px ${colors.CC};
-    opacity: 0.2;
+    opacity: 0.1;
     z-index: 1;
     top: 5%;
     text-shadow: 5px 6px 2px ${colors.CC};
@@ -141,7 +141,7 @@ export const Iniciodiv = styled.div`
       & p {
         text-align: start;
         width: 200px;
-        color: ${colors.CC};
+        color:rgb(255, 255, 255);
         content: "";
         position: absolute;
         transform: translateX(70%);
@@ -180,11 +180,15 @@ export const Iniciodiv = styled.div`
     & > div {
       ${FlexComun}
       flex-direction:column;
-      width: 80%;
+      /* width: ; */
       height: 50%;
       font-size: 0.9em;
       font-weight: 300;
       gap: 1em;
+   
+      & > p{
+        width:400px;
+      }
       & > button {
         padding: 0.8em 2em;
         border: none;
