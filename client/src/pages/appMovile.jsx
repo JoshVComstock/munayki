@@ -14,10 +14,7 @@ const AppMovile = () => {
       <div>
         <img src={img[1]} alt="" />
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat
-          eveniet consectetur ex perferendis sapiente animi doloremque deleniti
-          nesciunt totam officia natus nam illum cum, sint reiciendis error
-          odio. Eum, iusto?
+         se dispondra de un logue para la proteccion de los datos , en este apartado tambien mostrara como quieres camuflar la App
         </p>
       </div>
       <div>

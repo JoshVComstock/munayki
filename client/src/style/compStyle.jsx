@@ -444,6 +444,7 @@ export const RutasStyle = styled.section`
       width: 60%;
       ${FlexComun}
       justify-content:space-around;
+      margin:2em;
       & > div {
         width: 10%;
         ${FlexComun}
