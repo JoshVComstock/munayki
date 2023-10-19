@@ -21,6 +21,7 @@ import Rutadenuncias from "./pages/rutadenuncias";
 import Slim from "./pages/slim";
 import Legal from "./pages/legal";
 import { ScrollProvider } from "./context/ScrollContext";
+import Rutamujeres from "./pages/rutamujeres";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
                 <Route path="/quizz" element={<Quizz />} />
                 <Route path="/appmovil" element={<AppMovile />} />
                 <Route path="/rutadenuncias" element={<Rutadenuncias />} />
+                <Route path="/rutas" element={<Rutamujeres />} />
                 <Route path="/legal" element={<Legal />} />
                 <Route path="/slim" element={<Slim />} />
               </Route>

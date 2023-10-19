@@ -28,6 +28,11 @@ const Filtros = () => {
             Quizz
           </Link>
         </article>
+        {/* <article>
+          <Link to="/rutas" onClick={mover}>
+          Ruta critica MUJERES
+          </Link>
+        </article> */}
       </section>
       <article>
         <Outlet />
