@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, Alert, Image, Pressable } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isPwdHidden, setisPwdHidden] = useState(true);
   const [errors, setErrors] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
 
@@ -28,7 +30,7 @@ const Login = ({navigation}) => {
 
       if (Object.keys(errors).length === 0) {
           setIsFormValid(true);
-          navigation.navigate('Menu')
+          loginUser();
       } else {
           setIsFormValid(false);
 
@@ -48,6 +50,32 @@ const Login = ({navigation}) => {
       }
   };
 
+  const loginUser = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          correo: email,
+          password: password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error);
+      }
+
+      console.log(data);
+      navigation.navigate('Menu')
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
   const handleSubmit = () => {
       validateForm();
   };
@@ -65,7 +93,7 @@ const Login = ({navigation}) => {
                     </Text>
                     <TextInput
                       style={styles.input}
-                      placeholder="Email"
+                      placeholder="ejemplo@gmail.com"
                       placeholderTextColor="#706e6f"
                       value={email}
                       onChangeText={setEmail}
@@ -75,14 +103,19 @@ const Login = ({navigation}) => {
                     <Text style={styles.text}>
                         Contraseña
                     </Text>
-                    <TextInput
-                      style={styles.input}
-                      placeholder="Contraseña"
-                      placeholderTextColor="#706e6f"
-                      value={password}
-                      onChangeText={setPassword}
-                      secureTextEntry
-                    />
+                    <View style={{flexDirection: 'row'}}>
+                        <TextInput
+                          style={styles.inputRowPwd}
+                          placeholder="Tu contraseña"
+                          placeholderTextColor="#706e6f"
+                          value={password}
+                          onChangeText={setPassword}
+                          secureTextEntry={isPwdHidden}
+                        />
+                        <Pressable onPress={() => setisPwdHidden(!isPwdHidden)}>
+                            <FontAwesome name={isPwdHidden ? 'eye' : 'eye-slash'} color={'#706e6f'} size={25} />
+                        </Pressable>
+                    </View>
                 </View>
                 <Pressable style={styles.button} onPress={handleSubmit}>
                     <Text style={styles.text}>Entrar</Text>
@@ -119,6 +152,15 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     padding: 8,
     borderRadius:2,
+  },
+  inputRowPwd:{
+    height: 40,
+    borderBottomColor: 'gray',
+    borderBottomWidth: 1,
+    marginBottom: 20,
+    padding: 8,
+    borderRadius:2,
+    width:'90%',
   },
   button: {
       alignItems: 'center',
