@@ -83,7 +83,7 @@ html {
     transform: rotateX(0) translateZ(0) rotateY(0);
   }
   50% {
-    transform: rotateX(10deg) translateZ(1em) rotateY(10deg);
+    transform: rotateX(5deg) translateZ(1em) rotateY(5deg);
   }
   100% {
     transform: rotateX(0) translateZ(0) rotateY(0);
