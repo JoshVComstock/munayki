@@ -31,6 +31,7 @@ const Login = ({navigation}) => {
       if (Object.keys(errors).length === 0) {
           setIsFormValid(true);
           loginUser();
+          navigation.navigate('Menu')
       } else {
           setIsFormValid(false);
 
