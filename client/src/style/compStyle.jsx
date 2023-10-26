@@ -77,13 +77,13 @@ export const Iniciodiv = styled.div`
     z-index: 5;
   }
   & > p {
-    display: none;
+    /* display: none; */
     position: absolute;
     font-size: 7em;
     font-weight: bold;
     color: #fff;
     -webkit-text-stroke: 2px ${colors.CC};
-    opacity: 0.2;
+    opacity: 0.1;
     z-index: 1;
     top: 5%;
     text-shadow: 5px 6px 2px ${colors.CC};
@@ -141,7 +141,7 @@ export const Iniciodiv = styled.div`
       & p {
         text-align: start;
         width: 200px;
-        color: ${colors.CC};
+        color: rgb(255, 255, 255);
         content: "";
         position: absolute;
         transform: translateX(70%);
@@ -180,11 +180,15 @@ export const Iniciodiv = styled.div`
     & > div {
       ${FlexComun}
       flex-direction:column;
-      width: 80%;
+      /* width: ; */
       height: 50%;
       font-size: 0.9em;
       font-weight: 300;
       gap: 1em;
+
+      & > p {
+        width: 400px;
+      }
       & > button {
         padding: 0.8em 2em;
         border: none;
@@ -342,27 +346,66 @@ export const Filtro = styled.div`
   }
 `;
 export const Mapasstyle = styled.section`
-  height: 100vh;
+  height: 50vh;
+  margin:0 auto;
+  width:90%;
+  ${FlexComun}
+gap:2em;
+  & > iframe{
+box-shadow:0 10px 10px #0005;
+  }
 `;
 export const DivMobile = styled.section`
   height: auto;
   padding: 2em;
+  & > h2 {
+    padding: 2em;
+    font-size: 2em;
+    & strong {
+      color: ${colors.CC};
+    }
+  }
   & div {
     ${FlexComun}
     gap:5em;
-    &:nth-child(2n) {
-      flex-direction: row-reverse;
-    }
     & > img {
       width: 15em;
-      animation: moveerLado 4s infinite;
     }
     & p {
       width: 50%;
       padding: 3em;
       ${BackgraundQuizz}
+      & h1 {
+        font-size: 2em;
+        padding: 1em;
+      }
     }
   }
+  & section {
+    ${FlexComun}
+    gap :2em;
+    width:80%;
+    margin:0 auto;
+    height:100%;
+    &:nth-child(2n){
+      flex-direction:row-reverse;
+    }
+    & p {
+      width: 40em;
+      padding: 3em;
+      ${BackgraundQuizz}
+      & h1 {
+        font-size: 2em;
+        padding: 1em;
+      }
+    }
+      & > img {
+      width: 15em;
+    }
+    & label{
+      padding:2em;
+    }
+    }
 `;
 export const Recursos = styled.section`
   ${FlexComun}
@@ -444,6 +487,7 @@ export const RutasStyle = styled.section`
       width: 60%;
       ${FlexComun}
       justify-content:space-around;
+      margin: 2em;
       & > div {
         width: 10%;
         ${FlexComun}
@@ -465,23 +509,23 @@ export const RutasStyle = styled.section`
           left: -8em;
           border-radius: 50%;
         }
-       
+
         &:nth-child(2n) {
           /* margin: 1em ; */
         }
         & p {
           padding: 1em;
-          margin:1em;
+          margin: 1em;
         }
         & > ul > li {
           width: 100%;
           list-style: none;
-          font-size:0.9em;
-          padding:1em;
-          border:1px solid #0003;
-          background-color:${colors.CC};
-          color:#fff;
-          box-shadow:0 5px 10px #0005;
+          font-size: 0.9em;
+          padding: 1em;
+          border: 1px solid #0003;
+          background-color: ${colors.CC};
+          color: #fff;
+          box-shadow: 0 5px 10px #0005;
         }
       }
     }

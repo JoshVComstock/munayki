@@ -15,7 +15,7 @@ const Filtros = () => {
       <section>
         <article>
           <Link to="/" onClick={mover}>
-            Violentimetro
+            Violentometro
           </Link>
         </article>
         <article>
@@ -25,9 +25,14 @@ const Filtros = () => {
         </article>
         <article>
           <Link to="/quizz" onClick={mover}>
-            Quizz
+            Quiz
           </Link>
         </article>
+        {/* <article>
+          <Link to="/rutas" onClick={mover}>
+          Ruta critica MUJERES
+          </Link>
+        </article> */}
       </section>
       <article>
         <Outlet />
