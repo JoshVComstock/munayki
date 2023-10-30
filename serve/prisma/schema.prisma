@@ -11,14 +11,14 @@ datasource db {
 }
 
 model Contacto {
-  id         Int      @id @default(autoincrement())
-  nombre     String
-  apellido   String
-  edad       Int
-  telefono   Int
-  relacion   String
-  usuarioId  Int
-  usuario    Usuario @relation(fields: [usuarioId], references: [id])
+  id        Int      @id @default(autoincrement())
+  nombre    String
+  apellido  String
+  edad      Int
+  telefono  Int
+  relacion  String
+  usuarioId Int?
+  usuario   Usuario? @relation(fields: [usuarioId], references: [id])
 }
 
 model Usuario {
@@ -34,9 +34,8 @@ model Usuario {
   genero         String
   Organizacion   Organizacion[]
   AlertasUsuario AlertasUsuario[]
-  contactos      Contacto[]  
+  contactos      Contacto[]
 }
-
 
 model ResultadoCuestionario {
   id         Int  @id @default(autoincrement())
