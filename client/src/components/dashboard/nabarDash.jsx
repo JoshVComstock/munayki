@@ -12,7 +12,7 @@ const NabarDash = ({ children }) => {
       <nav>
         <div>
           <img src={Cocha} alt="" />
-          <h1>Munaiky</h1>
+          <h1>Munayki</h1>
         </div>
         <section>{children}</section>
       </nav>

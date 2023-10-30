@@ -15,7 +15,7 @@ const GetUserFromLocalStorage = ({ setUser, navigate }) => {
       };
       setUser(userObj);
     } else {
-      navigate("/login");
+      // navigate("/login");
     }
   }, [setUser, navigate]);
 

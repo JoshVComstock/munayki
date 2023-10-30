@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
   },
-  container:{
+  children:{
     flex:1,
     alignItems: 'center',
     justifyContent: 'center',

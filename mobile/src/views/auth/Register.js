@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, Alert, Image, Pressable } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const Register=({navigation})=>{
     const [ci, setCI] = useState('');
@@ -9,13 +10,28 @@ const Register=({navigation})=>{
     const [lastname, setLastname] = useState('');
     const [phone, setPhone] = useState('');
     const [age, setAge] = useState('');
+    const [date, setDate] = useState(new Date());
+    const [showDate, setShowDate] = useState(false);
+    const [dateString, setDateString] = useState('00/00/0000');
     const [email, setEmail] = useState('');
-    const generos= ["Mujer","Hombre"];
+    const generos= ["Femenino","masculino"];
+    const [gender, setGender] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPwd, setConfirmPwd] = useState('');
+    const [isPwdHidden, setisPwdHidden] = useState(true);
+    const [isConfirmPwdHidden, setIsConfirmPwdHidden] = useState(true);
     const [isFirstStep, setIsFirstStep] = useState(true);
     const [errors, setErrors] = useState({});
     const [isFormValid, setIsFormValid] = useState(false);
+
+    const onChange = (event, selectedDate) => {
+        const currentDate = selectedDate || date;
+        setDate(currentDate);
+        let tempDate = new Date(currentDate);
+        let fDate = tempDate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear();
+        setDateString(fDate);
+        setShowDate(false);
+    };
 
     const validateForm = () => {
           let errors = {};
@@ -40,8 +56,8 @@ const Register=({navigation})=>{
           } else if (phone.length < 8) {
              errors.phone = 'El telefono debe tener 8 numeros';
           }
-          if (!age) {
-             errors.age = 'Ingrese su edad';
+          if (dateString=='00/00/0000') {
+             errors.age = 'Ingrese una fecha valida';
           }
 
           if (!email) {
@@ -66,7 +82,8 @@ const Register=({navigation})=>{
 
           if (Object.keys(errors).length === 0) {
               setIsFormValid(true);
-              navigation.navigate('Index')
+              createUser();
+                navigation.navigate('Index')
           } else {
               setIsFormValid(false);
 
@@ -84,6 +101,39 @@ const Register=({navigation})=>{
                   {cancelable: false}
               );
           }
+    };
+
+    const createUser = async () => {
+      try {
+        const response = await fetch('https://express-vercel-one-mu.vercel.app/user', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            nombre: name,
+            apellido: lastname,
+            edad: age,
+            telefono: phone,
+            carnet: ci,
+            correo: email,
+            password: password,
+            rol: 'usuario',
+            genero: gender,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error);
+        }
+
+        console.log(data);
+        navigation.navigate('Index')
+      } catch (error) {
+        console.error('Error:', error);
+      }
     };
 
     const handleSubmit = () => {
@@ -106,14 +156,14 @@ const Register=({navigation})=>{
                         <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
                             <TextInput
                               style={styles.inputRow}
-                              placeholder="Nombre"
+                              placeholder="Ej: Pedro"
                               placeholderTextColor="#706e6f"
                               value={name}
                               onChangeText={setName}
                             />
                             <TextInput
                               style={styles.inputRow}
-                              placeholder="Apellido"
+                              placeholder="Ej: Rejas"
                               placeholderTextColor="#706e6f"
                               value={lastname}
                               onChangeText={setLastname}
@@ -124,7 +174,7 @@ const Register=({navigation})=>{
                         </Text>
                         <TextInput
                           style={styles.input}
-                          placeholder="Email"
+                          placeholder="ejemplo@gmail.com"
                           placeholderTextColor="#706e6f"
                           value={email}
                           onChangeText={setEmail}
@@ -132,25 +182,35 @@ const Register=({navigation})=>{
                         <Text style={styles.text}>
                             Contraseña
                         </Text>
-                        <TextInput
-                          style={styles.input}
-                          placeholder="Contraseña"
-                          placeholderTextColor="#706e6f"
-                          value={password}
-                          onChangeText={setPassword}
-                          secureTextEntry
-                        />
+                        <View style={{flexDirection: 'row'}}>
+                            <TextInput
+                              style={styles.inputRowPwd}
+                              placeholder="Contraseña"
+                              placeholderTextColor="#706e6f"
+                              value={password}
+                              onChangeText={setPassword}
+                              secureTextEntry={isPwdHidden}
+                            />
+                            <Pressable onPress={() => setisPwdHidden(!isPwdHidden)}>
+                                <FontAwesome name={isPwdHidden ? 'eye' : 'eye-slash'} color={'#706e6f'} size={25} />
+                            </Pressable>
+                        </View>
                         <Text style={styles.text}>
                             Confirmar contraseña
                         </Text>
-                        <TextInput
-                          style={styles.input}
-                          placeholder="Confirmar contraseña"
-                          placeholderTextColor="#706e6f"
-                          value={confirmPwd}
-                          onChangeText={setConfirmPwd}
-                          secureTextEntry
-                        />
+                        <View style={{flexDirection: 'row'}}>
+                            <TextInput
+                              style={styles.inputRowPwd}
+                              placeholder="Confirmar contraseña"
+                              placeholderTextColor="#706e6f"
+                              value={confirmPwd}
+                              onChangeText={setConfirmPwd}
+                              secureTextEntry={isConfirmPwdHidden}
+                            />
+                            <Pressable onPress={() => setIsConfirmPwdHidden(!isConfirmPwdHidden)}>
+                                <FontAwesome name={isConfirmPwdHidden ? 'eye' : 'eye-slash'} color={'#706e6f'} size={25} />
+                            </Pressable>
+                        </View>
                         <Pressable style={styles.nextButton} onPress={() => setIsFirstStep(false)}>
                             <Text style={styles.text}>Siguiente</Text>
                         </Pressable>
@@ -162,7 +222,7 @@ const Register=({navigation})=>{
                         </Text>
                         <TextInput
                           style={styles.input}
-                          placeholder="CI"
+                          placeholder="Carnet de Identidad"
                           placeholderTextColor="#706e6f"
                           value={ci}
                           onChangeText={setCI}
@@ -180,7 +240,7 @@ const Register=({navigation})=>{
                             }}
                             dropdownIconPosition={'right'}
                             onSelect={(selectedItem, index) => {
-                                console.log(selectedItem, index)
+                                setGender(selectedItem);
                             }}
                             buttonTextAfterSelection={(selectedItem, index) => {
                                 return selectedItem
@@ -189,33 +249,37 @@ const Register=({navigation})=>{
                                 return item
                             }}
                         />
-                        <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
+                        <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
                             <Text style={styles.text}>
                                 Telefono
                             </Text>
                             <Text style={styles.text}>
-                                Edad
+                                Fecha de Nacimiento
                             </Text>
                         </View>
-                        <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
+                        <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
                             <TextInput
                               style={styles.inputRow}
-                              placeholder="Telefono"
+                              placeholder="Ej: 12345678"
                               placeholderTextColor="#706e6f"
                               value={phone}
                               onChangeText={setPhone}
                               inputMode="numeric"
-                              maxLength={8}
+                              maxLength={10}
                             />
-                            <TextInput
-                              style={styles.inputRow}
-                              placeholder="Edad"
-                              placeholderTextColor="#706e6f"
-                              value={age}
-                              onChangeText={setAge}
-                              inputMode="numeric"
-                              maxLength={3}
-                            />
+                            <Pressable style={styles.dateTime} onPress={()=> setShowDate(true)}>
+                                <Text>{dateString}</Text>
+                                {showDate &&(
+                                    <DateTimePicker
+                                      testID="dateTimePicker"
+                                      value={date}
+                                      mode={'date'}
+                                      is24Hour={true}
+                                      display="default"
+                                      onChange={onChange}
+                                    />
+                                )}
+                            </Pressable>
                         </View>
                         <Pressable style={styles.nextButton} onPress={() => setIsFirstStep(true)}>
                             <Text style={styles.text}>Anterior</Text>
@@ -267,6 +331,15 @@ const styles = StyleSheet.create({
       borderRadius:2,
       width:105,
     },
+    inputRowPwd:{
+      height: 40,
+      borderBottomColor: 'gray',
+      borderBottomWidth: 1,
+      marginBottom: 20,
+      padding: 8,
+      borderRadius:2,
+      width:'90%',
+    },
     button: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -295,6 +368,16 @@ const styles = StyleSheet.create({
         borderColor: 'gray',
         marginBottom: 20,
         color: '#706e6f'
+    },
+    dateTime: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 8,
+        paddingHorizontal: 20,
+        borderBottomColor: 'gray',
+        borderBottomWidth: 1,
+        height:40,
+        width: '50%'
     },
     text: {
         fontSize: 16,

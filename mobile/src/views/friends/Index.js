@@ -28,14 +28,14 @@ const Index=({navigation})=>{
 
     return(
         <View style={styles.home}>
-            <View style={styles.contacts}>
-                <FlatList
-                    data={contact}
-                    renderItem={renderContact}
-                    keyExtractor={(item, index) => index.toString()}
-                />
-            </View>
             <View style={styles.container}>
+                <View style={styles.contacts}>
+                   <FlatList
+                       data={contact}
+                       renderItem={renderContact}
+                       keyExtractor={(item, index) => index.toString()}
+                   />
+                </View>
                 <Image
                     source={require('../../../assets/chat.webp')}
                     style={{width: 160, height: 160, margin:30}}
@@ -55,22 +55,20 @@ const Index=({navigation})=>{
 
 const styles = StyleSheet.create({
     home:{
+        flex:1,
         backgroundColor:'#fff',
-        width: '100%',
-        height:'100%',
-        justifyContent:'flex-start',
+        justifyContent:'space-between',
         alignItems:'center',
     },
     contacts: {
-        height: '21%',
-        width: '90%',
+        width: '100%',
         padding: 16,
         justifyContent: 'space-between',
         alignItems:'flex-start',
     },
     container: {
         height: 200,
-        width: 250,
+        width: '100%',
         padding: 16,
         borderRadius: 10,
         justifyContent: 'space-between',

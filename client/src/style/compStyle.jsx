@@ -1,5 +1,11 @@
 import { styled } from "styled-components";
-import { FlexComun, LoginGlobal, PositcionComun, colors } from "./StyleGlobal";
+import {
+  BackgraundQuizz,
+  FlexComun,
+  LoginGlobal,
+  PositcionComun,
+  colors,
+} from "./StyleGlobal";
 
 export const Section = styled.section`
   ${FlexComun}
@@ -61,55 +67,108 @@ export const Iniciodiv = styled.div`
   width:100%;
   position: relative;
   justify-content: space-evenly;
+  &::after {
+    position: absolute;
+    content: "";
+    width: 50%;
+    height: 100%;
+    background-color: #0008;
+    right: 0;
+    z-index: 5;
+  }
   & > p {
+    /* display: none; */
     position: absolute;
     font-size: 7em;
     font-weight: bold;
     color: #fff;
     -webkit-text-stroke: 2px ${colors.CC};
-    opacity: 0.2;
+    opacity: 0.1;
     z-index: 1;
-    top: 20%;
+    top: 5%;
     text-shadow: 5px 6px 2px ${colors.CC};
   }
-  & > div {
-    width: 75%;
-    z-index: 3;
+  & > article {
+    z-index: 2;
+    background-color: #2e2e2e;
+    width: 25em;
+    height: 25em;
     ${FlexComun}
-    justify-content:end;
-    height: 100%;
-    .slider-container {
-      position: relative;
-      width: 50%;
-      height: 100%;
-      z-index: 3;
-    }
-    .slide {
-      width: 100%;
-      height: 100%;
+    border-radius: 50%;
+    box-shadow: 9px 9px 18px #3d116152, -9px -9px 18px #4815714e;
+    & img {
+      width: 50em;
+      bottom: 0;
       position: absolute;
-      top: 0;
-      left: 150%;
-      transition: left 0.5s ease;
-      z-index: -1;
-      img {
-        bottom: 0;
-        position: absolute;
-        width: 45em;
-        height: 28em;
-        object-fit: cover;
-        filter: grayscale(1);
-        background-color: transparent;
-      }
     }
-
-    .slide.active {
-      left: 10%;
-      & img {
-        left: -80%;
+  }
+  & > aside {
+    height: 100%;
+    width: calc(90% / 3);
+    position: relative;
+    margin-top: 4em;
+    & div {
+      position: absolute;
+      height: 55px;
+      width: 55px;
+      content: "";
+      background-color: ${colors.CC};
+      top: 10%;
+      ${FlexComun}
+      flex-direction:row;
+      border-radius: 1em;
+      z-index: 10;
+      padding: 1em;
+      animation: animloader 1s ease;
+      & > img {
+        height: 40px;
+        width: 40px;
+        filter: invert(1);
+        cursor: pointer;
+        animation: escalado 3s infinite;
+        @keyframes escalado {
+          0% {
+            transform: scale(0.8);
+          }
+          50% {
+            transform: scale(0.9);
+          }
+          100% {
+            transform: scale(0.8);
+          }
+        }
+      }
+      & p {
+        text-align: start;
+        width: 200px;
+        color: rgb(255, 255, 255);
+        content: "";
+        position: absolute;
+        transform: translateX(70%);
+      }
+      &:nth-child(1) {
+        left: -15%;
+        top: 5%;
+      }
+      &:nth-child(2) {
+        left: -5%;
+        top: 20%;
+      }
+      &:nth-child(3) {
+        left: 5%;
+        top: 35%;
+      }
+      &:nth-child(4) {
+        left: -5%;
+        top: 50%;
+      }
+      &:nth-child(5) {
+        left: -15%;
+        top: 65%;
       }
     }
   }
+
   & > section {
     ${FlexComun}
     justify-content:start;
@@ -117,14 +176,19 @@ export const Iniciodiv = styled.div`
     padding: 5em 8em;
     gap: 1em;
     animation: DesdeIsquierdaRE 1s ease-in;
+    width: calc(90% / 3);
     & > div {
       ${FlexComun}
       flex-direction:column;
-      width: 80%;
+      /* width: ; */
       height: 50%;
       font-size: 0.9em;
       font-weight: 300;
       gap: 1em;
+
+      & > p {
+        width: 400px;
+      }
       & > button {
         padding: 0.8em 2em;
         border: none;
@@ -154,11 +218,27 @@ export const Iniciodiv = styled.div`
   }
 `;
 export const ViolentimetroA = styled.div`
+  ${FlexComun}
+  width: 100vw;
+  margin: 0;
+  flex-direction: column;
+  gap: 2em;
+  & aside {
+    width: 100%;
     ${FlexComun}
-    background-color:${colors.C};
-    height:60vh;
-color:#fff;
-width:100vw;
+    gap: 2em;
+    margin: 2em 0;
+    & > article {
+      width: 25em;
+    }
+    ${FlexComun}
+    & > div {
+      width: 50%;
+      & > h2 {
+        margin: 1em 0;
+      }
+    }
+  }
   & > section {
     width: 15em;
     height: 15em;
@@ -167,73 +247,287 @@ width:100vw;
     position:relative;
     z-index: 2;
     &::after {
-      ${PositcionComun}
-      animation:escalado 2s infinite;
+      /* ${PositcionComun} */
+      animation: escalado 2s infinite;
       width: 100%;
       height: 100%;
       border-radius: 50%;
       z-index: 1;
       box-shadow: 0px 5px 10px #0005;
+    }
+  }
+  & > div {
+    ${FlexComun}
+    width:100%;
+    margin: 0 auto;
+    height: 25em;
+    padding: 2em;
+    ${BackgraundQuizz}
+    box-shadow: 0 5px 10px #0005;
+    gap: 4em;
 
-      @keyframes escalado {
-        0% {
-          transform: scale(1);
-        }
-       
-        50% {
-          transform: scale(1.1);
-        }
-       
-        100% {
-          transform: scale(1);
+    & > section {
+      ${FlexComun}
+      flex-direction:column;
+      width: 40%;
+      gap: 2em;
+      & > div {
+        width: 100%;
+        ${FlexComun}
+        justify-content:space-around;
+        & button {
+          padding: 1em 2em;
+          cursor: pointer;
+          border: none;
+          border-radius: 0.5em;
+          background-color: ${colors.BB};
+          color: #fff;
+          position: relative;
+          &::before {
+            content: "";
+            background-color: #0005;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0.5em;
+            left: -0.5em;
+            z-index: -1;
+            border-radius: 0.5em;
+          }
         }
       }
     }
   }
-  & div{
-    ${FlexComun}
-    width:calc(80% / 3);
-    margin:0 auto;
-    height:100%;
-  }
 `;
 
 export const Filtro = styled.div`
-  ${FlexComun}
   width: 100%;
   z-index: 8;
   height: auto;
   flex-wrap: wrap;
-box-shadow: 0 -4px 5px #0005;
-flex-direction:column;
-& > div{
-width:100%;
-padding:1em;
+  box-shadow: 0 -4px 5px #0005;
+  flex-direction: column;
+  & > section {
+    ${FlexComun}
+    justify-content:start;
+    margin: 1em;
+    gap: 2em;
+    width: 100%;
+    & > article {
+      ${FlexComun}
+      background-color: ${colors.CC};
+      width: 250px;
+      height: 40px;
+      position: relative;
+      &::before {
+        content: "";
+        background-color: #0005;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0.5em;
+        left: -0.5em;
+        z-index: -1;
+      }
+      & a {
+        ${FlexComun}
+        color: #fff;
+        text-decoration: none;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
 
-& > section{
-  ${FlexComun}
-  justify-content:start;
-  margin:1em;
-  gap:2em;
-& a{
-  ${FlexComun}
-  text-decoration:none;
-  padding:.5em;
-  width:10em;
-  background-color:${colors.C};
-  color:#fff;
-  position:sticky;
-  z-index:2;
-
-}
-}
-
-& article{
-  ${FlexComun}
-
-}
-}
+  & > article {
+    width: 100%;
+    ${FlexComun}
+    height:${"100%" || "auto"}
+  }
 `;
-export const Mapasstyle =styled.section`
-height:100vh;
+export const Mapasstyle = styled.section`
+  height: 50vh;
+  margin:0 auto;
+  width:90%;
+  ${FlexComun}
+gap:2em;
+  & > iframe{
+box-shadow:0 10px 10px #0005;
+  }
+`;
+export const DivMobile = styled.section`
+  height: auto;
+  padding: 2em;
+  & > h2 {
+    padding: 2em;
+    font-size: 2em;
+    & strong {
+      color: ${colors.CC};
+    }
+  }
+  & div {
+    ${FlexComun}
+    gap:5em;
+    & > img {
+      width: 15em;
+    }
+    & p {
+      width: 50%;
+      padding: 3em;
+      ${BackgraundQuizz}
+      & h1 {
+        font-size: 2em;
+        padding: 1em;
+      }
+    }
+  }
+  & section {
+    ${FlexComun}
+    gap :2em;
+    width:80%;
+    margin:0 auto;
+    height:100%;
+    &:nth-child(2n){
+      flex-direction:row-reverse;
+    }
+    & p {
+      width: 40em;
+      padding: 3em;
+      ${BackgraundQuizz}
+      & h1 {
+        font-size: 2em;
+        padding: 1em;
+      }
+    }
+      & > img {
+      width: 15em;
+    }
+    & label{
+      padding:2em;
+    }
+    }
+`;
+export const Recursos = styled.section`
+  ${FlexComun}
+  width:100%;
+  & > div {
+    ${FlexComun}
+    width:100vw;
+    height: 100%;
+    flex-direction: column;
+    & > p {
+      padding: 0.5em;
+      width: 90%;
+      font-size: 2em;
+      text-align: start;
+      border-bottom: solid 1px #000;
+    }
+    & article {
+      ${FlexComun}
+      position: relative;
+      & > img {
+        width: 75vw;
+        height: 60vh;
+        object-fit: cover;
+      }
+      & > iframe {
+        width: 75vw;
+        height: 60vh;
+      }
+      & > section {
+        width: 100%;
+        position: absolute;
+        ${FlexComun}
+        justify-content:space-between;
+        background-color: #0005;
+        height: 20em;
+        content: "";
+        bottom: 0;
+        & button {
+          background-color: ${colors.BB};
+          padding: 1em;
+          border: none;
+          color: #fff;
+        }
+        .estadoa {
+          position: relative;
+          padding: 1em 4em;
+          bottom: -5em;
+          background-color: transparent;
+          border-radius: 0.5em;
+          border: solid 1px ${colors.BB};
+          color: ${colors.BB};
+        }
+      }
+    }
+  }
+`;
+
+export const RutasStyle = styled.section`
+  & > article {
+    width: 90%;
+    margin: 0 auto;
+    ${FlexComun}
+    flex-direction:column;
+    padding: 2em;
+    position: relative;
+
+    &::before {
+      position: absolute;
+      content: "";
+      width: 2px;
+      height: 90%;
+      background-color: #8a248a96;
+      left: 9.5em;
+      bottom: 0;
+    }
+    & > p {
+      font-size: 2em;
+      color: ${colors.BB};
+      width: 60%;
+      ${FlexComun}
+      justify-content:space-around;
+      margin: 2em;
+      & > div {
+        width: 10%;
+        ${FlexComun}
+        color:#000;
+      }
+    }
+    & > div {
+      width: 70%;
+      & > aside {
+        position: relative;
+        ${FlexComun}
+        justify-content:space-around;
+        &::after {
+          position: absolute;
+          content: "";
+          width: 40px;
+          height: 40px;
+          background-color: ${colors.CC};
+          left: -8em;
+          border-radius: 50%;
+        }
+
+        &:nth-child(2n) {
+          /* margin: 1em ; */
+        }
+        & p {
+          padding: 1em;
+          margin: 1em;
+        }
+        & > ul > li {
+          width: 100%;
+          list-style: none;
+          font-size: 0.9em;
+          padding: 1em;
+          border: 1px solid #0003;
+          background-color: ${colors.CC};
+          color: #fff;
+          box-shadow: 0 5px 10px #0005;
+        }
+      }
+    }
+  }
 `;
