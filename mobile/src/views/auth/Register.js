@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, Alert, Image, Pressable } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const Register=({navigation})=>{
     const [ci, setCI] = useState('');
@@ -9,6 +10,9 @@ const Register=({navigation})=>{
     const [lastname, setLastname] = useState('');
     const [phone, setPhone] = useState('');
     const [age, setAge] = useState('');
+    const [date, setDate] = useState(new Date());
+    const [showDate, setShowDate] = useState(false);
+    const [dateString, setDateString] = useState('00/00/0000');
     const [email, setEmail] = useState('');
     const generos= ["Femenino","masculino"];
     const [gender, setGender] = useState('');
@@ -19,6 +23,15 @@ const Register=({navigation})=>{
     const [isFirstStep, setIsFirstStep] = useState(true);
     const [errors, setErrors] = useState({});
     const [isFormValid, setIsFormValid] = useState(false);
+
+    const onChange = (event, selectedDate) => {
+        const currentDate = selectedDate || date;
+        setDate(currentDate);
+        let tempDate = new Date(currentDate);
+        let fDate = tempDate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear();
+        setDateString(fDate);
+        setShowDate(false);
+    };
 
     const validateForm = () => {
           let errors = {};
@@ -43,8 +56,8 @@ const Register=({navigation})=>{
           } else if (phone.length < 8) {
              errors.phone = 'El telefono debe tener 8 numeros';
           }
-          if (!age) {
-             errors.age = 'Ingrese su edad';
+          if (dateString=='00/00/0000') {
+             errors.age = 'Ingrese una fecha valida';
           }
 
           if (!email) {
@@ -70,6 +83,7 @@ const Register=({navigation})=>{
           if (Object.keys(errors).length === 0) {
               setIsFormValid(true);
               createUser();
+                navigation.navigate('Index')
           } else {
               setIsFormValid(false);
 
@@ -235,15 +249,15 @@ const Register=({navigation})=>{
                                 return item
                             }}
                         />
-                        <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
+                        <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
                             <Text style={styles.text}>
                                 Telefono
                             </Text>
                             <Text style={styles.text}>
-                                Edad
+                                Fecha de Nacimiento
                             </Text>
                         </View>
-                        <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
+                        <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
                             <TextInput
                               style={styles.inputRow}
                               placeholder="Ej: 12345678"
@@ -253,15 +267,19 @@ const Register=({navigation})=>{
                               inputMode="numeric"
                               maxLength={10}
                             />
-                            <TextInput
-                              style={styles.inputRow}
-                              placeholder="Ej: 21"
-                              placeholderTextColor="#706e6f"
-                              value={age}
-                              onChangeText={setAge}
-                              inputMode="numeric"
-                              maxLength={3}
-                            />
+                            <Pressable style={styles.dateTime} onPress={()=> setShowDate(true)}>
+                                <Text>{dateString}</Text>
+                                {showDate &&(
+                                    <DateTimePicker
+                                      testID="dateTimePicker"
+                                      value={date}
+                                      mode={'date'}
+                                      is24Hour={true}
+                                      display="default"
+                                      onChange={onChange}
+                                    />
+                                )}
+                            </Pressable>
                         </View>
                         <Pressable style={styles.nextButton} onPress={() => setIsFirstStep(true)}>
                             <Text style={styles.text}>Anterior</Text>
@@ -350,6 +368,16 @@ const styles = StyleSheet.create({
         borderColor: 'gray',
         marginBottom: 20,
         color: '#706e6f'
+    },
+    dateTime: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 8,
+        paddingHorizontal: 20,
+        borderBottomColor: 'gray',
+        borderBottomWidth: 1,
+        height:40,
+        width: '50%'
     },
     text: {
         fontSize: 16,

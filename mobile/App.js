@@ -92,7 +92,7 @@ function EditFriendsScreen({ navigation }) {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Menu" headerMode="none">
+      <Stack.Navigator initialRouteName="Login" headerMode="none">
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
