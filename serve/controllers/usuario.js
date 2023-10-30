@@ -5,7 +5,6 @@ const prisma = new PrismaClient();
 app.get('/user', async (req, res) => { // Utiliza req para la solicitud y res para la respuesta
     try {
         const usuarios = await prisma.usuario.findMany({
-            
         });
         res.json(usuarios);
     } catch (error) {

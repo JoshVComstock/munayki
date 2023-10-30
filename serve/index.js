@@ -7,6 +7,7 @@ const organizacion=require('./controllers/organizacion');
 const multimedia=require('./controllers/multimedia');
 const usuario=require('./controllers/usuario');
 const alertaUsuario=require('./controllers/alertaUsuario');
+const login=require("./controllers/login");
 const app = express();
 const port = 3000;
 dotenv.config();
@@ -22,6 +23,7 @@ app.use(organizacion);
 app.use(multimedia);
 app.use(alertaUsuario);
 app.use(usuario);
+app.use(login);
 app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`)
 })
