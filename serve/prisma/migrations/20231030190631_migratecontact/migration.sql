@@ -1,4 +1,17 @@
 -- CreateTable
+CREATE TABLE `Contacto` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `nombre` VARCHAR(191) NOT NULL,
+    `apellido` VARCHAR(191) NOT NULL,
+    `edad` INTEGER NOT NULL,
+    `telefono` INTEGER NOT NULL,
+    `relacion` VARCHAR(191) NOT NULL,
+    `usuarioId` INTEGER NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
 CREATE TABLE `Usuario` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `nombre` VARCHAR(255) NOT NULL,
@@ -63,6 +76,9 @@ CREATE TABLE `AlertasUsuario` (
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- AddForeignKey
+ALTER TABLE `Contacto` ADD CONSTRAINT `Contacto_usuarioId_fkey` FOREIGN KEY (`usuarioId`) REFERENCES `Usuario`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Organizacion` ADD CONSTRAINT `Organizacion_usuarioId_fkey` FOREIGN KEY (`usuarioId`) REFERENCES `Usuario`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;

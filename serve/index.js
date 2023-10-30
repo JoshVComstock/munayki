@@ -7,7 +7,8 @@ const organizacion = require("./controllers/organizacion");
 const multimedia = require("./controllers/multimedia");
 const usuario = require("./controllers/usuario");
 const alertaUsuario = require("./controllers/alertaUsuario");
-const resultadosCuestionario = require("./controllers/resultadosCuestionario"); 
+const resultadosCuestionario = require("./controllers/resultadosCuestionario");
+const contact = require("./controllers/contactos");
 
 const app = express();
 const port = 3000;
@@ -21,6 +22,7 @@ app.use(
 
 app.use(bodyParser.json());
 app.use(cors());
+app.use(contact);
 app.use(ubicacion);
 app.use(organizacion);
 app.use(multimedia);
