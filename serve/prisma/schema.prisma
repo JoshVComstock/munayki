@@ -46,7 +46,8 @@ model ResultadoCuestionario {
 model Organizacion {
   id            Int      @id @default(autoincrement())
   nombre        String
-  ubicacion     String
+  longitud      Float
+  latitud       Float
   areVulnerable String
   usuarioId     Int?
   usuario       Usuario? @relation(fields: [usuarioId], references: [id])

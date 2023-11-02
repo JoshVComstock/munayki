@@ -2,7 +2,7 @@ import {  useEffect } from "react";
 
 export function useDelete(url, id) {
     const fetchData = async () => {
-        const response = await fetch(url + "/" + id, {
+        const response = await fetch(url + "organizacion/" + id, {
           method: "DELETE",
         });
         if(response.ok){
@@ -10,5 +10,4 @@ export function useDelete(url, id) {
         }
     };
     fetchData();
-console.log(id);
 }
