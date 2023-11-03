@@ -4,21 +4,28 @@ const app = express();
 const bcrypt = require("bcrypt");
 const prisma = new PrismaClient();
 const jwt = require("jsonwebtoken");
-const validTokens= new Set();
+const validTokens = new Set();
+
 app.post("/login", async (req, res) => {
   const { correo, password } = req.body;
-
-  // Buscar un usuario por su correo electrónico
+  if (!correo || !password) {
+    return res.status(400).json({
+      error: "Correo y contraseña son obligatorios",
+    });
+  }
   const user = await prisma.usuario.findFirst({
     where: {
-      correo: correo, // Condición única basada en el correo electrónico
+      correo: correo,
     },
   });
-
- 
-  if (!(user && password)) {
+  if (!user) {
     res.status(401).json({
-      error: "Contraseña invalida",
+      error: "Usuario no encontrado",
+    });
+  }
+  if (password !== user.password) {
+    return res.status(401).json({
+      error: "Contra incorrecta",
     });
   }
   const userForToken = {
@@ -26,17 +33,17 @@ app.post("/login", async (req, res) => {
     username: user.correo,
   };
   const token = jwt.sign(userForToken, "123");
-  res.send({
+  res.status(200).json({
     name: user.nombre,
     userName: user.correo,
     token,
   });
 });
 app.post("/logout", (req, res) => {
-  const token = req.body.token; 
-  if (validTokens.has(token)) {
+  const token = req.body.token;
+  if (!validTokens.has(token)) {
     validTokens.delete(token);
-    res.status(200).json({ message: "Token invalidado correctamente" });
+    res.status(200).json({ message: "Token eliminado correctamente" });
   } else {
     res.status(401).json({ error: "Token no válido" });
   }
