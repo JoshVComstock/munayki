@@ -3,49 +3,110 @@ import styled from "styled-components";
 import { colors } from "../../style/StyleGlobal";
 import storeUno from "../../components/zustand/stores/storeUno";
 import { usePost } from "../../hook/usePost";
-import { useGet } from "../../hook/useGet";
 const url = import.meta.env.VITE_BACKEND_URL;
 import { useDelete } from "../../hook/useDelete";
+import useStoreUser from "../../components/zustand/stores/storeUser";
+
 const Organizaciones = () => {
-   const { datos, fetchedBody } = storeUno();
-/*   const [datosFetched, setDatosFetched] = useState(false);  */
-  const {data}=useGet(`https://express-vercel-one-mu.vercel.app/organizacion`);
- /*  useEffect(() => {
-    if (!datosFetched) {
-      fetchedBody();
-      setDatosFetched(true);
-    }
-  }, [datosFetched, fetchedBody]); */
+  const { datos, fetchedBody } = storeUno();
+  const { user, fetchedUser } = useStoreUser();
+  const [filterCriteria, setFilterCriteria] = useState(''); 
+
+  const handleFilterChange = (e) => {
+    setFilterCriteria(e.target.value);
+  };
+  const mapUrl = "https://www.google.com/maps/search/?api=1&query=";
+
+  const [loader, setLoader] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoader(false);
+    }, 1000);
+  }, []);
+
   const [form, setForm] = useState({
     nombre: "",
     ubicacion: "",
     areVulnerable: "",
-    usuarioId: null,
+    usuarioId: "",
   });
+  const handleDelete = (id) => {
+    useDelete(url, id);
+  };
+
 
   const renderDatos = () => {
-    if (data && data.length)
-      return data.map((datos,v) => (
-        <tr key={datos.id}>
-          <td>{v+1}</td>
-          <td>{datos.nombre}</td>
-          <td>{datos.ubicacion}</td>
-          <td>{datos.areVulnerable}</td>
-          <td>hanz</td>
+    if (datos && datos.length) {
+      const filteredData = datos.filter((dato) => {
+        // Aplica el filtrado por nombre o usuario según el criterio
+        return (
+          dato.nombre.toLowerCase().includes(filterCriteria.toLowerCase()) ||
+          dato.usuario.nombre
+            .toLowerCase()
+            .includes(filterCriteria.toLowerCase())
+        );
+      });
+
+      if (filteredData.length === 0) {
+        return (
+          <tr>
+            <td colSpan="6">No se encontraron resultados</td>
+          </tr>
+        );
+      }
+
+      return filteredData.map((dato, v) => (
+        <tr key={dato.id}>
+          {/* Renderizar los datos filtrados */}
+          <td>{v + 1}</td>
+          <td>{dato.nombre}</td>
           <td>
-            <button onClick={()=>{
-              useDelete('https://express-vercel-one-mu.vercel.app/organizacion',datos.id)
-            }}
-            >Eliminar</button>
+            <a
+              href={dato.ubicacion}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                textDecoration: "none",
+                color: "#fff",
+                background: colors.C,
+                padding: "0.5em 2em",
+                borderRadius: 2,
+              }}
+            >
+              Ver Ubicación
+            </a>
+          </td>
+          <td>{dato.areVulnerable}</td>
+          <td>{dato.usuario.nombre}</td>
+          <td>
+            <button onClick={() => handleDelete(dato.id)}>Eliminar</button>
           </td>
         </tr>
       ));
+    } else {
+      return (
+        <tr>
+          <td colSpan="6">Cargando datos...</td>
+        </tr>
+      );
+    }
   };
+
+  useEffect(() => {
+    fetchedBody();
+    fetchedUser();
+  }, [datos]);
+
   return (
     <ContainerUbicacion>
       <div>
-        <h1>Organizacion</h1>
-        <button>Nueva ubicacion</button>
+        <h1>Organizaciones </h1>
+        <input
+          type="text"
+          value={filterCriteria}
+          onChange={(e) => setFilterCriteria(e.target.value)}
+          placeholder="Filtrar por nombre o usuario"
+        />
       </div>
       <table>
         <thead>
@@ -58,75 +119,87 @@ const Organizaciones = () => {
             <th>Acciones</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>
-              Nueva organizacion
-            </td>
-            <td>
-              <input type="text" value={form.nombre} onChange={(e) =>
-                setForm({
-                  ...form,
-                  nombre: e.target.value,
-                })
-              } placeholder="Organizacion" />
-            </td>
-            <td>
-              <input
-                type="text"
-                value={form.ubicacion}
-                onChange={(e) =>
-                  setForm({
-                    ...form,
-                    ubicacion: e.target.value,
-                  })
-                }
-                placeholder="Ubicacion"
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                value={form.areVulnerable}
-                onChange={(e) =>
-                  setForm({
-                    ...form,
-                    areVulnerable: e.target.value,
-                  })
-                }
-                placeholder="Area vulnerable"
-              />
-            </td>
-            <td>
-              <select
-                onChange={(e) =>
-                  setForm({
-                    ...form,
-                    usuarioId:null,
-                  })
-                }
-              >
-                <option>Busque usuario</option>
-                {datos.map((v) => (
-                  <option key={v.usuarioId} value={v.usuarioId}>
-                    {v.usuario.nombre}
-                    
-                  </option>
-                ))}
-              </select>
-            </td>
-            <td>
-              <button
-                onClick={() => {
-                  usePost(`${url}organizacion`,form)
-                }}
-              >
-                Agregar
-              </button>
-            </td>
-          </tr>
-          {renderDatos()}
-        </tbody>
+        {loader ? (
+          <section className="contenedor">
+            {" "}
+            <div className="loader"></div>
+          </section>
+        ) : (
+          <tbody>
+            <tr className="agregando">
+              <td>Nueva organizacion</td>
+              <td>
+                <input
+                  type="text"
+                  value={form.nombre}
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      nombre: e.target.value,
+                    })
+                  }
+                  placeholder="Organizacion"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={form.ubicacion}
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      ubicacion: e.target.value,
+                    })
+                  }
+                  placeholder="Ubicacion"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={form.areVulnerable}
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      areVulnerable: e.target.value,
+                    })
+                  }
+                  placeholder="Area vulnerable"
+                />
+              </td>
+              <td>
+                <select
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      usuarioId: parseInt(e.target.value),
+                    })
+                  }
+                >
+                  <option>Busque usuario</option>
+                  {user.map((v, i) => (
+                    <option key={v.id} value={v.id}>
+                      {v.nombre ? v.nombre : "Nombre no disponible"}
+                    </option>
+                  ))}
+                </select>
+              </td>
+              <td>
+                <button
+                  onClick={() => {
+                    usePost(`${url}organizacion`, {
+                      ...form,
+                      ubicacion: mapUrl + form.ubicacion,
+                    });
+                  }}
+                >
+                  Agregar
+                </button>
+              </td>
+            </tr>
+            {renderDatos()}
+          </tbody>
+        )}
       </table>
     </ContainerUbicacion>
   );
@@ -144,36 +217,68 @@ export const ContainerUbicacion = styled.div`
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
-    color: ${colors.gray300};
-    font-size: 25px;
+    color: ${colors.DD};
+    font-size: 22px;
+    gap:2em;
+    & input{
+      outline:none;
+      width: 70%;
+      margin:0 auto;
+      border:solid 1px #0005;
+      padding:0.2em .5em;
+    }
   }
   & > table {
     width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
+    font-size: 0.8em;
+
     & > thead {
-      height: 50px;
-      background: ${colors.C};
+      height: 40px;
+      background: ${colors.CC};
       color: ${colors.light};
+      box-shadow: 0 5px 10px #000;
+      font-weight: lighter;
+      font-size: 0.8em;
+
+      text-transform: uppercase;
     }
     & > tbody {
       height: 100%;
       text-align: center;
+      & input {
+        border: solid 1px #0004;
+        padding: 0.2em 1em;
+        outline: none;
+      }
+      & select {
+        background-color: ${colors.CC};
+        color: ${colors.light};
+        padding: 0.2em 1em;
+      }
       tr {
         height: 50px;
+        font-weight: lighter;
+
         &:nth-child(even) {
-          background-color: rgba(229, 214, 245, 0.907);
+          background-color: rgba(53, 19, 90, 0.219);
         }
         &:nth-child(odd) {
           background-color: #fff;
         }
+        .agregando {
+          background-color: ${colors.FF};
+        }
+
         & > td {
           height: 50px;
           overflow: hidden;
-  text-overflow: ellipsis;
+          text-overflow: ellipsis;
+
           & > button {
             width: 100px;
-            height: 35px;
+            height: 30px;
             background: transparent;
             border: 1px solid ${colors.CC};
             cursor: pointer;

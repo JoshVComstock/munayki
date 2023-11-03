@@ -9,6 +9,7 @@ const usuario = require("./controllers/usuario");
 const alertaUsuario = require("./controllers/alertaUsuario");
 const resultadosCuestionario = require("./controllers/resultadosCuestionario");
 const contact = require("./controllers/contactos");
+const login = require("./controllers/login");
 
 const app = express();
 const port = 3000;
