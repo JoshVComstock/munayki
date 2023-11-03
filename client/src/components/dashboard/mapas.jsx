@@ -1,39 +1,43 @@
 import React, { useState } from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
-const MapContainer = (props) => {
-  const { google, location, onLocationChange } = props;
-  const [latitude, setLatitude] = useState(null);
-  const [longitude, setLongitude] = useState(null);
+const GoogleMapsDirections = () => {
+  const [origin, setOrigin] = useState(''); // Ubicación de inicio
+  const [destination, setDestination] = useState(''); // Destino
 
-  const handleMapClick = (mapProps, map, clickEvent) => {
-    const lat = clickEvent.latLng.lat();
-    const lng = clickEvent.latLng.lng();
-    setLatitude(lat);
-    setLongitude(lng);
-    onLocationChange({ lat, lng });
+  const handleDirections = () => {
+    // Escapa los valores de origen y destino para que se puedan usar en una URL
+    const escapedOrigin = encodeURIComponent(origin);
+    const escapedDestination = encodeURIComponent(destination);
+
+    // Construye la URL de Google Maps con los valores dinámicos
+    const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${escapedOrigin}&destination=${escapedDestination}&travelmode=walking`;
+
+    // Abre la URL en una nueva ventana o pestaña del navegador
+    window.open(googleMapsUrl, '_blank');
   };
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Escribe un lugar"
-        value={location}
-        onChange={(e) => onLocationChange(e.target.value)}
-      />
-      <Map
-        google={google}
-        zoom={14}
-        initialCenter={{ lat: latitude || 0, lng: longitude || 0 }}
-        onClick={handleMapClick}
-      >
-        {latitude && longitude && <Marker position={{ lat: latitude, lng: longitude }} />}
-      </Map>
+      <h2>Google Maps Directions</h2>
+      <div>
+        <label>Ubicación de inicio:</label>
+        <input
+          type="text"
+          value={origin}
+          onChange={(e) => setOrigin(e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Destino:</label>
+        <input
+          type="text"
+          value={destination}
+          onChange={(e) => setDestination(e.target.value)}
+        />
+      </div>
+      <button onClick={handleDirections}>Obtener Direcciones</button>
     </div>
   );
 };
 
-export default GoogleApiWrapper({
-  apiKey: 'AIzaSyCQHwe4ZWJyNKxbJIm51zPBmxM9DqKVUs0'
-})(MapContainer);
+export default GoogleMapsDirections;

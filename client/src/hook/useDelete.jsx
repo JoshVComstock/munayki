@@ -1,13 +1,13 @@
-import {  useEffect } from "react";
+import { useEffect } from "react";
 
-export function useDelete(url, id) {
-    const fetchData = async () => {
-        const response = await fetch(url + "organizacion/" + id, {
-          method: "DELETE",
-        });
-        if(response.ok){
-            console.log("Organizacion eliminada");
-        }
-    };
-    fetchData();
+export function useDelete(url, id, parametro) {
+  const fetchData = async () => {
+    const response = await fetch(url + parametro + "/" + id, {
+      method: "DELETE",
+    });
+    if (response.ok) {
+      console.log("Organizacion eliminada");
+    }
+  };
+  fetchData();
 }

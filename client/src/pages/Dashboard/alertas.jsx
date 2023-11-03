@@ -1,5 +1,7 @@
 import React from 'react'
-import { ContainerUbicacion } from './organizaciones'
+
+import GoogleMapsDirections from '../../components/dashboard/mapas'
+import { ContainerUbicacion } from '../../style/ContainerUbicacion'
 
 const Alertas = () => {
   return (
@@ -33,6 +35,8 @@ const Alertas = () => {
             </tr>
       </tbody>
     </table>
+
+    <GoogleMapsDirections/>
   </ContainerUbicacion>
   )
 }

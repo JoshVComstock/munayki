@@ -1,44 +1,56 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import { colors } from "../../style/StyleGlobal";
-import storeUno from "../../components/zustand/stores/storeUno";
-import { usePost } from "../../hook/usePost";
 const url = import.meta.env.VITE_BACKEND_URL;
+import Datauser from "../../components/dashboard/datosuser";
+import useHttpGet from "../../hook/useHttpGet";
 import { useDelete } from "../../hook/useDelete";
-import useStoreUser from "../../components/zustand/stores/storeUser";
+import { ContainerUbicacion } from "../../style/ContainerUbicacion";
 
 const Organizaciones = () => {
-  const { datos, fetchedBody } = storeUno();
-  const { user, fetchedUser } = useStoreUser();
-  const [filterCriteria, setFilterCriteria] = useState(''); 
+  let pamatro = "organizacion";
+  let userio = "user";
+  const organizacionUrl = `${url}${pamatro}`;
+  const userUrl = `${url}${userio}`;
+  const { data: getOrgData, loading, error } = useHttpGet(organizacionUrl);
+  const {
+    data: getUserData,
+    loading: loadingUser,
+    error: errorUser,
+  } = useHttpGet(userUrl);
 
-  const handleFilterChange = (e) => {
-    setFilterCriteria(e.target.value);
-  };
-  const mapUrl = "https://www.google.com/maps/search/?api=1&query=";
-
-  const [loader, setLoader] = useState(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setLoader(false);
-    }, 1000);
-  }, []);
-
+  const [filterCriteria, setFilterCriteria] = useState("");
   const [form, setForm] = useState({
     nombre: "",
     ubicacion: "",
+    ubicaciondata: "",
     areVulnerable: "",
     usuarioId: "",
   });
+  const mapUrl = "https://www.google.com/maps/search/?api=1&query=";
+
+ 
   const handleDelete = (id) => {
-    useDelete(url, id);
+    useDelete(url, id, pamatro);
   };
-
-
+  useEffect(() => {
+    renderDatos();
+  }, [getOrgData]);
+  
   const renderDatos = () => {
-    if (datos && datos.length) {
-      const filteredData = datos.filter((dato) => {
-        // Aplica el filtrado por nombre o usuario según el criterio
+    if (loading) {
+      return (
+        <section className="contenedor">
+          <div className="loader"></div>
+        </section>
+      );
+    }
+
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    }
+
+    if (getOrgData && getOrgData.length) {
+      const filteredData = getOrgData.filter((dato) => {
         return (
           dato.nombre.toLowerCase().includes(filterCriteria.toLowerCase()) ||
           dato.usuario.nombre
@@ -57,7 +69,6 @@ const Organizaciones = () => {
 
       return filteredData.map((dato, v) => (
         <tr key={dato.id}>
-          {/* Renderizar los datos filtrados */}
           <td>{v + 1}</td>
           <td>{dato.nombre}</td>
           <td>
@@ -86,17 +97,15 @@ const Organizaciones = () => {
     } else {
       return (
         <tr>
-          <td colSpan="6">Cargando datos...</td>
+          <td colSpan="6">
+            <section className="contenedor">
+              <div className="loader"></div>
+            </section>
+          </td>
         </tr>
       );
     }
   };
-
-  useEffect(() => {
-    fetchedBody();
-    fetchedUser();
-  }, [datos]);
-
   return (
     <ContainerUbicacion>
       <div>
@@ -119,7 +128,7 @@ const Organizaciones = () => {
             <th>Acciones</th>
           </tr>
         </thead>
-        {loader ? (
+        {loading ? (
           <section className="contenedor">
             {" "}
             <div className="loader"></div>
@@ -177,7 +186,7 @@ const Organizaciones = () => {
                   }
                 >
                   <option>Busque usuario</option>
-                  {user.map((v, i) => (
+                  {getUserData.map((v, i) => (
                     <option key={v.id} value={v.id}>
                       {v.nombre ? v.nombre : "Nombre no disponible"}
                     </option>
@@ -190,6 +199,7 @@ const Organizaciones = () => {
                     usePost(`${url}organizacion`, {
                       ...form,
                       ubicacion: mapUrl + form.ubicacion,
+                      ubicaciondata: form.ubicacion,
                     });
                   }}
                 >
@@ -201,100 +211,10 @@ const Organizaciones = () => {
           </tbody>
         )}
       </table>
+
+      <Datauser />
     </ContainerUbicacion>
   );
 };
 
 export default Organizaciones;
-export const ContainerUbicacion = styled.div`
-  padding: 20px;
-  width: 100%;
-  height: 100%;
-  & > div {
-    width: 100%;
-    height: 15%;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-    color: ${colors.DD};
-    font-size: 22px;
-    gap:2em;
-    & input{
-      outline:none;
-      width: 70%;
-      margin:0 auto;
-      border:solid 1px #0005;
-      padding:0.2em .5em;
-    }
-  }
-  & > table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
-    font-size: 0.8em;
-
-    & > thead {
-      height: 40px;
-      background: ${colors.CC};
-      color: ${colors.light};
-      box-shadow: 0 5px 10px #000;
-      font-weight: lighter;
-      font-size: 0.8em;
-
-      text-transform: uppercase;
-    }
-    & > tbody {
-      height: 100%;
-      text-align: center;
-      & input {
-        border: solid 1px #0004;
-        padding: 0.2em 1em;
-        outline: none;
-      }
-      & select {
-        background-color: ${colors.CC};
-        color: ${colors.light};
-        padding: 0.2em 1em;
-      }
-      tr {
-        height: 50px;
-        font-weight: lighter;
-
-        &:nth-child(even) {
-          background-color: rgba(53, 19, 90, 0.219);
-        }
-        &:nth-child(odd) {
-          background-color: #fff;
-        }
-        .agregando {
-          background-color: ${colors.FF};
-        }
-
-        & > td {
-          height: 50px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-
-          & > button {
-            width: 100px;
-            height: 30px;
-            background: transparent;
-            border: 1px solid ${colors.CC};
-            cursor: pointer;
-            &:hover {
-              background: ${colors.CC};
-              color: ${colors.light};
-              opacity: 0.8;
-            }
-          }
-        }
-        color: ${colors.CC};
-        &:hover {
-          color: ${colors.CC};
-          cursor: pointer;
-        }
-      }
-    }
-  }
-`;

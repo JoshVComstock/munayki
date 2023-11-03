@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import useStoreUser from "../../components/zustand/stores/storeUser";
-import { ContainerUbicacion } from "./organizaciones";
+
 const url = import.meta.env.VITE_BACKEND_URL;
 import { useGet } from "../../hook/useGet";
+import { ContainerUbicacion } from "../../style/ContainerUbicacion";
 const User = () => {
   // como es un huck debemos instanciarlos de esta forma se puede manejar el destruring  para traer lo que quieres
 

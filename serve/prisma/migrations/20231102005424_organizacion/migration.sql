@@ -41,6 +41,7 @@ CREATE TABLE `Organizacion` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `nombre` VARCHAR(191) NOT NULL,
     `ubicacion` VARCHAR(191) NOT NULL,
+    `ubicacionData` VARCHAR(191) NOT NULL,
     `areVulnerable` VARCHAR(191) NOT NULL,
     `usuarioId` INTEGER NULL,
 
