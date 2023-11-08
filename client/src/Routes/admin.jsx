@@ -1,39 +1,39 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faExclamationTriangle,
-  faMapMarkerAlt,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
+
 import Alert from '../assets/icons/alert.svg';
 import Location from '../assets/icons/location.svg';
-import Logout from '../assets/icons/logout.svg';
 import Users from '../assets/icons/users.svg';
 import { Linkes } from "../style/navStyle";
+import { useUser } from "../context/userContextProvider";
+import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 const Admin = () => {
-  const navigation = useNavigate();
-
+  const navegate = useNavigate();
+  const {user,logout } = useUser();
   const salir = () => {
-    navigation("/login");
+    logout();
+    navegate("/");
   };
+  if (!user) {
+    return <Navigate to={"/"}></Navigate>
+  }
   return (
     <>
       <div>
         <Linkes to="/dashboard/organizacion">
-         <img src={Location} alt="" />
-         Organizacion
+          <img src={Location} alt="" />
+          Organizacion
         </Linkes>
         <Linkes to="/dashboard/alertas">
           <img src={Alert} alt="" /> Alertas
         </Linkes>
         <Linkes to="/dashboard/user">
-         <img src={Users} alt="" /> Usuarios
+          <img src={Users} alt="" /> Usuarios
         </Linkes>
       </div>
       <section>
-        <button onClick={salir}>
-          <img src={Logout} alt="" /> Salir
+        <button onClick={salir} >
+          <img src="" alt="" /> Salir
         </button>
       </section>
     </>

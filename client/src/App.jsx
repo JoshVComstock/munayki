@@ -8,7 +8,6 @@ import Admin from "./Routes/admin";
 import Alertas from "./pages/Dashboard/alertas";
 import Login from "./pages/login";
 import UbiciacionesCli from "./pages/ubiciaciones";
-import { UserContextProvider } from "./context/userContextProvider";
 import { Navcontextprovider } from "./context/navContextProvider";
 import Routing from "./Routes/Routing";
 import Mapas from "./pages/mapas";
@@ -27,7 +26,6 @@ function App() {
   return (
     <HashRouter>
       <ModalContextProvider>
-      <UserContextProvider>
       <ScrollProvider>
         <Navcontextprovider>
           <Routes>
@@ -63,7 +61,7 @@ function App() {
           <Modal />
         </Navcontextprovider>
         </ScrollProvider>
-      </UserContextProvider>
+      
       </ModalContextProvider>
     </HashRouter>
   );

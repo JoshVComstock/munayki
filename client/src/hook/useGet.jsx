@@ -8,7 +8,7 @@ export function useGet(url) {
   });
 
   async function fetchData() {
-      const response = await fetch(url);
+     
       const data = await response.json();
       setState({
         loading: false,

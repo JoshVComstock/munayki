@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Section } from "../style/compStyle";
 import ComRegister from "../components/Informativa/comRegister";
-import { useNavigate } from "react-router-dom"; // Cambiado a useNavigate
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
@@ -10,52 +9,48 @@ import {
   faSignInAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../src/assets/logoChocha.png";
-import { useNavContext } from "../context/navContextProvider";
-import { useContextUser } from "../context/userContextProvider";
-import useStoreUser from "../components/zustand/stores/storeUser";
 const url = import.meta.env.VITE_BACKEND_URL;
-
+import { Navigate } from "react-router-dom";
+import { useUser } from "../context/userContextProvider";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navegate = useNavigate();
-    const { setLogged } = useNavContext();
-  const { user, setUser } = useContextUser();
+  const { user, setUser } = useUser();
   const [irLogin, setIrLogin] = useState(true);
-
-  const { postUsuario } = useStoreUser();
-
-  const logout = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await postUsuario({ email, password });
-      if (response.ok) {
-        setUser(response.user[0]);
-        localStorage.setItem("user", JSON.stringify(response.user[0]));
-        setLogged(true);
-        setUser((user) => ({ ...user, isLogged: true }));
-        navegate("/"); // Cambiado a navegate("/")
-        toast.success("¡Bienvenido al sistema!");
-      } else {
-        console.log("Datos incorrectos");
-      }
-    } catch (error) {
-      console.error("Error al iniciar sesión:", error);
-    }
-  };
-
   const Evaluando = () => {
     setIrLogin(!irLogin);
   };
 
-  const ingresar = () => {
-    navegate("/dashboard"); // Cambiado a navegate("/dashboard")
-  };
-
+  const postLogin = async (e) => {
+    e.preventDefault();
+    const login = await fetch(`http://localhost:3000/login`, {
+      method: "POST",
+      headers: {
+        "accept": "application/json",
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({
+        correo: email,
+        password: password
+      })
+    })
+    if (login.ok) {
+      const json = await login.json();
+      if (json.error) {
+        alert(json.error);
+       
+      }
+      else {
+        setUser(json.data);
+      }
+    }
+  }
   const volver = () => {
-    navegate("/"); // Cambiado a navegate("/")
+    return <Navigate to="/"></Navigate> // Cambiado a navegate
   };
-
+   if (user) {
+    return <Navigate to="/dashboard/user"></Navigate>
+  } 
   return (
     <Section>
       <div className={`login ${irLogin ? "active" : ""}`}>
@@ -92,7 +87,7 @@ const Login = () => {
               }}
             />
           </div>
-          <button onClick={ingresar}>
+          <button onClick={postLogin}>
             <FontAwesomeIcon icon={faSignInAlt} />
             Iniciar Sesión
           </button>
@@ -106,7 +101,6 @@ const Login = () => {
       <ComRegister
         irLogin={irLogin}
         Evaluando={Evaluando}
-        ingresar={ingresar}
       />
     </Section>
   );
