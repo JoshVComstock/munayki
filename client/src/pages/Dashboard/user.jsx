@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import useStoreUser from "../../components/zustand/stores/storeUser";
+
 
 const url = import.meta.env.VITE_BACKEND_URL;
-import { useGet } from "../../hook/useGet";
+
 import { ContainerUbicacion } from "../../style/ContainerUbicacion";
+import useHttpGet from "../../hook/useHttpGet";
 const User = () => {
   // como es un huck debemos instanciarlos de esta forma se puede manejar el destruring  para traer lo que quieres
 
@@ -18,10 +19,10 @@ const User = () => {
   if (!datos.length) {
     return <span className="loader"></span>;
   } */
-  const {data}=useGet(`https://express-vercel-one-mu.vercel.app/user`);
-  /* const elimianruser =(id)=>{
-    eliminarUser(id)
-    } */
+  const {data}=useHttpGet(`${url}user`);
+  // const elimianruser =(id)=>{
+  //   eliminarUser(id)
+  //   }
  console.log(data);
   
   const renderDatos = () => {
@@ -38,7 +39,8 @@ const User = () => {
           <td>{datos.rol}</td>
           <td>{datos.genero}</td>
           <td>
-            {/* <button onClick={elimianruser(datos.id)}>Eliminar</button> */}
+            <button>Eliminar</button>
+            
           </td>
         </tr>
       ));

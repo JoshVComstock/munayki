@@ -19,21 +19,38 @@ const Admin = () => {
   }
   return (
     <>
+     {
+          user.rol=="admin" ?(
       <div>
-        <Linkes to="/dashboard/organizacion">
+          <Linkes to="/dashboard/organizacion">
           <img src={Location} alt="" />
           Organizacion
         </Linkes>
-        {
-          user.rol=="admin" ? "hola admin":"no eres admin"
-        }
         <Linkes to="/dashboard/alertas">
           <img src={Alert} alt="" /> Alertas
         </Linkes>
         <Linkes to="/dashboard/user">
           <img src={Users} alt="" /> Usuarios
         </Linkes>
+        <Linkes to="/dashboard/user">
+          <img src={Users} alt="" /> Examinar Resultados 
+        </Linkes>
+      <h4>Rol:{user.rol}</h4>
+       
       </div>
+     ):(<>
+     
+     <Linkes to="/dashboard/Quizz">
+          <img src={Users} alt="" /> Realizar Quizz
+        </Linkes>
+        <Linkes to="/dashboard/DondeDenunciar">
+          <img src={Location} alt="" /> Donde Denunciar 
+        </Linkes>
+        <Linkes to="/dashboard/ReportesdeUser">
+          <img src={Users} alt="" /> Mis Reportes 
+        </Linkes>
+     </>)
+    }
       <section>
         <button onClick={salir} >
           <img src="" alt="" /> Salir

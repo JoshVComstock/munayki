@@ -21,6 +21,9 @@ import Slim from "./pages/slim";
 import Legal from "./pages/legal";
 import { ScrollProvider } from "./context/ScrollContext";
 import Rutamujeres from "./pages/rutamujeres";
+import QuizzUser from "./pages/Dashboard/quizzUser";
+import Denunciasdonde from "./pages/Dashboard/denunciasdonde";
+import ReportesdeUser from "./pages/Dashboard/reportesdeUser";
 
 function App() {
   return (
@@ -56,6 +59,9 @@ function App() {
               <Route path="/dashboard/organizacion" element={<Organacion />} />
               <Route path="/dashboard/alertas" element={<Alertas />} />
               <Route path="/dashboard/user" element={<User />} />
+              <Route path="/dashboard/Quizz" element={<QuizzUser />} />
+              <Route path="/dashboard/DondeDenunciar" element={<Denunciasdonde />} />
+              <Route path="/dashboard/ReportesdeUser" element={<ReportesdeUser />} />
             </Route>
           </Routes>
           <Modal />

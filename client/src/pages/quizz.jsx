@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { preguntas } from "../data/quizz";
+const url = import.meta.env.VITE_BACKEND_URL;
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -63,7 +64,8 @@ function Quizz() {
       puntuacion: puntuacionTotal,
       respuestas,
     };
-    fetch("http://localhost:3000/resultadosCuestionario", {
+   
+    fetch(`${url}resultadosCuestionario`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
