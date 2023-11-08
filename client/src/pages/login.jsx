@@ -9,7 +9,6 @@ import {
   faSignInAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../src/assets/logoChocha.png";
-const url = import.meta.env.VITE_BACKEND_URL;
 import { Navigate } from "react-router-dom";
 import { useUser } from "../context/userContextProvider";
 const Login = () => {
@@ -17,18 +16,21 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const { user, setUser } = useUser();
   const [irLogin, setIrLogin] = useState(true);
+const url = import.meta.env.VITE_BACKEND_URL;
+
   const Evaluando = () => {
     setIrLogin(!irLogin);
   };
 
   const postLogin = async (e) => {
     e.preventDefault();
-    const login = await fetch(`http://localhost:3000/login`, {
+    const login = await fetch(`${url}login`, {
       method: "POST",
       headers: {
         "accept": "application/json",
         "content-type": "application/json"
       },
+
       body: JSON.stringify({
         correo: email,
         password: password

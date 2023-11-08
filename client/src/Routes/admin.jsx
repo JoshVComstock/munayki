@@ -24,6 +24,9 @@ const Admin = () => {
           <img src={Location} alt="" />
           Organizacion
         </Linkes>
+        {
+          user.rol=="admin" ? "hola admin":"no eres admin"
+        }
         <Linkes to="/dashboard/alertas">
           <img src={Alert} alt="" /> Alertas
         </Linkes>
