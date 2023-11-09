@@ -1,4 +1,4 @@
-import { Routes, Route, HashRouter } from "react-router-dom";
+import { Routes, Route, HashRouter, BrowserRouter } from "react-router-dom";
 import NavBar from "./components/Informativa/navBar";
 import Inicio from "./pages/inicio";
 import NabarDash from "./components/dashboard/nabarDash";
@@ -8,7 +8,6 @@ import Admin from "./Routes/admin";
 import Alertas from "./pages/Dashboard/alertas";
 import Login from "./pages/login";
 import UbiciacionesCli from "./pages/ubiciaciones";
-import { UserContextProvider } from "./context/userContextProvider";
 import { Navcontextprovider } from "./context/navContextProvider";
 import Routing from "./Routes/Routing";
 import Mapas from "./pages/mapas";
@@ -22,12 +21,14 @@ import Slim from "./pages/slim";
 import Legal from "./pages/legal";
 import { ScrollProvider } from "./context/ScrollContext";
 import Rutamujeres from "./pages/rutamujeres";
+import QuizzUser from "./pages/Dashboard/quizzUser";
+import Denunciasdonde from "./pages/Dashboard/denunciasdonde";
+import ReportesdeUser from "./pages/Dashboard/reportesdeUser";
 
 function App() {
   return (
     <HashRouter>
       <ModalContextProvider>
-      <UserContextProvider>
       <ScrollProvider>
         <Navcontextprovider>
           <Routes>
@@ -58,12 +59,15 @@ function App() {
               <Route path="/dashboard/organizacion" element={<Organacion />} />
               <Route path="/dashboard/alertas" element={<Alertas />} />
               <Route path="/dashboard/user" element={<User />} />
+              <Route path="/dashboard/Quizz" element={<QuizzUser />} />
+              <Route path="/dashboard/DondeDenunciar" element={<Denunciasdonde />} />
+              <Route path="/dashboard/ReportesdeUser" element={<ReportesdeUser />} />
             </Route>
           </Routes>
           <Modal />
         </Navcontextprovider>
         </ScrollProvider>
-      </UserContextProvider>
+      
       </ModalContextProvider>
     </HashRouter>
   );

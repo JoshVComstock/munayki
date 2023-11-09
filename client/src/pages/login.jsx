@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Section } from "../style/compStyle";
 import ComRegister from "../components/Informativa/comRegister";
-import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
@@ -10,53 +9,48 @@ import {
   faSignInAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../src/assets/logoChocha.png";
-
-const url = import.meta.env.VITE_BACKEND_URL;
-
+import { Navigate } from "react-router-dom";
+import { useUser } from "../context/userContextProvider";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navegate = useNavigate();
+  const { user, setUser } = useUser();
   const [irLogin, setIrLogin] = useState(true);
+  const url = import.meta.env.VITE_BACKEND_URL;  
 
   const Evaluando = () => {
     setIrLogin(!irLogin);
   };
 
-  const ingresar = async (e) => {
+  const postLogin = async (e) => {
     e.preventDefault();
+    const login = await fetch(`${url}/login`, {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "content-type": "application/json",
+      },
 
-    try {
-      const data = {
-        email: email,
+      body: JSON.stringify({
+        correo: email,
         password: password,
-      };
-
-      const response = await fetch(`${url}/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        console.log("Error en la solicitud de inicio de sesión");
+      }),
+    });
+    if (login.ok) {
+      const json = await login.json();
+      if (json.error) {
+        alert(json.error);
       } else {
-        const result = await response.json();
-        console.log("Inicio de sesión exitoso. Respuesta del servidor:", result);
-
-        navegate("/dashboard");
+        setUser(json.data);
       }
-    } catch (error) {
-      console.error("Error en la solicitud de inicio de sesión", error);
     }
   };
-
   const volver = () => {
-    navegate("/");
+    return <Navigate to="/"></Navigate>;
   };
+  if (user) {
+    return <Navigate to="/dashboard/"></Navigate>;
+  }
   return (
     <Section>
       <div className={`login ${irLogin ? "active" : ""}`}>
@@ -89,7 +83,7 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <button onClick={ingresar}>
+          <button onClick={postLogin}>
             <FontAwesomeIcon icon={faSignInAlt} />
             Iniciar Sesión
           </button>
@@ -100,11 +94,7 @@ const Login = () => {
           </button>
         </form>
       </div>
-      <ComRegister
-        irLogin={irLogin}
-        Evaluando={Evaluando}
-        ingresar={ingresar}
-      />
+      <ComRegister irLogin={irLogin} Evaluando={Evaluando} />
     </Section>
   );
 };

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { preguntas } from "../data/quizz";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
@@ -9,6 +8,8 @@ import Resultados from "../components/resultados";
 import { useModal } from "../hook/useModal";
 import { QuizzContent } from "../style/quizzStyle";
 import useHttpPost from "../hook/useHttpPost";
+import { preguntas } from "../data/quizz";
+
 const url = import.meta.env.VITE_BACKEND_URL;
 function Quizz() {
   const [respuestas, setRespuestas] = useState({});
@@ -69,13 +70,21 @@ function Quizz() {
       // "usuarioId": 1,
       // usuarioNombre: nombreUsuarioGlobal,
     };
-    console.log(data)
-    const success = await postData(data);
-    if (success) {
-      console.log("Resultado del backend: ¡Éxito!");
-    } else {
-      console.error("Error al enviar datos al backend:", error);
-    }
+   
+    fetch(`${url}/resultadosCuestionario`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("Resultado del backend:", result);
+      })
+      .catch((error) => {
+        console.error("Error al enviar datos al backend:", error);
+      });
   };
   return (
     <QuizzContent>
