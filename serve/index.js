@@ -9,7 +9,6 @@ const usuario = require("./controllers/usuario");
 const alertaUsuario = require("./controllers/alertaUsuario");
 const resultadosCuestionario = require("./controllers/resultadosCuestionario");
 const contact = require("./controllers/contactos");
-const login = require("./controllers/login");
 
 const app = express();
 const port = 3000;
@@ -30,6 +29,7 @@ app.use(multimedia);
 app.use(alertaUsuario);
 app.use(usuario);
 app.use(login);
+app.use(resultadosCuestionario);
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 });

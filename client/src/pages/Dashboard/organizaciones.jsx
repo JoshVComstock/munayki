@@ -9,8 +9,8 @@ import { ContainerUbicacion } from "../../style/ContainerUbicacion";
 const Organizaciones = () => {
   let pamatro = "organizacion";
   let userio = "user";
-  const organizacionUrl = `${url}${pamatro}`;
-  const userUrl = `${url}${userio}`;
+  const organizacionUrl = `${url}/${pamatro}`;
+  const userUrl = `${url}/${userio}`;
   const { data: getOrgData, loading, error } = useHttpGet(organizacionUrl);
   const {
     data: getUserData,
