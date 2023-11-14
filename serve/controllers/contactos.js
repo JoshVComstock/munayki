@@ -3,7 +3,6 @@ const { PrismaClient } = require("@prisma/client");
 const app = express();
 const prisma = new PrismaClient();
 
-<<<<<<< HEAD
 // app.get("/user/contacts", async (req, res) => {
 
 //     const contactos = await prisma.contactos.findMany({});
@@ -17,9 +16,6 @@ const prisma = new PrismaClient();
 // });
 
 app.get("/contact", async (req, res) => {
-=======
-app.get("/user/contactos", async (req, res) => {
->>>>>>> 347333789365b0d8ffffad681539d9f3af066b73
   try {
     const contactos = await prisma.contacto.findMany({});
     res.json(contactos);
@@ -28,7 +24,6 @@ app.get("/user/contactos", async (req, res) => {
     res.status(500).json({ error: "Error al obtener contactos" });
   }
 });
-<<<<<<< HEAD
 
 app.get("/user/:userId/contacts", async (req, res) => {
   try {
@@ -144,12 +139,4 @@ app.delete("/user/:userId/contacts/:contactId", async (req, res) => {
   }
 });
 
-=======
-app.post("/contactos", async (req, res) => {
-  const contactos = prisma.contacto.findMany({
-    data: req.body,
-  });
-  res.json(contactos);
-});
->>>>>>> 347333789365b0d8ffffad681539d9f3af066b73
 module.exports = app;

@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-const Login = ({navigation}) => {
+const Login = ({navigation, onLogin}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isPwdHidden, setisPwdHidden] = useState(true);
@@ -22,7 +22,7 @@ const Login = ({navigation}) => {
 
       if (!password) {
           errors.password = 'Ingrese su contraseña';
-      } else if (password.length < 6) {
+      } else if (password.length < 3) {
           errors.password = 'La contraseña debe ser mayor a 6 caracteres';
       }
 
@@ -53,17 +53,16 @@ const Login = ({navigation}) => {
 
   const loginUser = async () => {
     try {
-      const response = await fetch('http://localhost:3000/login', {
+      const response = await fetch('https://munayki-serve.vercel.app/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          correo: email,
+          email: email,
           password: password,
         }),
       });
-
       const data = await response.json();
 
       if (!response.ok) {
@@ -71,6 +70,7 @@ const Login = ({navigation}) => {
       }
 
       console.log(data);
+      onLogin(data.data.id);
       navigation.navigate('Menu')
     } catch (error) {
       console.error('Error:', error);
