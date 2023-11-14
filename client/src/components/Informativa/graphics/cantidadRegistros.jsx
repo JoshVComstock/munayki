@@ -27,7 +27,7 @@ const CantidadRegistros = ({ datos }) => {
       labels: ["Anonimas", "Registradas"],
       datasets: [
         {
-          data: [datos.length||20, 2],
+          data: [datos.length||20, datos.length||20],
           backgroundColor: ["rgb(174,25,89)", "rgb(73,39,121)"],
         },
       ],

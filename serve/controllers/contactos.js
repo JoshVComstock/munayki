@@ -4,8 +4,6 @@ const app = express();
 const prisma = new PrismaClient();
 
 <<<<<<< HEAD
-app.get("/user/contactos", async (req, res) => {
-=======
 // app.get("/user/contacts", async (req, res) => {
 
 //     const contactos = await prisma.contactos.findMany({});
@@ -19,7 +17,9 @@ app.get("/user/contactos", async (req, res) => {
 // });
 
 app.get("/contact", async (req, res) => {
->>>>>>> e8d7a77d27f8111136bbb9cf74610232b800ce75
+=======
+app.get("/user/contactos", async (req, res) => {
+>>>>>>> 347333789365b0d8ffffad681539d9f3af066b73
   try {
     const contactos = await prisma.contacto.findMany({});
     res.json(contactos);
@@ -29,13 +29,6 @@ app.get("/contact", async (req, res) => {
   }
 });
 <<<<<<< HEAD
-app.post("/contactos", async (req, res) => {
-  const contactos = prisma.contacto.findMany({
-    data: req.body,
-  });
-  res.json(contactos);
-});
-=======
 
 app.get("/user/:userId/contacts", async (req, res) => {
   try {
@@ -151,5 +144,12 @@ app.delete("/user/:userId/contacts/:contactId", async (req, res) => {
   }
 });
 
->>>>>>> e8d7a77d27f8111136bbb9cf74610232b800ce75
+=======
+app.post("/contactos", async (req, res) => {
+  const contactos = prisma.contacto.findMany({
+    data: req.body,
+  });
+  res.json(contactos);
+});
+>>>>>>> 347333789365b0d8ffffad681539d9f3af066b73
 module.exports = app;

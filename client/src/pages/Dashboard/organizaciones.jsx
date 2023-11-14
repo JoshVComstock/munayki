@@ -4,13 +4,14 @@ const url = import.meta.env.VITE_BACKEND_URL;
 import Datauser from "../../components/dashboard/datosuser";
 import useHttpGet from "../../hook/useHttpGet";
 import { useDelete } from "../../hook/useDelete";
+import { usePost } from "../../hook/usePost";
 import { ContainerUbicacion } from "../../style/ContainerUbicacion";
 
 const Organizaciones = () => {
   let pamatro = "organizacion";
   let userio = "user";
-  const organizacionUrl = `${url}${pamatro}`;
-  const userUrl = `${url}${userio}`;
+  const organizacionUrl = `${url}/${pamatro}`;
+  const userUrl = `${url}/${userio}`;
   const { data: getOrgData, loading, error } = useHttpGet(organizacionUrl);
   const {
     data: getUserData,
@@ -68,7 +69,8 @@ const Organizaciones = () => {
       }
 
       return filteredData.map((dato, v) => (
-        <tr key={dato.id}>
+   
+       <tr key={dato.id}>
           <td>{v + 1}</td>
           <td>{dato.nombre}</td>
           <td>
@@ -93,6 +95,8 @@ const Organizaciones = () => {
             <button onClick={() => handleDelete(dato.id)}>Eliminar</button>
           </td>
         </tr>
+     
+        
       ));
     } else {
       return (
@@ -196,10 +200,9 @@ const Organizaciones = () => {
               <td>
                 <button
                   onClick={() => {
-                    usePost(`${url}organizacion`, {
+                    usePost(`${url}/organizacion`, {
                       ...form,
                       ubicacion: mapUrl + form.ubicacion,
-                      ubicaciondata: form.ubicacion,
                     });
                   }}
                 >
@@ -207,12 +210,37 @@ const Organizaciones = () => {
                 </button>
               </td>
             </tr>
-            {renderDatos()}
+            {/* {renderDatos()} */}
+            <tr >
+          <td>1</td>
+          <td>Slim</td>
+          <td>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=slim"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                textDecoration: "none",
+                color: "#fff",
+                background: colors.C,
+                padding: "0.5em 2em",
+                borderRadius: 2,
+              }}
+            >
+              Ver Ubicación
+            </a>
+          </td>
+          <td>Muejers</td>
+          <td>hanz</td>
+          <td>
+            <button >Eliminar</button>
+          </td>
+        </tr>
           </tbody>
         )}
       </table>
 
-      <Datauser />
+      {/* <Datauser /> */}
     </ContainerUbicacion>
   );
 };

@@ -36,7 +36,7 @@ const Alertas = () => {
       </tbody>
     </table>
 
-    <GoogleMapsDirections/>
+    {/* <GoogleMapsDirections/> */}
   </ContainerUbicacion>
   )
 }

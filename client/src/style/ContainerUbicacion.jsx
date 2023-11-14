@@ -5,7 +5,7 @@ import { colors } from "./StyleGlobal";
 export const ContainerUbicacion = styled.div`
   padding: 20px;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   & > div {
     width: 100%;
     height: 15%;
@@ -15,7 +15,7 @@ export const ContainerUbicacion = styled.div`
     justify-content: space-between;
     color: ${colors.BB};
     font-size: 22px;
-    gap: 2em;
+    gap: 4em;
     & input {
       outline: none;
       width: 70%;

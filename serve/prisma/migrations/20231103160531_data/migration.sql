@@ -32,6 +32,8 @@ CREATE TABLE `ResultadoCuestionario` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `puntuacion` INTEGER NOT NULL,
     `respuestas` JSON NOT NULL,
+    `usuarioId` INTEGER NULL,
+    `usuarioNombre` VARCHAR(191) NOT NULL DEFAULT 'Anónimo',
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -80,6 +82,9 @@ CREATE TABLE `AlertasUsuario` (
 
 -- AddForeignKey
 ALTER TABLE `Contacto` ADD CONSTRAINT `Contacto_usuarioId_fkey` FOREIGN KEY (`usuarioId`) REFERENCES `Usuario`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `ResultadoCuestionario` ADD CONSTRAINT `ResultadoCuestionario_usuarioId_fkey` FOREIGN KEY (`usuarioId`) REFERENCES `Usuario`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Organizacion` ADD CONSTRAINT `Organizacion_usuarioId_fkey` FOREIGN KEY (`usuarioId`) REFERENCES `Usuario`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
