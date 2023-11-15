@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { preguntas } from "../data/quizz";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
@@ -9,12 +7,18 @@ import {
 import Resultados from "../components/resultados";
 import { useModal } from "../hook/useModal";
 import { QuizzContent } from "../style/quizzStyle";
+import useHttpPost from "../hook/useHttpPost";
+import { preguntas } from "../data/quizz";
 
+const url = import.meta.env.VITE_BACKEND_URL;
 function Quizz() {
   const [respuestas, setRespuestas] = useState({});
   const [puntuacionTotal, setPuntuacionTotal] = useState(0);
   const [preguntaActual, setPreguntaActual] = useState(0);
   const [validacion, setValidacion] = useState("");
+
+  const nombreUsuarioGlobal = "Nombre del Usuario";
+
   const { openModal, closeModal } = useModal(
     "Tu puntuacion es :",
     <Resultados
@@ -53,17 +57,21 @@ function Quizz() {
       setValidacion("Debes seleccionar una respuesta antes de avanzar.");
     }
   };
-
   const abrirventana = (puntuacionTotal) => {
     <Resultados puntuacionTotal={puntuacionTotal} />;
   };
-
-  const guardarPuntos = () => {
+  const { postData, loading, error } = useHttpPost(
+    `${url}resultadosCuestionario`
+  );
+  const guardarPuntos = async () => {
     const data = {
       puntuacion: puntuacionTotal,
       respuestas,
+      // "usuarioId": 1,
+      // usuarioNombre: nombreUsuarioGlobal,
     };
-    fetch("http://localhost:3000/resultadosCuestionario", {
+   
+    fetch(`${url}/resultadosCuestionario`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

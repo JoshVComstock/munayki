@@ -2,13 +2,36 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, Alert, Image, Pressable } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const AddFriend = ({navigation}) => {
   const [name, setName] = useState('');
+  const [lastname, setLastname] = useState('');
   const [phone, setPhone] = useState('');
   const [relation, setRelation] = useState('');
+  const [age, setAge] = useState('');
+  const [date, setDate] = useState(new Date());
+  const [showDate, setShowDate] = useState(false);
+  const [dateString, setDateString] = useState('00/00/0000');
   const [errors, setErrors] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setDate(currentDate);
+    let tempDate = new Date(currentDate);
+    let fDate = tempDate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear();
+    setDateString(fDate);
+    setShowDate(false);
+
+    let today = new Date();
+    let age = today.getFullYear() - tempDate.getFullYear();
+    let m = today.getMonth() - tempDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < tempDate.getDate())) {
+        age--;
+    }
+    setAge(age);
+  };
 
   const validateForm = () => {
       let errors = {};
@@ -31,10 +54,15 @@ const AddFriend = ({navigation}) => {
           errors.name = 'Relacion no valida';
       }
 
+      if (dateString=='00/00/0000') {
+         errors.age = 'Ingrese una fecha valida';
+      }
+
       setErrors(errors);
 
       if (Object.keys(errors).length === 0) {
           setIsFormValid(true);
+          createContact();
           navigation.navigate('Index')
       } else {
           setIsFormValid(false);
@@ -55,6 +83,35 @@ const AddFriend = ({navigation}) => {
       }
   };
 
+  const createContact = async () => {
+    try {
+      console.log('Entro a crear contacto');
+      const response = await fetch('https://express-vercel-one-mu.vercel.app/user/:userId/contacts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nombre: 'name',
+          apellido: 'lastname',
+          edad: 12,
+          telefono: 12345678,
+          relacion: 'relation',
+          usuarioId: 4,
+        }),
+      });
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error);
+      }
+
+      console.log(data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
   const handleSubmit = () => {
       validateForm();
   };
@@ -67,16 +124,30 @@ const AddFriend = ({navigation}) => {
             />
             <View style={styles.container}>
                 <View>
-                    <Text style={styles.text}>
-                        Nombre
-                    </Text>
-                    <TextInput
-                      style={styles.input}
-                      placeholder="Ejem: Pedro"
-                      value={name}
-                      onChangeText={setName}
-                      underlineColor="red"
-                    />
+                    <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
+                        <Text style={styles.text}>
+                            Nombre
+                        </Text>
+                        <Text style={styles.text}>
+                            Apellido
+                        </Text>
+                    </View>
+                    <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
+                        <TextInput
+                            style={styles.inputRow}
+                            placeholder="Ej: Pedro"
+                            placeholderTextColor="#706e6f"
+                            value={name}
+                            onChangeText={setName}
+                        />
+                        <TextInput
+                            style={styles.inputRow}
+                            placeholder="Ej: Rejas"
+                            placeholderTextColor="#706e6f"
+                            value={lastname}
+                            onChangeText={setLastname}
+                        />
+                    </View>
                     <Text style={styles.text}>
                         Telefono
                     </Text>
@@ -88,6 +159,22 @@ const AddFriend = ({navigation}) => {
                       inputMode="numeric"
                       maxLength={8}
                     />
+                    <Text style={styles.text}>
+                        Fecha de Nacimiento
+                    </Text>
+                    <Pressable style={styles.dateTime} onPress={()=> setShowDate(true)}>
+                        <Text>{dateString}</Text>
+                        {showDate &&(
+                            <DateTimePicker
+                                testID="dateTimePicker"
+                                value={date}
+                                mode={'date'}
+                                is24Hour={true}
+                                display="default"
+                                onChange={onChange}
+                            />
+                        )}
+                    </Pressable>
                     <Text style={styles.text}>
                         Relacion
                     </Text>
@@ -135,6 +222,15 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius:2,
   },
+  inputRow:{
+    height: 40,
+    borderBottomColor: 'gray',
+    borderBottomWidth: 1,
+    marginBottom: 20,
+    padding: 8,
+    borderRadius:2,
+    width:105,
+  },
   button: {
       alignItems: 'center',
       justifyContent: 'center',
@@ -143,6 +239,16 @@ const styles = StyleSheet.create({
       borderRadius: 4,
       elevation: 3,
       backgroundColor: '#fab153',
+  },
+  dateTime: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 8,
+    paddingHorizontal: 20,
+    borderBottomColor: 'gray',
+    borderBottomWidth: 1,
+    height:40,
+    width: '50%'
   },
   text: {
       fontSize: 16,

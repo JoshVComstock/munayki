@@ -31,6 +31,14 @@ const Register=({navigation})=>{
         let fDate = tempDate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear();
         setDateString(fDate);
         setShowDate(false);
+
+        let today = new Date();
+        let age = today.getFullYear() - tempDate.getFullYear();
+        let m = today.getMonth() - tempDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < tempDate.getDate())) {
+            age--;
+        }
+        setAge(age);
     };
 
     const validateForm = () => {
@@ -83,7 +91,7 @@ const Register=({navigation})=>{
           if (Object.keys(errors).length === 0) {
               setIsFormValid(true);
               createUser();
-                navigation.navigate('Index')
+              navigation.navigate('Index')
           } else {
               setIsFormValid(false);
 
@@ -105,7 +113,7 @@ const Register=({navigation})=>{
 
     const createUser = async () => {
       try {
-        const response = await fetch('https://express-vercel-one-mu.vercel.app/user', {
+        const response = await fetch('https://munayki-serve.vercel.app/user', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -114,15 +122,14 @@ const Register=({navigation})=>{
             nombre: name,
             apellido: lastname,
             edad: age,
-            telefono: phone,
-            carnet: ci,
+            telefono: Number(phone),
+            carnet: Number(ci),
             correo: email,
             password: password,
             rol: 'usuario',
             genero: gender,
           }),
         });
-
         const data = await response.json();
 
         if (!response.ok) {
@@ -130,7 +137,6 @@ const Register=({navigation})=>{
         }
 
         console.log(data);
-        navigation.navigate('Index')
       } catch (error) {
         console.error('Error:', error);
       }
