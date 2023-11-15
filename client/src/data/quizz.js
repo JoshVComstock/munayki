@@ -194,7 +194,7 @@ export const preguntas = {
     // },
     // {
     //   numero: 24,
-    //   pregunta:
+    //   pregunta: 
     //     "¿Mi pareja me chantajea con publicar fotos y videos intimas si no obedezco?",
     //   riesgo:
     //     "Tu integridad física y psicológica esta en riesgo, no calles,DENUNCIA!!!",
