@@ -16,6 +16,23 @@ app.get("/resultadosCuestionario", async (req, res) => {
   }
 });
 
+app.get("/resultadosCuestionarioResultado", async (req, res) => {
+  try {
+    const resultados = await prisma.resultadoCuestionario.findMany({
+      select:{
+        n
+      }
+    });
+
+    res.json(resultados);
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ error: "Error al obtener los resultados del cuestionario." });
+  }
+});
+
 app.post("/resultadosCuestionario", async (req, res) => {
   const { puntuacion, respuestas } = req.body;
 
