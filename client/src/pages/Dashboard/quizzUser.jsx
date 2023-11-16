@@ -50,7 +50,7 @@ const QuizzUser = () => {
       <button style={{ padding: 5 }} onClick={mostrarndo}>
         ver todas las preguntas
       </button>
-      <article style={{width: "80%", margin:"auto"}}>
+      <article style={{width: "80%", margin:"auto",marginBottom:100}}>
         {mostrar ? (
           <>
             {preguntas.preguntas.map((pregunta) => (
@@ -69,14 +69,14 @@ const QuizzUser = () => {
           ""
         )}
       </article>
-      <div>
-        <Termometro />
-        <section>
+      {/* <div> */}
+        {/* <Termometro /> */}
+        {/* <section>
           <button> Conactate con Slim</button>
           <button> Conactate con Fcc</button>
           <button> Conactate con Fcn</button>
         </section>
-      </div>
+      </div> */}
     </Dat>
   );
 };
