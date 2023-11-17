@@ -13,8 +13,8 @@ const Slim = () => {
       setTimeout(() => {
         rotateCartillas();
         setFade(false);
-      }, 1000);
-    }, 4000);
+      }, 500);
+    }, 2000);
     return () => clearInterval(interval);
   }, [startIndex]);
 
@@ -31,7 +31,7 @@ const Slim = () => {
         <div>
           {SlimData.cartillas.slice(startIndex, startIndex + 3).map((cartilla, index)=>(
             <div key={cartilla.titulo}>
-              <StyledLink to={`/documentoslim/${index}`} className={`documentoslim ${fade ? 'fade' : ''}`}>
+              <StyledLink to={`/slim/documentoslim/${index}`} className={`documentoslim ${fade ? 'fade' : ''}`}>
                 <div>
                   <p>{`${cartilla.titulo}`}</p>
                   <FontAwesomeIcon icon={cartilla.imagen} color={cartilla.color} fontSize={'5rem'}/>

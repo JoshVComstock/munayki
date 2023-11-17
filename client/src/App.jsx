@@ -43,8 +43,8 @@ function App() {
                 <Route path="/rutas" element={<Rutamujeres />} />
                 <Route path="/legal" element={<Legal />} />
                 <Route path="/slim" element={<Slim />} />
+                <Route path="/slim/documentoslim/:index" element={<DocumentoSlim/>}/>
               </Route>
-              <Route path="/documentoslim/:index" element={<DocumentoSlim/>}/>
               <Route path="/ubicaciones" element={<UbiciacionesCli />} />
               <Route path="/login" element={<Login />} />
             </Route>
