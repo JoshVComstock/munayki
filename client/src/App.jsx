@@ -24,6 +24,7 @@ import Rutamujeres from "./pages/rutamujeres";
 import QuizzUser from "./pages/Dashboard/quizzUser";
 import Denunciasdonde from "./pages/Dashboard/denunciasdonde";
 import ReportesdeUser from "./pages/Dashboard/reportesdeUser";
+import DocumentoSlim from "./pages/documentoslim";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
                 <Route path="/legal" element={<Legal />} />
                 <Route path="/slim" element={<Slim />} />
               </Route>
+              <Route path="/documentoslim/:index" element={<DocumentoSlim/>}/>
               <Route path="/ubicaciones" element={<UbiciacionesCli />} />
               <Route path="/login" element={<Login />} />
             </Route>

@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { Link } from "react-router-dom";
 import {
   BackgraundQuizz,
   FlexComun,
@@ -350,9 +351,14 @@ export const Mapasstyle = styled.section`
   margin:0 auto;
   width:90%;
   ${FlexComun}
-gap:2em;
-  & > iframe{
-box-shadow:0 10px 10px #0005;
+  display: grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:2em;
+  &>div{
+    text-align:center;
+    & > iframe{
+      box-shadow:0 10px 10px #0005;
+    }
   }
 `;
 export const DivMobile = styled.section`
@@ -526,6 +532,156 @@ export const RutasStyle = styled.section`
           background-color: ${colors.CC};
           color: #fff;
           box-shadow: 0 5px 10px #0005;
+        }
+      }
+    }
+  }
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
+
+export const SlimStyle = styled.section`
+  & > article {
+    width: 100%;
+    margin: 0 auto;
+    ${FlexComun}
+    flex-direction:column;
+    padding: 2em;
+    position: relative;
+    & > p {
+      font-size: 2em;
+      color: ${colors.BB};
+      width: 60%;
+      ${FlexComun}
+      justify-content:space-around;
+      margin: 2em;
+      & > div {
+        width: 10%;
+        ${FlexComun}
+        color:#000;
+      }
+    }
+    & > div {
+      width: 90%;
+      display: flex;
+      gap:1em;
+      &> div {
+        flex: 1 0 21%;
+        scroll-snap-align: start;
+        & > ${StyledLink} {
+          position: relative;
+          ${FlexComun}
+          flex-direction:column;
+          border:2px solid ${colors.CC};
+          background-color: transparent;
+          border-radius:10px;
+          text-align:center;
+          box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+          height: 425px;
+          overflow:hidden;
+          & p {
+            color: ${colors.D};
+            padding: 0.5em;
+            margin: 1em;
+          }
+          &:hover {
+            transform: scale(1.05);
+            &::before {
+              content: "";
+              position: absolute;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              background: linear-gradient(to bottom right, transparent 90%, ${colors.C} 50%);
+              transform: skewX(-20deg);
+              transform-origin: bottom right;
+            }
+          }
+          & .fade {
+            opacity:0;
+          }
+        }
+      }
+    }
+    & button {
+      margin-top:1em;
+      background-color: ${colors.BB};
+      padding: 1em;
+      border: none;
+      color: #fff;
+    }
+  }
+`;
+
+export const DocSlimStyle = styled.section`
+  & > article {
+    width: 100%;
+    margin: 0 auto;
+    ${FlexComun}
+    flex-direction:column;
+    padding: 2em;
+    position: relative;
+    & > p {
+      font-size: 2em;
+      color: ${colors.BB};
+      width: 60%;
+      ${FlexComun}
+      justify-content:space-around;
+      margin: 2em;
+      & > div {
+        width: 10%;
+        ${FlexComun}
+        color:#000;
+      }
+    }
+    & > div {
+      width: 50%;
+      display: ${FlexComun};
+      & > div{
+        width:97%;
+        padding-left: 2em;
+        text-align: justify;
+      }
+    }
+  }
+`;
+
+export const LegalStyle = styled.section`
+  & > article {
+    width: 100%;
+    margin: 0 auto;
+    ${FlexComun}
+    flex-direction:column;
+    padding: 2em;
+    position: relative;
+    & > p {
+      font-size: 2em;
+      color: ${colors.BB};
+      width: 60%;
+      ${FlexComun}
+      justify-content:space-around;
+      margin: 2em;
+      & > div {
+        width: 10%;
+        ${FlexComun}
+        color:#000;
+      }
+    }
+    & > div {
+      width: 50%;
+      display: ${FlexComun};
+      & > aside{
+        text-align: justify;
+        &>p{
+          color: ${colors.AA};
+        }
+        &>div{
+          width:90%;
+          padding-left: 2em;
         }
       }
     }

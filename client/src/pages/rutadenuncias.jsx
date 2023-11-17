@@ -25,7 +25,6 @@ const Rutadenuncias = () => {
           ))}   
          </div>
       </article>
-
       <Carousel />
     </RutasStyle>
   );
