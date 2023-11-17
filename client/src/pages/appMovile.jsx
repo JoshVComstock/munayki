@@ -1,14 +1,14 @@
 import React from "react";
 import { DivMobile } from "../style/compStyle";
 import mobil from "../assets/mobile.gif";
-import movil1 from "../assets/app/img1.jpeg";
-import movil2 from "../assets/app/img2.jpeg";
+import movil1 from "../assets/app/img1.jpg";
+import movil2 from "../assets/app/img2.jpg";
 import movil3 from "../assets/app/img3.jpeg";
-import movil4 from "../assets/app/img4.jpeg";
-import movil5 from "../assets/app/img5.jpeg";
-import movil6 from "../assets/app/img6.jpeg";
-import movil7 from "../assets/app/img7.jpeg";
-import movil8 from "../assets/app/img12.jpeg";
+import movil4 from "../assets/app/img4.jpg";
+import movil5 from "../assets/app/img5.jpg";
+import movil6 from "../assets/app/img6.jpg";
+import movil7 from "../assets/app/img7.jpg";
+import movil8 from "../assets/app/img12.jpg";
 
 import movilgif from "../assets/mobileMunaiky.gif";
 
