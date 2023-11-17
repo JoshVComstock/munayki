@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import useHttpGet from "../../../hook/useHttpGet";
@@ -8,15 +8,15 @@ const url = import.meta.env.VITE_BACKEND_URL;
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Termometro = () => {
-  
-  const totales = Data.reduce((valorActual, item) => {
-    if(item.total >= 0 && item.total <= 9) {
+  const [UsuarioNombre, setUsuarioNombre] = useState([]);
+  const totales = UsuarioNombre.reduce((valorActual, item) => {
+    if (item.puntuacion >= 1 && item.puntuacion <= 10) {
       valorActual.bajo++;
     }
-    if(item.total >= 10 && item.total <= 19) {
+    if (item.puntuacion >= 11 && item.puntuacion <= 30) {
       valorActual.medio++;
     }
-    if(item.total >= 20 && item.total <= 30) {
+    if (item.puntuacion >= 31 && item.puntuacion <= 60) {
       valorActual.alto++;
     }
     return valorActual;
@@ -25,7 +25,17 @@ const Termometro = () => {
     medio: 0,
     alto: 0
   });
-
+  useEffect(() => {
+    getResultados();
+    setTimeout(() => {
+      setLoader(false);
+    }, 1000);
+  }, []);
+  const getResultados = async () => {
+    const response = await fetch("https://munayki-serve.vercel.app/resultadosCuestionarioPuntuacion");
+    const data = await response.json();
+    setUsuarioNombre(data);
+  };
   const data = {
     datasets: [
       {
@@ -53,9 +63,9 @@ const Termometro = () => {
 
   return (
     <aside>
-      <article>  
-        <Doughnut 
-          data={data} 
+      <article>
+        <Doughnut
+          data={data}
         />
       </article>
       <div>

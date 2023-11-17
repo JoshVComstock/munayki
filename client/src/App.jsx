@@ -69,7 +69,6 @@ function App() {
           <Modal />
         </Navcontextprovider>
         </ScrollProvider>
-      
       </ModalContextProvider>
     </HashRouter>
   );

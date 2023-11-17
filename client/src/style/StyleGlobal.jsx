@@ -91,6 +91,7 @@ export const LoginGlobal = css`
       ${FlexComun}
       flex-direction:column;
       padding: 2em;
+      justify-content:start;
       gap: 1em;
       box-shadow: 0 5px 10px #0005;
       background-color: ${colors.gris2};

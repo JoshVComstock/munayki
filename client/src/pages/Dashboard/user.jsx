@@ -1,30 +1,19 @@
 import React, { useEffect, useState } from "react";
 
-
 const url = import.meta.env.VITE_BACKEND_URL;
 
 import { ContainerUbicacion } from "../../style/ContainerUbicacion";
 import useHttpGet from "../../hook/useHttpGet";
+import { peticionDelete } from "../../services/deletRequest";
 const User = () => {
-  // como es un huck debemos instanciarlos de esta forma se puede manejar el destruring  para traer lo que quieres
+  const { data,refetch  } = useHttpGet(`${url}/user`);
 
- /*  const { fetchedUser, datos,eliminarUser} = useStoreUser(); */
-/*   const [datosFetched, setDatosFetched] = useState(false); */
-  /* useEffect(() => {
-    if (!datosFetched) {
-      fetchedUser();
-      setDatosFetched(true);
-    }
-  }, []);
-  if (!datos.length) {
-    return <span className="loader"></span>;
-  } */
-  const {data}=useHttpGet(`${url}/user`);
-  // const elimianruser =(id)=>{
-  //   eliminarUser(id)
-  //   }
- console.log(data);
-  
+  const handleDelete = async (userId) => {
+    const res = await peticionDelete(`/user/`, userId);
+    alert(res.message);
+
+  };
+
   const renderDatos = () => {
     if (data && data.length)
       return data.map((datos) => (
@@ -35,23 +24,30 @@ const User = () => {
           <td>{datos.edad}</td>
           <td>{datos.telefono}</td>
           <td>{datos.carnet}</td>
-          <td>{datos.correo}</td> 
+          <td>{datos.correo}</td>
           <td>{datos.rol}</td>
           <td>{datos.genero}</td>
           <td>
-            <button>Eliminar</button>
-            
+            <button
+              onClick={() => {
+                handleDelete(datos.id);
+              }}
+            >
+              Eliminar
+            </button>
           </td>
         </tr>
       ));
-
   };
 
+  useEffect(() => {
+    renderDatos();
+  }, [data])
+  
   return (
     <ContainerUbicacion>
       <div>
         <h1>Usuarios</h1>
-        <button>Nuevo User</button>
       </div>
       <table>
         <thead>
@@ -68,11 +64,7 @@ const User = () => {
             <th>Acciones</th>
           </tr>
         </thead>
-        <tbody>
-          {renderDatos()}
-        
-        
-        </tbody>
+        <tbody>{renderDatos()}</tbody>
       </table>
     </ContainerUbicacion>
   );
