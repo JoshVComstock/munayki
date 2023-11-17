@@ -27,7 +27,7 @@ const Admin = () => {
             <img src={Location} alt="" />
             Organizacion
           </Linkes>
-          <Linkes to="/dashboard/alertas">
+          <Linkes to="/dashboard/alertasAdmin">
             <img src={Alert} alt="" /> Alertas
           </Linkes>
           <Linkes to="/dashboard/user">

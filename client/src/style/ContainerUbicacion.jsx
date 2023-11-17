@@ -1,5 +1,5 @@
 import React from "react";
-import styled from"styled-components"
+import styled from "styled-components";
 import { colors } from "./StyleGlobal";
 
 export const ContainerUbicacion = styled.div`
@@ -72,6 +72,16 @@ export const ContainerUbicacion = styled.div`
           overflow: hidden;
           text-overflow: ellipsis;
 
+          & img {
+            width: 50px;
+            padding-top: 5px;
+            transition:all 1s ease-in-out;
+            &:hover {
+              transform: scale(1.5);
+              z-index:100;
+              width:100px;
+            }
+          }
           & > button {
             width: 100px;
             height: 30px;

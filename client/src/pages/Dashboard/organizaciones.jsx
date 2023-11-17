@@ -90,7 +90,7 @@ const Organizaciones = () => {
             </a>
           </td>
           <td>{dato.areVulnerable}</td>
-          <td>{dato.usuario.nombre}</td>
+          {/* <td>{dato.usuario.nombre}</td> */}
           <td>
             <button onClick={() => handleDelete(dato.id)}>Eliminar</button>
           </td>
@@ -111,6 +111,7 @@ const Organizaciones = () => {
     }
   };
   return (
+ 
     <ContainerUbicacion>
       <div>
         <h1>Organizaciones </h1>
@@ -180,7 +181,7 @@ const Organizaciones = () => {
                   placeholder="Area vulnerable"
                 />
               </td>
-              <td>
+              {/* <td>
                 <select
                   onChange={(e) =>
                     setForm({
@@ -196,7 +197,7 @@ const Organizaciones = () => {
                     </option>
                   ))}
                 </select>
-              </td>
+              </td> */}
               <td>
                 <button
                   onClick={() => {
