@@ -22,7 +22,7 @@ const Violentimetro = () => {
   }, []);
 
   const puntuacionTotal = resul.reduce((valorActual, item) => {
-    if (item.usuarioNombre == "anonimo") {
+    if (item.usuarioNombre == "Anónimo") {
       valorActual.anonimos++;
     }
     else {

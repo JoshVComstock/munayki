@@ -6,16 +6,16 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const CantidadRegistros = ({ datos }) => {
   const [usuarioNombre,setUsuarioNombre]=useState([]);
-  const puntuacionTotal = usuarioNombre.map(user => ({ usuarioNombre: user.usuarioNombre })).reduce((valorActual, item) => {
+  const puntuacionTotal = usuarioNombre.reduce((valorActual, item) => {
     if (item.usuarioNombre == "Anónimo") {
-      valorActual.anonimos++;
+      valorActual.Anónimo++;
     }
     else {
       valorActual.registradas++;
     }
     return valorActual;
   }, {
-    anonimos: 0,
+    Anónimo: 0,
     registradas: 0
   });
   const [loader, setLoader] = useState(true);
@@ -26,34 +26,20 @@ const CantidadRegistros = ({ datos }) => {
     }, 1000);
   }, []);
   const getResultados = async () => {
-    const response = await fetch("https://munayki-serve.vercel.app/resultadosCuestionario");
+    const response = await fetch("https://munayki-serve.vercel.app/resultadosCuestionarioUsuario");
     const data = await response.json();
     setUsuarioNombre(data);
-
   };
-  const [chartData, setChartData] = useState({
-    labels: ["anonimo", "registrados"],
-    datasets: [
-      {
-        data:Object.values(resul),
-        backgroundColor: ["rgb(174,25,89)", "rgb(73,39,121)"],
-      },
-    ],
-  });
-
-  /* useEffect(() => {
-    setChartData({
-      labels: ["Anonimas", "Registradas"],
-      datasets: [
-        {
-          data: [datos.length || 20, datos.length || 20],
-          backgroundColor: ["rgb(174,25,89)", "rgb(73,39,121)"],
-        },
-      ],
-    });
-    console.log(datos);
-  }, [datos]); */
-
+console.log(puntuacionTotal);
+ const chartData={
+  labels: ["Anónimo", "Registrados"],
+  datasets: [
+    {
+      data:Object.values(puntuacionTotal),
+      backgroundColor: ["rgb(174,25,89)", "rgb(73,39,121)"],
+    },
+  ],
+}
   return (
     <div>
       {loader ? (
