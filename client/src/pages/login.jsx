@@ -49,7 +49,7 @@ const Login = () => {
     return <Navigate to="/"></Navigate>;
   };
   if (user) {
-    return <Navigate to="/dashboard/"></Navigate>;
+    return <Navigate to="/dashboard/Quizz"></Navigate>;
   }
   return (
     <Section>
