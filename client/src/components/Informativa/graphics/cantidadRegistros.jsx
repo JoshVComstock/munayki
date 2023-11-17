@@ -32,10 +32,10 @@ const CantidadRegistros = ({ datos }) => {
 
   };
   const [chartData, setChartData] = useState({
-    labels: ["Anónimo", "Registradas"],
+    labels: ["anonimo", "registrados"],
     datasets: [
       {
-        data:Object.values(puntuacionTotal),
+        data:Object.values(resul),
         backgroundColor: ["rgb(174,25,89)", "rgb(73,39,121)"],
       },
     ],
