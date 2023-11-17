@@ -30,7 +30,6 @@ const CantidadRegistros = ({ datos }) => {
     const data = await response.json();
     setUsuarioNombre(data);
   };
-console.log(puntuacionTotal);
  const chartData={
   labels: ["Anónimo", "Registrados"],
   datasets: [

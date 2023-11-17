@@ -25,6 +25,7 @@ import QuizzUser from "./pages/Dashboard/quizzUser";
 import Denunciasdonde from "./pages/Dashboard/denunciasdonde";
 import ReportesdeUser from "./pages/Dashboard/reportesdeUser";
 import AlertasAdmin from "./pages/Dashboard/alertasAdmin";
+import DocumentoSlim from "./pages/documentoslim";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
                 <Route path="/rutas" element={<Rutamujeres />} />
                 <Route path="/legal" element={<Legal />} />
                 <Route path="/slim" element={<Slim />} />
+                <Route path="/slim/documentoslim/:index" element={<DocumentoSlim/>}/>
               </Route>
               <Route path="/ubicaciones" element={<UbiciacionesCli />} />
               <Route path="/login" element={<Login />} />
