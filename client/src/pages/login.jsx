@@ -11,7 +11,7 @@ import {
 import logo from "../../src/assets/logoChocha.png";
 import { Navigate } from "react-router-dom";
 import { useUser } from "../context/userContextProvider";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
