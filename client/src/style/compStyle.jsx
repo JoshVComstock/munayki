@@ -68,6 +68,7 @@ export const Iniciodiv = styled.div`
   width:100%;
   position: relative;
   justify-content: space-evenly;
+  overflow: hidden;
   &::after {
     position: absolute;
     content: "";
@@ -108,19 +109,23 @@ export const Iniciodiv = styled.div`
     width: calc(90% / 3);
     position: relative;
     margin-top: 4em;
+    & > button {
+      display: none;
+    }
     & div {
       position: absolute;
       height: 55px;
       width: 55px;
       content: "";
       background-color: ${colors.CC};
-      top: 10%;
+      top: 5%;
       ${FlexComun}
       flex-direction:row;
       border-radius: 1em;
       z-index: 10;
       padding: 1em;
       animation: animloader 1s ease;
+      left: -15%;
       & > img {
         height: 40px;
         width: 40px;
@@ -148,7 +153,7 @@ export const Iniciodiv = styled.div`
         transform: translateX(70%);
       }
       &:nth-child(1) {
-        left: -15%;
+        left: -5%;
         top: 5%;
       }
       &:nth-child(2) {
@@ -214,6 +219,43 @@ export const Iniciodiv = styled.div`
         color: #fff;
         -webkit-text-stroke: 3px ${colors.CC};
         text-stroke: 2px black;
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    height: 450px;
+    & > p {
+      opacity: 0.4;
+    }
+    & > aside {
+      display: none;
+    }
+    & > section {
+      height: 80%;
+      width: 100%;
+      & > div {
+        font-size: 0.7em;
+        & > p {
+          width: 200px;
+        }
+        & > button {
+          z-index: 10;
+        }
+      }
+      & > h1 {
+        width: 40%;
+        z-index: 2;
+        color: ${colors.BB};
+        font-size: 1.5em;
+        height: 50%;
+        & > strong {
+          width: 85%;
+          font-size: 2em;
+          font-weight: bold;
+          color: #fff;
+          -webkit-text-stroke: 3px ${colors.CC};
+          text-stroke: 2px black;
+        }
       }
     }
   }
@@ -298,22 +340,40 @@ export const ViolentimetroA = styled.div`
         }
       }
     }
+    @media screen and (max-width: 768px) {
+      height: 100vh;
+      flex-direction: column;
+      div {
+        flex-direction: column;
+       & section{
+        width:100%;
+       }
+        gap: 2em;
+        & button {
+          width: 100%;
+        }
+      }
+      p{
+        width:300px;
+        }
+    }
   }
 `;
 
 export const Filtro = styled.div`
-  width: 100%;
+  width: 100vw;
   z-index: 8;
   height: auto;
   flex-wrap: wrap;
   box-shadow: 0 -4px 5px #0005;
   flex-direction: column;
+  overflow: hidden;
+
   & > section {
     ${FlexComun}
     justify-content:start;
     margin: 1em;
     gap: 2em;
-    width: 100%;
     & > article {
       ${FlexComun}
       background-color: ${colors.CC};
@@ -338,6 +398,12 @@ export const Filtro = styled.div`
         height: 100%;
       }
     }
+    @media screen and (max-width: 768px) {
+      flex-wrap: wrap;
+      & > article {
+        width: 180px;
+      }
+    }
   }
 
   & > article {
@@ -348,17 +414,16 @@ export const Filtro = styled.div`
 `;
 export const Mapasstyle = styled.section`
   height: auto;
-  margin:4em auto;
-  width:80%;
+  margin: 4em auto;
+  width: 80%;
   ${FlexComun}
   display: grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:2em;
-  &>div{
-    
-    text-align:center;
-    & > iframe{
-      box-shadow:0 10px 10px #0005;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2em;
+  & > div {
+    text-align: center;
+    & > iframe {
+      box-shadow: 0 10px 10px #0005;
     }
   }
 `;
@@ -391,11 +456,11 @@ export const DivMobile = styled.section`
   & section {
     ${FlexComun}
     gap :2em;
-    width:80%;
-    margin:0 auto;
-    height:100%;
-    &:nth-child(2n){
-      flex-direction:row-reverse;
+    width: 80%;
+    margin: 0 auto;
+    height: 100%;
+    &:nth-child(2n) {
+      flex-direction: row-reverse;
     }
     & p {
       width: 40em;
@@ -406,13 +471,13 @@ export const DivMobile = styled.section`
         padding: 1em;
       }
     }
-      & > img {
+    & > img {
       width: 15em;
     }
-    & label{
-      padding:2em;
+    & label {
+      padding: 2em;
     }
-    }
+  }
 `;
 export const Recursos = styled.section`
   ${FlexComun}
@@ -568,21 +633,21 @@ export const SlimStyle = styled.section`
     & > div {
       width: 90%;
       display: flex;
-      gap:1em;
-      &> div {
+      gap: 1em;
+      & > div {
         flex: 1 0 21%;
         scroll-snap-align: start;
         & > ${StyledLink} {
           position: relative;
           ${FlexComun}
           flex-direction:column;
-          border:2px solid ${colors.CC};
+          border: 2px solid ${colors.CC};
           background-color: transparent;
-          border-radius:10px;
-          text-align:center;
+          border-radius: 10px;
+          text-align: center;
           box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
           height: 425px;
-          overflow:hidden;
+          overflow: hidden;
           & p {
             color: ${colors.D};
             padding: 0.5em;
@@ -597,19 +662,23 @@ export const SlimStyle = styled.section`
               right: 0;
               bottom: 0;
               left: 0;
-              background: linear-gradient(to bottom right, transparent 90%, ${colors.C} 50%);
+              background: linear-gradient(
+                to bottom right,
+                transparent 90%,
+                ${colors.C} 50%
+              );
               transform: skewX(-20deg);
               transform-origin: bottom right;
             }
           }
           & .fade {
-            opacity:0;
+            opacity: 0;
           }
         }
       }
     }
     & button {
-      margin-top:1em;
+      margin-top: 1em;
       background-color: ${colors.BB};
       padding: 1em;
       border: none;
@@ -642,8 +711,8 @@ export const DocSlimStyle = styled.section`
     & > div {
       width: 50%;
       display: ${FlexComun};
-      & > div{
-        width:97%;
+      & > div {
+        width: 97%;
         padding-left: 2em;
         text-align: justify;
       }
@@ -675,13 +744,13 @@ export const LegalStyle = styled.section`
     & > div {
       width: 50%;
       display: ${FlexComun};
-      & > aside{
+      & > aside {
         text-align: justify;
-        &>p{
+        & > p {
           color: ${colors.AA};
         }
-        &>div{
-          width:90%;
+        & > div {
+          width: 90%;
           padding-left: 2em;
         }
       }

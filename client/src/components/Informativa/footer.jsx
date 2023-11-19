@@ -10,7 +10,7 @@ import logo4 from "../../assets/logos/World_VIsion.jpeg";
 const Footer = () => {
   return (
     <Footerstyle>
-      <div>
+      <div className="logos">
         {/* <h3>Colaboraciones</h3> */}
         <img src={logo1} alt="" />
         <img src={logo2} alt="" />
