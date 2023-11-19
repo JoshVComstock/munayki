@@ -88,7 +88,7 @@ export const SectionNav = styled.section`
       animation: slideIn 1s ease-in-out;
       display: flex;
       flex-direction: column;
-      width: 100vw;
+      width: 70vw;
       height: 100vh;
       position: fixed;
       z-index: 100;

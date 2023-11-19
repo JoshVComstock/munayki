@@ -60,6 +60,57 @@ export const Section = styled.section`
     display: flex;
     animation: slideIn 1s ease-in-out;
   }
+  @media screen and (max-width: 768px) {
+    & .login {
+      height: 55vh;
+      width: 95vw;
+      & article {
+        height: 40vh;
+        & img {
+          width: 100px;
+        }
+      }
+    }
+    & .Register {
+      height: 70vh;
+      width: 95vw;
+      & article {
+        height: 50vh;
+        & img {
+          width: 100px;
+        }
+      }
+    }
+    .login > Form {
+      flex-wrap: nowrap;
+      gap: 0.5em;
+      & h1 {
+        margin-top: 1.6em;
+        margin-bottom: 0.5em;
+      }
+      label {
+        width: 100%;
+        text-align: start;
+      }
+    }
+    .Register > Form {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      gap: 0.5em;
+      & h1 {
+        margin-top: 1.6em;
+        margin-bottom: 0.5em;
+      }
+      label {
+        width: 100%;
+        text-align: start;
+      }
+    }
+
+    & .Register > form > div {
+      width: 100%;
+    }
+  }
 `;
 
 export const Iniciodiv = styled.div`
@@ -345,17 +396,17 @@ export const ViolentimetroA = styled.div`
       flex-direction: column;
       div {
         flex-direction: column;
-       & section{
-        width:100%;
-       }
+        & section {
+          width: 100%;
+        }
         gap: 2em;
         & button {
           width: 100%;
         }
       }
-      p{
-        width:300px;
-        }
+      p {
+        width: 300px;
+      }
     }
   }
 `;

@@ -43,7 +43,6 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
       : alert(res.message);
   };
 
-  const volver = () => {};
   return (
     <div className={`Register ${irLogin ? "" : "active"}`}>
       <article>
