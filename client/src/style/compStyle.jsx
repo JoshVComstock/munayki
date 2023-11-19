@@ -275,6 +275,7 @@ export const Iniciodiv = styled.div`
   }
   @media screen and (max-width: 768px) {
     height: 450px;
+    
     & > p {
       opacity: 0.4;
     }
@@ -282,8 +283,11 @@ export const Iniciodiv = styled.div`
       display: none;
     }
     & > section {
-      height: 80%;
-      width: 100%;
+      height: 100vw;
+      width: 20vw;
+      justify-content:start;
+      padding:5em 8em 2em 8em;
+      transform:translateX(-100px);
       & > div {
         font-size: 0.7em;
         & > p {
@@ -392,8 +396,9 @@ export const ViolentimetroA = styled.div`
       }
     }
     @media screen and (max-width: 768px) {
-      height: 100vh;
+      height: 120vh;
       flex-direction: column;
+   
       div {
         flex-direction: column;
         & section {
@@ -401,7 +406,7 @@ export const ViolentimetroA = styled.div`
         }
         gap: 2em;
         & button {
-          width: 100%;
+          width: 80vw;
         }
       }
       p {

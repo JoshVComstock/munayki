@@ -62,7 +62,7 @@ const Termometro = () => {
   };
 
   return (
-    <aside>
+    <aside className="termometro">
       <article>
         <Doughnut
           data={data}

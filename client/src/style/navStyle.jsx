@@ -110,17 +110,18 @@ export const SectionNav = styled.section`
         gap: 1em;
         & div {
           display: flex;
-          width: 50%;
+          width: 70%;
           justify-content: flex-start;
           background-color: ${colors.CC};
           align-items: center;
-          padding: 0.5em;
           color: #fff;
+          padding: 0.5em 1em;
+          font-size: 0.8em;
           border-radius: 0 0.5em 0.5em 0;
           & img {
             filter: invert(1);
-            width: 35px;
-            height: 35px;
+            width: 30px;
+            height: 30px;
           }
         }
       }
@@ -315,11 +316,11 @@ export const Footerstyle = styled.section`
     }
     section {
       flex-direction: column;
-    & div{
-      a{
-        width: 100%;
+      & div {
+        a {
+          width: 100%;
+        }
       }
-    }
     }
   }
 `;

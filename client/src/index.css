@@ -125,3 +125,17 @@ html {
     transform: rotate(360deg);
   }
 }
+@media screen and (max-width: 768px) {
+  .termometro {
+    flex-direction: column;
+    & article{
+      width: 80% !important;
+      margin:1em auto;
+    }
+    & > div {
+      width: 90% !important;
+
+
+    }
+  }
+}
