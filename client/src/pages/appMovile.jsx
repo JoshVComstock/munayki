@@ -29,7 +29,7 @@ const AppMovile = () => {
     <DivMobile>
       <div>
         <img src={movilgif} alt="" />
-        <p>
+        <p className="app">
           <h1>Munayki App</h1>
           La aplicación móvil Munayki está diseñada para ayudar a las personas
           que puedan encontrarse en situaciones de violencia o peligro. Ofrece

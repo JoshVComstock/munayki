@@ -529,6 +529,38 @@ export const DivMobile = styled.section`
       padding: 2em;
     }
   }
+  @media screen and (max-width: 768px) {
+    div {
+      flex-direction: column-reverse;
+      .app {
+        width: 100%;
+      }
+    }
+    h2 {
+      width: 100%;
+
+      strong {
+      }
+    }
+    & section {
+      width: 100%;
+      flex-direction: column-reverse;
+      & label {
+        display: block;
+        color: ${colors.CC};
+        font-weight: 600;
+        width: 80vw;
+      }
+      & article {
+        & > p {
+          width: 80vw;
+        }
+      }
+      &:nth-child(2n) {
+        flex-direction: column-reverse;
+      }
+    }
+  }
 `;
 export const Recursos = styled.section`
   ${FlexComun}
