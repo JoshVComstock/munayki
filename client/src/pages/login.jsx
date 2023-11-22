@@ -50,7 +50,7 @@ const Login = () => {
     return navigate("/");
   };
   if (user) {
-    return <navigate to="/dashboard/Quizz" />;
+    return navigate("/dashboard/Quizz");
   }
   return (
     <Section>

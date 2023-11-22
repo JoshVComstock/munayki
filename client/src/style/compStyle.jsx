@@ -60,7 +60,7 @@ export const Section = styled.section`
     display: flex;
     animation: slideIn 1s ease-in-out;
   }
-  @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
     & .login {
       height: 55vh;
       width: 95vw;
