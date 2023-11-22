@@ -4,11 +4,11 @@ import { MapasData } from '../data/mapasdata'
 
 const Mapas = () => {
   return (
-    <Mapasstyle>
+    <Mapasstyle style={{padding:10 ,width:"90vw",flexWrap:"wrap"}}>
       {MapasData.entidades.map((entidad)=>(
-        <div key={entidad.nombre}>
+        <div key={entidad.nombre} >
           <p>{entidad.nombre}</p>
-          <iframe src={entidad.link} width="320" height="320" style={{ border: '0' }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+          <iframe src={entidad.link}  style={{ border: '0' ,flexWrap:"wrap", height:"300px"}} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
         </div>
       ))}
     </Mapasstyle>
