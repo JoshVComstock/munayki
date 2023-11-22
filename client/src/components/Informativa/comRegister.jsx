@@ -192,7 +192,7 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
             Contunuar con el registro
           </button>
         ) : (
-          <div style={{ width: "100%" }}>
+          <div style={{ width: "100%" , flexWrap:"wrap" }}>
             <button
               onClick={() => {
                 setSeguir(!seguir);

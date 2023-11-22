@@ -60,7 +60,7 @@ export const Section = styled.section`
     display: flex;
     animation: slideIn 1s ease-in-out;
   }
-@media screen and (max-width: 768px) {
+  @media screen and (max-width: 768px) {
     & .login {
       height: 55vh;
       width: 95vw;
@@ -111,6 +111,19 @@ export const Section = styled.section`
       width: 100%;
     }
   }
+  @media screen and (max-width: 420px) {
+.login , .Register{
+  & >article{
+    display:none;
+  }
+  & form{
+    width:90vw;
+  }
+}
+  }
+  
+  
+
 `;
 
 export const Iniciodiv = styled.div`
@@ -275,7 +288,7 @@ export const Iniciodiv = styled.div`
   }
   @media screen and (max-width: 768px) {
     height: 450px;
-    
+
     & > p {
       opacity: 0.4;
     }
@@ -285,9 +298,9 @@ export const Iniciodiv = styled.div`
     & > section {
       height: 100vw;
       width: 20vw;
-      justify-content:start;
-      padding:5em 8em 2em 8em;
-      transform:translateX(-100px);
+      justify-content: start;
+      padding: 5em 8em 2em 8em;
+      transform: translateX(-100px);
       & > div {
         font-size: 0.7em;
         & > p {
@@ -398,7 +411,7 @@ export const ViolentimetroA = styled.div`
     @media screen and (max-width: 768px) {
       height: 120vh;
       flex-direction: column;
-   
+
       div {
         flex-direction: column;
         & section {
@@ -698,8 +711,10 @@ export const StyledLink = styled(Link)`
 `;
 
 export const SlimStyle = styled.section`
+  display: flex;
+  flex-wrap: wrap;
   & > article {
-    width: 100%;
+    width: 100vw;
     margin: 0 auto;
     ${FlexComun}
     flex-direction:column;
@@ -718,6 +733,12 @@ export const SlimStyle = styled.section`
         color:#000;
       }
     }
+    @media screen and (max-width: 768px) {
+      &>div{
+        flex-direction:column;
+      }
+          flex-direction: column;
+        }
     & > div {
       width: 90%;
       display: flex;
@@ -725,6 +746,7 @@ export const SlimStyle = styled.section`
       & > div {
         flex: 1 0 21%;
         scroll-snap-align: start;
+       
         & > ${StyledLink} {
           position: relative;
           ${FlexComun}
