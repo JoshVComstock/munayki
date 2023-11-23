@@ -24,6 +24,7 @@ export const ContainerUbicacion = styled.div`
       padding: 0.2em 0.5em;
     }
   }
+
   & > table {
     width: 100%;
     border-collapse: collapse;
@@ -52,6 +53,9 @@ export const ContainerUbicacion = styled.div`
         background-color: ${colors.CC};
         color: ${colors.light};
         padding: 0.2em 1em;
+        border: none;
+        margin: 1em auto;
+        outline: none;
       }
       tr {
         height: 50px;
@@ -75,11 +79,11 @@ export const ContainerUbicacion = styled.div`
           & img {
             width: 50px;
             padding-top: 5px;
-            transition:all 1s ease-in-out;
+            transition: all 1s ease-in-out;
             &:hover {
               transform: scale(1.5);
-              z-index:100;
-              width:100px;
+              z-index: 100;
+              width: 100px;
             }
           }
           & > button {
@@ -102,5 +106,6 @@ export const ContainerUbicacion = styled.div`
         }
       }
     }
-  }
+  
+}
 `;

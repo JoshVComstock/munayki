@@ -1,4 +1,5 @@
 const http = import.meta.env.VITE_BACKEND_URL;
+
 export const peticionPost = async (url, contenido) => {
   const response = await fetch(http + url, {
     method: "POST",
@@ -14,6 +15,7 @@ export const peticionPost = async (url, contenido) => {
   }
   return null;
 };
+
 export const peticionGet = async (url) => {
   const response = await fetch(http+url, {
     method: "GET",
