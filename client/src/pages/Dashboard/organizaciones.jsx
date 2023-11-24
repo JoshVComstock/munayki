@@ -42,8 +42,8 @@ const Organizaciones = () => {
     res && res.message === "successully created"
       ? ( Swal.fire({
         icon: 'success',
-        title: '¡Estado actualizado!',
-        text: `Multimedia ID ${multimediaId} ahora está en estado ${estado}`,
+        title: '¡ organizacion creada !',
+        text: `se registrado conexito `,
       }),
         setForm({
           nombre: "",

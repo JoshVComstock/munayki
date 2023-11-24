@@ -9,7 +9,7 @@ import Swal from 'sweetalert2'
 
 const AlertasAdmin = () => {
   const [data, setData] = useState([]);
-  const [useEspecifico, setUseEspecifico] = useState([]);
+  const [useEspecifico, setUseEspecifico] = useState("");
 
   const fetchData = async () => {
     try {
@@ -38,7 +38,12 @@ const AlertasAdmin = () => {
       }}
     />
   );
-  console.log(data.estado)
+  useEffect(() => {
+    if (Object.keys(useEspecifico).length > 0) {
+      openModal();
+    }
+  }, [useEspecifico]);
+
   const handleEstadoChange = (estado, multimediaId) => {
   
     Swal.fire({
@@ -56,6 +61,9 @@ const AlertasAdmin = () => {
       <option value="atendido">Atendido</option>
     </select>
   );
+
+
+
   return (
     <ContainerUbicacion>
       <div>
@@ -78,9 +86,7 @@ const AlertasAdmin = () => {
               <td>{paso.id}</td>
               <td
                 onClick={() => {
-                  setUseEspecifico(paso.usuario)
-                  openModal()
-
+                  setUseEspecifico(paso.usuario);
                 }}
               >
                 {paso.usuario.nombre}
