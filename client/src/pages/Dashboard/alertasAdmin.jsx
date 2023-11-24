@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
-import GoogleMapsDirections from "../../components/dashboard/mapas";
 import { ContainerUbicacion } from "../../style/ContainerUbicacion";
-import { useUser } from "../../context/userContextProvider";
-import useHttpGet from "../../hook/useHttpGet";
 import { peticionGet } from "../../services/getRequest";
+import { useModal } from "../../hook/useModal";
+import ControlEstados from "./controlEstados";
 const url = import.meta.env.VITE_BACKEND_URL;
 
 const AlertasAdmin = () => {
-  const { user, logout } = useUser();
   const [data, setData] = useState([]);
-  const [ver, setVer] = useState(false);
-  let userId = user.id;
-  console.log(userId);
+  const [useEspecifico, setUseEspecifico] = useState([]);
 
   const fetchData = async () => {
     try {
@@ -25,7 +21,20 @@ const AlertasAdmin = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  console.log(data);
+
+  const openMaps = useCallback((latitud, longitud) => {
+    const mapsUrl = `https://www.google.com/maps?q=${latitud},${longitud}`;
+    window.open(mapsUrl, "_blank");
+  }, []);
+
+  const { openModal, closeModal } = useModal("Datos del usuario", 
+    <ControlEstados
+      user={useEspecifico}
+      closeModal={() => {
+        closeModal();
+      }}
+    />
+  );
   return (
     <ContainerUbicacion>
       <div>
@@ -44,25 +53,29 @@ const AlertasAdmin = () => {
         </thead>
         <tbody>
           {data.map((paso) => (
-            <>
-              <tr key={paso.id}>
-                <td>{paso.id}</td>
-                <td >{paso.usuario.nombre}</td>
-                <td>
-                <button
-                  onClick={() => {
-                    const mapsUrl = `https://www.google.com/maps?q=${paso.latitud},${paso.longitud}`;
-                    window.open(mapsUrl, "_blank");
-                  }}
-                >
+            <tr key={paso.id}>
+              <td>{paso.id}</td>
+              <td
+                onClick={() => {
+                  setUseEspecifico(paso.usuario)
+                  openModal()
+
+                }}
+              >
+                {paso.usuario.nombre}
+              </td>
+              <td>
+                <button onClick={() => openMaps(paso.latitud, paso.longitud)}>
                   Abrir Maps
                 </button>
-                </td>
-                <td> <img src={paso.foto} alt="foto evidencia" /></td>
-                <td>{paso.fecha}</td>
-                <td>{paso.estado|| "llamado desde la app"}</td>
-              </tr>
-            </>
+              </td>
+              <td>
+                {" "}
+                <img src={paso.foto} alt="foto evidencia" />
+              </td>
+              <td>{paso.fecha}</td>
+              <td>{paso.estado || "llamado desde la app"}</td>
+            </tr>
           ))}
         </tbody>
       </table>

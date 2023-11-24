@@ -36,6 +36,9 @@ const Admin = () => {
           <Linkes to="/dashboard/Quizz">
             <img src={Users} alt="" /> Examinar Resultados
           </Linkes>
+          <Linkes to="/dashboard/Quizz">
+          Reportes de ayuda
+          </Linkes>
         </div>
       ) : (
         <>

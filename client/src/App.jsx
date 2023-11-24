@@ -26,6 +26,7 @@ import Denunciasdonde from "./pages/Dashboard/denunciasdonde";
 import ReportesdeUser from "./pages/Dashboard/reportesdeUser";
 import AlertasAdmin from "./pages/Dashboard/alertasAdmin";
 import DocumentoSlim from "./pages/documentoslim";
+import ControlEstados from "./pages/Dashboard/controlEstados";
 
 function App() {
   return (
@@ -60,6 +61,7 @@ function App() {
               }
             >
               <Route path="/dashboard/organizacion" element={<Organacion />} />
+              <Route path="/dashboard/controlEstado" element={<ControlEstados />} />
               <Route path="/dashboard/alertas" element={<Alertas />} />
               <Route path="/dashboard/alertasAdmin" element={<AlertasAdmin />} />
               <Route path="/dashboard/user" element={<User />} />

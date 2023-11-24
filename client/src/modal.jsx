@@ -81,7 +81,7 @@ const DivModalContainer = styled.div`
     flex-direction:column;
     & aside {
       ${FlexComun}
-      height:10em;
+      height:auto;
       width: 100%;
       & > section {
         ${FlexComun}
