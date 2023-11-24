@@ -55,8 +55,6 @@ const Organizaciones = () => {
         fetchData())
       : alert(res.message);
   };
-
-  console.log(form);
   return (
     <ContainerUbicacion>
       <div>
@@ -152,7 +150,7 @@ const Organizaciones = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <button>Ver en Google Maps</button>
+                    <button>Ver Mapa</button>
                   </a>
                 </td>
                 <td>{regis.areVulnerable}</td>

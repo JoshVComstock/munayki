@@ -86,7 +86,7 @@ export const ContainerUbicacion = styled.div`
               width: 100px;
             }
           }
-          & > button {
+          & button {
             width: 100px;
             height: 30px;
             background: transparent;

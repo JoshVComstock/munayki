@@ -47,6 +47,7 @@ const Login = () => {
     }
   };
   const volver = () => {
+    setUser(null)
     return navigate("/");
   };
   if (user) {
