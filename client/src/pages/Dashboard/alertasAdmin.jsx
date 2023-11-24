@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { ContainerUbicacion } from "../../style/ContainerUbicacion";
 import { peticionGet } from "../../services/getRequest";
 import { useModal } from "../../hook/useModal";
-import ControlEstados from "./controlEstados";
+import {ControlEstados} from "./controlEstados";
 const url = import.meta.env.VITE_BACKEND_URL;
 
 const AlertasAdmin = () => {
@@ -13,7 +13,9 @@ const AlertasAdmin = () => {
   const fetchData = async () => {
     try {
       const result = await peticionGet(`/multimedia`);
+      console.log("resultado",result)
       setData(result);
+      
     } catch (error) {
       console.error("Error al obtener datos:", error);
     }
@@ -34,6 +36,20 @@ const AlertasAdmin = () => {
         closeModal();
       }}
     />
+  );
+  console.log(data.estado)
+  const handleEstadoChange = (estado, multimediaId) => {
+  
+    console.log(`Actualizar estado ${estado} para multimedia ID ${multimediaId}`);
+  };
+  const EstadoSelect = ({ estado, multimediaId }) => (
+    <select
+      value={estado}
+      onChange={(e) => handleEstadoChange(e.target.value, multimediaId)}
+    >
+      <option value="pendiente">Pendiente</option>
+      <option value="atendido">Atendido</option>
+    </select>
   );
   return (
     <ContainerUbicacion>
@@ -74,7 +90,9 @@ const AlertasAdmin = () => {
                 <img src={paso.foto} alt="foto evidencia" />
               </td>
               <td>{paso.fecha}</td>
-              <td>{paso.estado || "llamado desde la app"}</td>
+              <td>
+              <EstadoSelect estado={paso.estado} multimediaId={paso.id} />
+              </td>
             </tr>
           ))}
         </tbody>

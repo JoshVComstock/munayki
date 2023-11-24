@@ -1,6 +1,6 @@
 import React from "react";
 
-const ControlEstados = ({ user }) => {
+export const ControlEstados = ({ user }) => {
   console.log("datosUser", user);
   return (
     <div style={{display:"flex" , flexDirection:"column", flexWrap:"wrap", gap:10,padding:20,height:"300px",}}>
@@ -14,4 +14,4 @@ const ControlEstados = ({ user }) => {
   );
 };
 
-export default ControlEstados;
+ 
