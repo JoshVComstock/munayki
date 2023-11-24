@@ -13,5 +13,3 @@ export const ControlEstados = ({ user }) => {
     </div>
   );
 };
-
- 

@@ -26,6 +26,7 @@ import Denunciasdonde from "./pages/Dashboard/denunciasdonde";
 import ReportesdeUser from "./pages/Dashboard/reportesdeUser";
 import AlertasAdmin from "./pages/Dashboard/alertasAdmin";
 import DocumentoSlim from "./pages/documentoslim";
+import InfoUserAlert from "./pages/Dashboard/InfoUserAlert";
 import {ControlEstados} from "./pages/Dashboard/controlEstados";
 
 function App() {
@@ -67,7 +68,7 @@ function App() {
               <Route path="/dashboard/user" element={<User />} />
               <Route path="/dashboard/Quizz" element={<QuizzUser />} />
               <Route path="/dashboard/DondeDenunciar" element={<Denunciasdonde />} />
-              <Route path="/dashboard/ReportesdeUser" element={<ReportesdeUser />} />
+              <Route path="/dashboard/ReportesdeUser" element={<InfoUserAlert />} />
             </Route>
           </Routes>
           <Modal />

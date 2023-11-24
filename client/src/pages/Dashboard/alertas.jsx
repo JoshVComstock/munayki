@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
-
-import GoogleMapsDirections from "../../components/dashboard/mapas";
 import { ContainerUbicacion } from "../../style/ContainerUbicacion";
 import { useUser } from "../../context/userContextProvider";
-import useHttpGet from "../../hook/useHttpGet";
 import { peticionGet } from "../../services/getRequest";
-const url = import.meta.env.VITE_BACKEND_URL;
-
 const Alertas = () => {
   const { user, logout } = useUser();
   const [data, setData] = useState([]);
@@ -31,7 +26,6 @@ const Alertas = () => {
       <div>
         <h1>Alerta</h1>
       </div>
-      <section>
         <table>
           <thead>
             <tr>
@@ -54,7 +48,6 @@ const Alertas = () => {
                     {paso.longitud} {paso.latitud}
                   </td>
                   <td>
-                    {" "}
                     <img src={paso.foto} alt="foto evidencia" />
                   </td>
                   <td>{paso.fecha}</td>
@@ -64,9 +57,6 @@ const Alertas = () => {
             ))}
           </tbody>
         </table>
-      </section>
-
-      {/* <GoogleMapsDirections/> */}
     </ContainerUbicacion>
   );
 };

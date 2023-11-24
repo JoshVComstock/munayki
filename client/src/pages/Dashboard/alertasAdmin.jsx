@@ -49,7 +49,7 @@ const AlertasAdmin = () => {
     Swal.fire({
       icon: 'success',
       title: '¡Estado actualizado!',
-      text: `Multimedia ID ${multimediaId} ahora está en estado ${estado}`,
+      text: `Alerta  ID ${multimediaId} ahora está en estado ${estado}`,
     });
   };
   const EstadoSelect = ({ estado, multimediaId }) => (

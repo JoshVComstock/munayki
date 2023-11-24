@@ -153,7 +153,7 @@ const Organizaciones = () => {
                   </a>
                 </td>
                 <td>{regis.areVulnerable}</td>
-                <td>{regis.usuarioId}</td>
+                <td>{regis.usuario.nombre}</td>
                 <td>
                   <button>eliminar</button>
                 </td>
