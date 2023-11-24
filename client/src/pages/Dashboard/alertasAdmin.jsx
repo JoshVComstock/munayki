@@ -4,7 +4,8 @@ import { ContainerUbicacion } from "../../style/ContainerUbicacion";
 import { peticionGet } from "../../services/getRequest";
 import { useModal } from "../../hook/useModal";
 import {ControlEstados} from "./controlEstados";
-const url = import.meta.env.VITE_BACKEND_URL;
+import Swal from 'sweetalert2'
+
 
 const AlertasAdmin = () => {
   const [data, setData] = useState([]);
@@ -40,7 +41,11 @@ const AlertasAdmin = () => {
   console.log(data.estado)
   const handleEstadoChange = (estado, multimediaId) => {
   
-    console.log(`Actualizar estado ${estado} para multimedia ID ${multimediaId}`);
+    Swal.fire({
+      icon: 'success',
+      title: '¡Estado actualizado!',
+      text: `Multimedia ID ${multimediaId} ahora está en estado ${estado}`,
+    });
   };
   const EstadoSelect = ({ estado, multimediaId }) => (
     <select

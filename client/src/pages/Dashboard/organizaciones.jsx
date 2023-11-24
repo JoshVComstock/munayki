@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react";
-
-const url = import.meta.env.VITE_BACKEND_URL;
-
 import { ContainerUbicacion } from "../../style/ContainerUbicacion";
 import { peticionGet, peticionPost } from "../../services/getRequest";
-import { peticionDelete } from "../../services/deletRequest";
-
+import Swal from 'sweetalert2'
 const Organizaciones = () => {
   const mapUrl = "https://www.google.com/maps/search/?api=1&query=";
-
   const [form, setForm] = useState({
     nombre: "",
     ubicacion: "",
@@ -45,7 +40,11 @@ const Organizaciones = () => {
       usuarioId: +form.usuarioId,
     });
     res && res.message === "successully created"
-      ? (alert(res.message),
+      ? ( Swal.fire({
+        icon: 'success',
+        title: '¡Estado actualizado!',
+        text: `Multimedia ID ${multimediaId} ahora está en estado ${estado}`,
+      }),
         setForm({
           nombre: "",
           ubicacion: "",
