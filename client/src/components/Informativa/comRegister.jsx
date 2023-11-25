@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logoChocha.png";
 import { useState } from "react";
 import { peticionPost } from "../../services/getRequest";
+import Swal from 'sweetalert2'
+
 const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
   const navigate = useNavigate();
   const [seguir, setSeguir] = useState(false);
@@ -39,7 +41,15 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
     });
     console.log(dataRegister);
     res && res.message === "sucessully create"
-      ? (navigate("/login"), alert("Registrado"))
+      ? (
+      Swal.fire({
+        icon: 'success',
+        title: 'Usuario agregado!',
+        text: `Recuerda tu email y tu contraseña e inicia secion`,
+      }),
+      navigate("/")
+      
+      )
       : alert(res.message);
   };
 

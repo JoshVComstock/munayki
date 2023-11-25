@@ -7,12 +7,11 @@ const InfoUserAlert = () => {
   const fetchData = async () => {
     try {
       const result = await peticionGet(`/modificacionuncluye`);
-      setData(result.data || []); // Asegurar que result.data no sea undefined
+      setData(result.data || []); 
     } catch (error) {
       console.error("Error al obtener datos:", error);
     }
   };
-
   useEffect(() => {
     fetchData();
   }, []);
@@ -28,9 +27,8 @@ const InfoUserAlert = () => {
             alerta fecha alerta  - {dat.multimedia.fecha}
             alerta - {dat.multimedia.estado}
             alerta - {dat.multimedia.estado}
-            organizacionCambio - {dat.organizacion.nombre}
-            sectorResponzable - {dat.organizacion.nombre}
-            
+            usuarioCambio - {dat.usuario.nombre}
+            sectorResponzable - {dat.usuario.nombre}
           </div>
         ))
       ) : (

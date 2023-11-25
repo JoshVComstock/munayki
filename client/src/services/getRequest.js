@@ -31,3 +31,19 @@ export const peticionGet = async (url) => {
   }
   return null;
 };
+export const peticionPostPut = async (url, contenido, metodo) => {
+  const response = await fetch(http + url, {
+    method: metodo ? "POST" : "PUT", 
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(contenido),
+  }
+  );
+  if (response.ok) {
+    const json = await response.json();
+    return json;
+  }
+  return null;
+};

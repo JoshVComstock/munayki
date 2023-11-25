@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { ContainerUbicacion } from "../../style/ContainerUbicacion";
-import { peticionGet, peticionPost } from "../../services/getRequest";
-import Swal from 'sweetalert2'
+import { peticionGet,  peticionPostPut } from "../../services/getRequest";
+import Swal from "sweetalert2";
+import { peticionDelete } from "../../services/deletRequest";
 const Organizaciones = () => {
   const mapUrl = "https://www.google.com/maps/search/?api=1&query=";
   const [form, setForm] = useState({
     nombre: "",
     ubicacion: "",
     areVulnerable: "",
-    usuarioId: "",
   });
   const [data, setData] = useState("");
-  const [users, setUser] = useState("");
   const fetchData = async () => {
     try {
       const result = await peticionGet("/organizacion");
@@ -24,35 +23,30 @@ const Organizaciones = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      const usuario = await peticionGet("/user");
-      setUser(usuario);
-    };
-    fetchUser();
-  }, []);
-
   const handleSend = async (e) => {
-    const res = await peticionPost("/organizacion", {
+    const res = await peticionPostPut("/organizacion", {
       nombre: form.nombre,
       ubicacion: form.ubicacion,
       areVulnerable: form.areVulnerable,
-      usuarioId: +form.usuarioId,
-    });
+    }, "POST");
     res && res.message === "successully created"
-      ? ( Swal.fire({
-        icon: 'success',
-        title: '¡ organizacion creada !',
-        text: `se registrado conexito `,
-      }),
+      ? (Swal.fire({
+          icon: "success",
+          title: "¡ organizacion creada !",
+          text: `se registrado conexito `,
+        }),
         setForm({
           nombre: "",
           ubicacion: "",
           areVulnerable: "",
-          usuarioId: "",
         }),
         fetchData())
       : alert(res.message);
+  };
+
+  const deleteData = async (data) => {
+    await peticionDelete("/organizacion/", data);
+    await fetchData();
   };
   return (
     <ContainerUbicacion>
@@ -67,7 +61,6 @@ const Organizaciones = () => {
             <th>Nombre</th>
             <th>Ubicacion</th>
             <th>Area vulnerable</th>
-            <th>usuario</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -114,7 +107,7 @@ const Organizaciones = () => {
                 placeholder="Area vulnerable"
               />
             </td>
-            <select
+            {/* <select
               value={form.usuarioId}
               onChange={(e) =>
                 setForm({
@@ -132,7 +125,7 @@ const Organizaciones = () => {
                     </option>
                   </>
                 ))}
-            </select>
+            </select> */}
             <td>
               <button onClick={(e) => handleSend()}>Agregar</button>
             </td>
@@ -153,9 +146,9 @@ const Organizaciones = () => {
                   </a>
                 </td>
                 <td>{regis.areVulnerable}</td>
-                <td>{regis.usuario.nombre}</td>
+
                 <td>
-                  <button>eliminar</button>
+                  <button onClick={() => deleteData(regis.id)}>eliminar</button>
                 </td>
               </tr>
             ))}
