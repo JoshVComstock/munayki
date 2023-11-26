@@ -3,6 +3,8 @@ import { ContainerUbicacion } from "../../style/ContainerUbicacion";
 import { peticionGet,  peticionPostPut } from "../../services/getRequest";
 import Swal from "sweetalert2";
 import { peticionDelete } from "../../services/deletRequest";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSitemap, faTrash } from "@fortawesome/free-solid-svg-icons";
 const Organizaciones = () => {
   const mapUrl = "https://www.google.com/maps/search/?api=1&query=";
   const [form, setForm] = useState({
@@ -129,7 +131,8 @@ const Organizaciones = () => {
                 <td>{regis.areVulnerable}</td>
 
                 <td>
-                  <button onClick={() => deleteData(regis.id)}>eliminar</button>
+
+                  <button onClick={() => deleteData(regis.id)}> <FontAwesomeIcon icon={faTrash} />eliminar</button>
                 </td>
               </tr>
             ))}

@@ -17,13 +17,12 @@ export const peticionPost = async (url, contenido) => {
 };
 
 export const peticionGet = async (url) => {
-  const response = await fetch(http+url, {
+  const response = await fetch(http + url, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
     },
-
   });
   if (response.ok) {
     const json = await response.json();
@@ -33,14 +32,13 @@ export const peticionGet = async (url) => {
 };
 export const peticionPostPut = async (url, contenido, metodo) => {
   const response = await fetch(http + url, {
-    method: metodo ? "POST" : "PUT", 
+    method: metodo ? "POST" : "PUT",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
     },
     body: JSON.stringify(contenido),
-  }
-  );
+  });
   if (response.ok) {
     const json = await response.json();
     return json;

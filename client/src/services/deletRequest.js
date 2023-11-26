@@ -1,24 +1,42 @@
-const http = import.meta.env.VITE_BACKEND_URL;
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
-export const peticionDelete = async (url,id) => {
-  const response = await fetch(http+url+id, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-
+export const peticionDelete = async (url) => {
+  const confirmation = await Swal.fire({
+    title: "¿Está seguro?",
+    text: "Esta acción eliminará el registro permanentemente",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "Sí, eliminar",
+    cancelButtonText: "Cancelar",
   });
-  if (response.ok) {
-    const json = await response.json();
-    Swal.fire({
-      icon: 'error',
-      title: '¡ organizacion eliminada !',
-      text: `Registro eliminado  `,
+
+  if (confirmation.isConfirmed) {
+    const response = await fetch(http + url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
     });
-    return json;
-    
+
+    if (response.ok) {
+      const json = await response.json();
+      Swal.fire({
+        icon: "success",
+        title: "¡Organización eliminada!",
+        text: "Registro eliminado exitosamente",
+      });
+      return json;
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Error al eliminar",
+        text: "Hubo un problema al intentar eliminar el registro",
+      });
+    }
+  } else {
+    Swal.fire("Cancelado", "La acción ha sido cancelada", "info");
   }
-  return null;
 };

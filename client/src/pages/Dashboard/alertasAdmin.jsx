@@ -11,13 +11,16 @@ const AlertasAdmin = () => {
   const [data, setData] = useState([]);
   const [useEspecifico, setUseEspecifico] = useState("");
   const { user, logout } = useUser();
-  console.log("userloguado", user);
+  const [estadoActualizado, setEstadoActualizado] = useState([]);
 
   const fetchData = async () => {
     try {
       const result = await peticionGet(`/multimedia`);
       console.log("resultado", result);
       setData(result);
+      const atendidos = result.filter((paso) => paso.estado === "atendido");
+      const atendidosIds = atendidos.map((atendido) => atendido.id);
+      setEstadoActualizado(atendidosIds);
     } catch (error) {
       console.error("Error al obtener datos:", error);
     }
@@ -44,6 +47,20 @@ const AlertasAdmin = () => {
       openModal();
     }
   }, [useEspecifico]);
+  const confirmUpdate = (estado, multimediaId) => {
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¿Quieres actualizar el estado?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sí",
+      cancelButtonText: "No",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await handleEstadoChange(estado, multimediaId);
+      }
+    });
+  };
 
   const handleSend = async (multimediaId) => {
     const usuarioId = user?.id || null;
@@ -64,15 +81,19 @@ const AlertasAdmin = () => {
     const res = await peticionPostPut(`/multimedia/${multimediaId}`, {
       estado,
     });
-    res && res.message === "Successfully updated"
-      ? (Swal.fire({
-          icon: "success",
-          title: "¡Estado actualizado!",
-          text: "Se ha actualizado el estado exitosamente.",
-        }),
-        handleSend(multimediaId),
-        fetchData())
-      : alert(res.message);
+
+    if (res && res.message === "Successfully updated") {
+      Swal.fire({
+        icon: "success",
+        title: "¡Estado actualizado!",
+        text: "Se ha actualizado el estado exitosamente.",
+      });
+
+      handleSend(multimediaId);
+      fetchData();
+    } else {
+      alert(res.message);
+    }
   };
 
   return (
@@ -114,7 +135,8 @@ const AlertasAdmin = () => {
               <td>
                 <select
                   value={paso.estado}
-                  onChange={(e) => handleEstadoChange(e.target.value, paso.id)}
+                  onChange={(e) => confirmUpdate(e.target.value, paso.id)}
+                  disabled={estadoActualizado.includes(paso.id)}
                 >
                   <option value="pendiente">Pendiente</option>
                   <option value="atendido">Atendido</option>

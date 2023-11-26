@@ -92,6 +92,10 @@ export const ContainerUbicacion = styled.div`
             background: transparent;
             border: 1px solid ${colors.CC};
             cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5em;
             &:hover {
               background: ${colors.CC};
               color: ${colors.light};
@@ -106,8 +110,5 @@ export const ContainerUbicacion = styled.div`
         }
       }
     }
-  
-}
-
-
+  }
 `;
