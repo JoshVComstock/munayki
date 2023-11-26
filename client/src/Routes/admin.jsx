@@ -21,6 +21,7 @@ const Admin = () => {
   }
   return (
     <>
+    
       {user.rol == "admin" ? (
         <div>
           <Linkes to="/dashboard/organizacion">
