@@ -26,8 +26,8 @@ import Denunciasdonde from "./pages/Dashboard/denunciasdonde";
 import ReportesdeUser from "./pages/Dashboard/reportesdeUser";
 import AlertasAdmin from "./pages/Dashboard/alertasAdmin";
 import DocumentoSlim from "./pages/documentoslim";
-import InfoUserAlert from "./pages/Dashboard/InfoUserAlert";
 import {ControlEstados} from "./pages/Dashboard/controlEstados";
+import InfoUserAlert from "./pages/Dashboard/infoUserAlert";
 
 function App() {
   return (

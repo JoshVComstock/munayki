@@ -5,20 +5,31 @@ const url = import.meta.env.VITE_BACKEND_URL;
 import { ContainerUbicacion } from "../../style/ContainerUbicacion";
 import useHttpGet from "../../hook/useHttpGet";
 import { peticionDelete } from "../../services/deletRequest";
+import { useModal } from "../../hook/useModal";
+import AsiganarOrgUser from "./asiganarOrgUser";
+
 const User = () => {
-  const { data,refetch  } = useHttpGet(`${url}/user`);
+  const { data, refetch } = useHttpGet(`${url}/user`);
+  const [idEspecifico, setIdEspecifico] = useState(0);
+
+
+  useEffect(() => {
+    if (idEspecifico !== 0) {
+      openModal();
+    }
+  }, [idEspecifico]);
+  
 
   const handleDelete = async (userId) => {
-    const res = await peticionDelete(`/user/`, userId);
-    alert(res.message);
-
+    await peticionDelete(`/user/`, userId);
+    await renderDatos();
   };
 
   const renderDatos = () => {
     if (data && data.length)
-      return data.map((datos) => (
+      return data.map((datos, i) => (
         <tr key={datos.id}>
-          <td>{datos.id}</td>
+          <td>{i + 1}</td>
           <td>{datos.nombre}</td>
           <td>{datos.apellido}</td>
           <td>{datos.edad}</td>
@@ -30,25 +41,34 @@ const User = () => {
           <td>
             <button
               onClick={() => {
-                handleDelete(datos.id);
+                setIdEspecifico(datos);
               }}
             >
-              Eliminar
+              Asignar
             </button>
+          </td>
+          <td>
+            <button>Eliminar</button>
           </td>
         </tr>
       ));
   };
 
-  useEffect(() => {
-    renderDatos();
-  }, [data])
-  
+  const { openModal, closeModal } = useModal(
+    "asiganr a el usuario la organizacion",
+    <AsiganarOrgUser
+      userdata={idEspecifico}
+      closeModal={() => {
+        closeModal();
+      }}
+    />
+  );
+
+  console.log(idEspecifico);
   return (
     <ContainerUbicacion>
-      <div>
-        <h1>Usuarios</h1>
-      </div>
+      <h1>Usuarios</h1>
+
       <table>
         <thead>
           <tr>
@@ -61,6 +81,7 @@ const User = () => {
             <th>correo</th>
             <th>rol</th>
             <th>genero</th>
+            <th>Organizacion</th>
             <th>Acciones</th>
           </tr>
         </thead>

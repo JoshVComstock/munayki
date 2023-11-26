@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ContainerUbicacion } from "../../style/ContainerUbicacion";
 import { useUser } from "../../context/userContextProvider";
 import { peticionGet } from "../../services/getRequest";
+import { useModal } from "../../hook/useModal";
 const Alertas = () => {
   const { user, logout } = useUser();
   const [data, setData] = useState([]);
@@ -20,6 +21,17 @@ const Alertas = () => {
   useEffect(() => {
     fetchData();
   }, []);
+  const { openModal, closeModal } = useModal(
+    "Datos del usuario",
+    <ControlEstados
+      user={useEspecifico}
+      closeModal={() => {
+        closeModal();
+      }}
+    />
+  );
+
+
   console.log(data);
   return (
     <ContainerUbicacion>

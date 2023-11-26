@@ -25,29 +25,28 @@ const Modal = () => {
 export default Modal;
 
 const DivModalContainer = styled.div`
-  width: 30em;
-  height: 20em;
+  width: auto;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
   position: fixed;
   top: 30%;
-  left: 35%;
+  margin: 0 auto;
   z-index: 100;
-  animation: inicioModal 0.8s ease-in-out;
+  animation: inicioModal 1s ease-in-out;
   background-color: #fff;
+  left: 14%;
   @keyframes inicioModal {
     0% {
-      width: 0;
-      height: 40em;
+      transform: translateX(-100%);
     }
     100% {
-      width: 30em;
-      border-radius: 0;
+      transform: translateX(50%);
     }
   }
   & > div {
-    width: 40rem;
+    width: auto;
     height: auto;
     padding: 1em;
     position: relative;
@@ -100,10 +99,90 @@ const DivModalContainer = styled.div`
           color: #fff;
           animation: animloader 2s ease;
         }
-        & div{
-          text-align:center;
+        & div {
+          text-align: center;
         }
       }
     }
+  }
+  .cambioorganizacion {
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    padding: 2em;
+    flex-wrap: wrap;
+    gap: 1em;
+    border: solid 1px #0003;
+    & select {
+      width: 100%;
+      border: none;
+      box-shadow: 0 2px 10px 1px#0005;
+      background-color: ${colors.CC};
+      color: #fff;
+      padding: 0.5em;
+      outline: none;
+    }
+    & p {
+      width: 100%;
+    }
+    & button {
+      background-color: ${colors.CC};
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      padding: 0.1em 3em;
+    }
+    .inputs {
+      width: 80%;
+      display: flex;
+      gap: 1em;
+      flex-wrap: wrap;
+    }
+    & input {
+      width: 45%;
+      padding: 0.5em;
+      border: solid 1px #0003;
+    }
+    & section {
+      width: 100%;
+      display: flex;
+    }
+  }
+  & table {
+    width:95%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-weight: 100;
+    font-weight: lighter;
+    margin: 0 auto;
+    & thead {
+      font-weight: lighter;
+      & tr,
+      td,
+      th {
+        font-weight: 100;
+        padding: 0 0.5em;
+        font-size: 0.96em;
+      }
+
+      & tr,
+      th {
+        border: solid 1px #0005;
+      }
+    }
+    & tbody {
+      font-weight: lighter;
+      & tr,
+      th {
+        font-weight: lighter;
+        font-size: 0.9em;
+        padding: 1em 0;
+        border: solid 1px #0005;
+      }
+    }
+  }
+  .a {
+    background-color: ${colors.CC};
+    color: #fff;
   }
 `;

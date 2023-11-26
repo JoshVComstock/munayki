@@ -70,17 +70,6 @@ const AlertasAdmin = () => {
           title: "¡Estado actualizado!",
           text: "Se ha actualizado el estado exitosamente.",
         }),
-        // await fetch(`/modificacion/${usuarioId}/${multimediaId}`, {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify({
-        //     fecha: fechaActual,
-        //     usuarioId,
-        //     multimediaId,
-        //   }),
-        // }),
         handleSend(multimediaId),
         fetchData())
       : alert(res.message);

@@ -107,25 +107,6 @@ const Organizaciones = () => {
                 placeholder="Area vulnerable"
               />
             </td>
-            {/* <select
-              value={form.usuarioId}
-              onChange={(e) =>
-                setForm({
-                  ...form,
-                  usuarioId: e.target.value,
-                })
-              }
-            >
-              <option value="">Selecciona un usuario</option>
-              {Array.isArray(users) &&
-                users.map((usuario) => (
-                  <>
-                    <option key={usuario.id} value={usuario.id}>
-                      {usuario.nombre}
-                    </option>
-                  </>
-                ))}
-            </select> */}
             <td>
               <button onClick={(e) => handleSend()}>Agregar</button>
             </td>
