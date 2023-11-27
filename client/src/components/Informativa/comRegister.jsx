@@ -9,7 +9,8 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logoChocha.png";
 import { useState } from "react";
 import { peticionPost } from "../../services/getRequest";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
+import { colors } from "../../style/StyleGlobal";
 
 const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
     rol: "loggedWeb",
     genero: "",
   });
+  console.log(dataRegister);
 
   const handleSend = async (e) => {
     e.preventDefault();
@@ -41,15 +43,12 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
     });
     console.log(dataRegister);
     res && res.message === "sucessully create"
-      ? (
-      Swal.fire({
-        icon: 'success',
-        title: 'Usuario agregado!',
-        text: `Recuerda tu email y tu contraseña e inicia secion`,
-      }),
-      navigate("/")
-      
-      )
+      ? (Swal.fire({
+          icon: "success",
+          title: "Usuario agregado!",
+          text: `Recuerda tu email y tu contraseña e inicia secion`,
+        }),
+        navigate("/"))
       : alert(res.message);
   };
 
@@ -66,12 +65,11 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
         <h1> Formuario de inicio</h1>
         {seguir ? (
           <>
-            <label > Genero</label>
+            <label> Género</label>
             <div>
               <FontAwesomeIcon icon={faEnvelope} />
-              <input
-                type="text"
-                name="genero"
+
+              <select
                 value={dataRegister.genero}
                 onChange={(event) =>
                   setDataRegister((old) => ({
@@ -79,7 +77,12 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
                     genero: event.target.value,
                   }))
                 }
-              />
+style={{background:colors.CC,color:"#fff", width:"90% ", padding:8 , border:"none"}}
+
+              >
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino ">Femenino</option>
+              </select>
             </div>
             <label htmlFor="password"> Contraseña:</label>
             <div>
@@ -99,7 +102,7 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
           </>
         ) : (
           <>
-            <label htmlFor="text">Nombre:</label>
+            <label htmlFor="text">Nombre (s):</label>
 
             <div>
               <FontAwesomeIcon icon={faEnvelope} />
@@ -115,7 +118,7 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
                 }
               />
             </div>
-            <label htmlFor="email">Apellido:</label>
+            <label htmlFor="email">Apellido (s):</label>
             <div>
               <FontAwesomeIcon icon={faEnvelope} />
               <input
@@ -160,7 +163,7 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
                 }
               />
             </div>
-            <label htmlFor="email">Telefono:</label>
+            <label htmlFor="email">Celular:</label>
             <div>
               <FontAwesomeIcon icon={faEnvelope} />
               <input
@@ -175,7 +178,7 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
                 }
               />
             </div>
-            <label htmlFor="text">carnet:</label>
+            <label htmlFor="text">Dirección:</label>
             <div>
               <FontAwesomeIcon icon={faEnvelope} />
               <input
@@ -202,20 +205,16 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
             Contunuar con el registro
           </button>
         ) : (
-          <div style={{ width: "100%" , flexWrap:"wrap" }}>
+          <div style={{ width: "100%", flexWrap: "wrap" }}>
             <button
               onClick={() => {
                 setSeguir(!seguir);
               }}
             >
-              registro anterior
+              Registro anterior
               <FontAwesomeIcon icon={faSignInAlt} />
             </button>
-            <button
-              
-               onClick={ handleSend}
-           
-            >
+            <button onClick={handleSend}>
               <FontAwesomeIcon icon={faSignInAlt} />
               Registrarse
             </button>
