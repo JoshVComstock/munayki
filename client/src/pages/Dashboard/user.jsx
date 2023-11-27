@@ -145,7 +145,8 @@ const User = () => {
     <ContainerUbicacion>
       <h1>Usuarios</h1>
 
-      <table>
+    <aside>
+    <table>
         <thead>
           <tr>
             <th>id</th>
@@ -163,6 +164,7 @@ const User = () => {
         </thead>
         <tbody>{renderDatos()}</tbody>
       </table>
+    </aside>
     </ContainerUbicacion>
   );
 };

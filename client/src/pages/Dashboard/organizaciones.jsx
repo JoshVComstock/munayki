@@ -56,7 +56,8 @@ const Organizaciones = () => {
         <h1>Organizaciones </h1>
       </div>
 
-      <table>
+    <aside>
+    <table>
         <thead>
           <tr>
             <th>Nro</th>
@@ -138,6 +139,7 @@ const Organizaciones = () => {
             ))}
         </tbody>
       </table>
+    </aside>
     </ContainerUbicacion>
   );
 };

@@ -28,7 +28,8 @@ const Alertas = () => {
       <div>
         <h1>Alerta</h1>
       </div>
-      <table>
+    <aside>
+    <table>
         <thead>
           <tr>
             <th>Nro</th>
@@ -59,6 +60,7 @@ const Alertas = () => {
           ))}
         </tbody>
       </table>
+    </aside>
     </ContainerUbicacion>
   );
 };

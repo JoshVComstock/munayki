@@ -24,7 +24,7 @@ export const ContainerUbicacion = styled.div`
       padding: 0.2em 0.5em;
     }
   }
-
+ & aside{
   & > table {
     width: 100%;
     border-collapse: collapse;
@@ -111,4 +111,21 @@ export const ContainerUbicacion = styled.div`
       }
     }
   }
+}
+  @media screen and (max-width: 768px) {
+    & > h1{
+      padding:2em;
+    }
+  & aside{
+    width:90vw;
+    margin:0 auto;
+    overflow-x:scroll ;
+   
+    & table{
+      width:1200px;
+    }
+  }
+  }
+
+
 `;

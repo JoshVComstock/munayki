@@ -101,7 +101,8 @@ const AlertasAdmin = () => {
       <div>
         <h1>Alerta</h1>
       </div>
-      <table>
+  <aside>
+  <table>
         <thead>
           <tr>
             <th>Nro</th>
@@ -146,6 +147,7 @@ const AlertasAdmin = () => {
           ))}
         </tbody>
       </table>
+  </aside>
     </ContainerUbicacion>
   );
 };

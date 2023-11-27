@@ -23,7 +23,8 @@ const InfoUserAlert = () => {
         <div>
           <h1>Reporte de modificaciones</h1>
         </div>
-        <table>
+      <aside>
+      <table>
           <thead>
             <tr>
               <th>fecha-cambio</th>
@@ -62,6 +63,7 @@ const InfoUserAlert = () => {
             )}
           </tbody>
         </table>
+      </aside>
       </ContainerUbicacion>
     </div>
   );
