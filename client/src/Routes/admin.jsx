@@ -7,6 +7,7 @@ import UserComun from "./userComun";
 import UserNiv2 from "./userNiv2";
 import {
   faArrowAltCircleLeft,
+  faChartBar,
   faExclamationCircle,
   faPaste,
   faSitemap,
@@ -30,33 +31,34 @@ const Admin = () => {
     menuItems = (
       <div>
         <Linkes to="/dashboard/organizacion">
-          {" "}
           <FontAwesomeIcon icon={faSitemap} />
           Organizacion
         </Linkes>
         <Linkes to="/dashboard/alertasAdmin">
-          {" "}
           <FontAwesomeIcon icon={faExclamationCircle} />
           Alertas
         </Linkes>
         <Linkes to="/dashboard/user">
-          {" "}
           <FontAwesomeIcon icon={faUserTie} /> Usuarios
         </Linkes>
-        {/* <Linkes to="/dashboard/Quizz">
-          <img src={Users} alt="" /> Examinar Resultados
-        </Linkes> */}
         <Linkes to="/dashboard/ReportesdeUser">
-          {" "}
           <FontAwesomeIcon icon={faPaste} />
           Reportes de ayuda
         </Linkes>
+        {/* <Linkes to="/dashboard/reportGraficos">
+        <FontAwesomeIcon icon={faChartBar} />
+          Graficos
+        </Linkes> */}
       </div>
     );
-  } else if (user.rol === "user" || user.rol === "loguedApp") {
-    <UserComun />;
-  } else if (user.rol === "encargado") {
-    <UserNiv2 />;
+  } else if (
+    user.rol === "User" ||
+    user.rol === "loguedApp" ||
+    user.rol === "loggedWeb"
+  ) {
+    menuItems = <UserComun />;
+  } else if (user.rol == "Encargado") {
+    menuItems = <UserNiv2 />;
   }
 
   return (

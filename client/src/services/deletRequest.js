@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+const http = import.meta.env.VITE_BACKEND_URL;
 
 export const peticionDelete = async (url) => {
   const confirmation = await Swal.fire({

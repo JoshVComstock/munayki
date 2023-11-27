@@ -11,8 +11,7 @@ import {
 import logo from "../../src/assets/logoChocha.png";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useUser } from "../context/userContextProvider";
-// import toast from "react-hot-toast";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -43,14 +42,14 @@ const Login = () => {
       const json = await login.json();
       if (json.error) {
         Swal.fire({
-          icon: 'error',
-          title: '¡hubo un error en el ingreso!',
+          icon: "error",
+          title: "¡hubo un error en el ingreso!",
           text: `Alerta  ID ${json.error} `,
         });
       } else {
         Swal.fire({
-          icon: 'success',
-          title: '¡Bienvenido!',
+          icon: "success",
+          title: "¡Bienvenido!",
           text: `usuario ${json.data.nombre} `,
         });
         setUser(json.data);
@@ -58,11 +57,11 @@ const Login = () => {
     }
   };
   const volver = () => {
-    setUser(null)
+    setUser(null);
     return navigate("/");
   };
   if (user) {
-    return navigate("/dashboard/Quizz");
+    return navigate("/dashboard");
   }
   return (
     <Section>

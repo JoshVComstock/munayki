@@ -32,7 +32,7 @@ const Termometro = () => {
     }, 1000);
   }, []);
   const getResultados = async () => {
-    const response = await fetch("https://munayki-serve.vercel.app/resultadosCuestionarioPuntuacion");
+    const response = await fetch(url+"/resultadosCuestionarioPuntuacion");
     const data = await response.json();
     setUsuarioNombre(data);
   };

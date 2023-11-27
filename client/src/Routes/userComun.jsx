@@ -1,22 +1,27 @@
-import React from 'react'
-import { Linkes } from '../style/navStyle'
-import Alert from '../assets/icons/alert.svg';
-import Location from '../assets/icons/location.svg';
-import Users from '../assets/icons/users.svg';
+import React from "react";
+import { Linkes } from "../style/navStyle";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBell,
+  faMap,
+  faQuestionCircle,
+} from "@fortawesome/free-solid-svg-icons";
 const UserComun = () => {
   return (
-    <>
+    <div>
       <Linkes to="/dashboard/Quizz">
-          <img src={Users} alt="" /> Realizar Quizz
-        </Linkes>
-        <Linkes to="/dashboard/DondeDenunciar">
-          <img src={Location} alt="" /> Donde Denunciar 
-        </Linkes>
-        <Linkes to="/dashboard/ReportesdeUser">
-          <img src={Users} alt="" /> Mis Reportes 
-        </Linkes>
-    </>
-  )
-}
+        <FontAwesomeIcon icon={faQuestionCircle} />
+        Realizar Quizz
+      </Linkes>
+      <Linkes to="/dashboard/DondeDenunciar">
+        <FontAwesomeIcon icon={faMap} />
+        Donde Denunciar
+      </Linkes>
+      <Linkes to="/dashboard/alertas">
+        <FontAwesomeIcon icon={faBell} /> Mis alertas
+      </Linkes>
+    </div>
+  );
+};
 
-export default UserComun
+export default UserComun;

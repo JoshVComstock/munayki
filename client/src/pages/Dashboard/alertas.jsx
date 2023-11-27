@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ContainerUbicacion } from "../../style/ContainerUbicacion";
 import { useUser } from "../../context/userContextProvider";
 import { peticionGet } from "../../services/getRequest";
-import { useModal } from "../../hook/useModal";
+
 const Alertas = () => {
   const { user, logout } = useUser();
   const [data, setData] = useState([]);
@@ -21,16 +21,6 @@ const Alertas = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  const { openModal, closeModal } = useModal(
-    "Datos del usuario",
-    <ControlEstados
-      user={useEspecifico}
-      closeModal={() => {
-        closeModal();
-      }}
-    />
-  );
-
 
   console.log(data);
   return (
@@ -38,37 +28,37 @@ const Alertas = () => {
       <div>
         <h1>Alerta</h1>
       </div>
-        <table>
-          <thead>
-            <tr>
-              <th>Nro</th>
-              <th>Datos Usuario</th>
-              <th>Ubicacion</th>
-              <th>Evidencia</th>
-              <th>Fecha</th>
-              <th>estado</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((paso) => (
-              <>
-                <tr key={paso.id}>
-                  <td>{paso.id}</td>
-                  <td onClick={() => setVer(!ver)}>{paso.usuario.nombre}</td>
+      <table>
+        <thead>
+          <tr>
+            <th>Nro</th>
+            <th>Datos Usuario</th>
+            <th>Ubicacion</th>
+            <th>Evidencia</th>
+            <th>Fecha</th>
+            <th>estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((paso) => (
+            <>
+              <tr key={paso.id}>
+                <td>{paso.id}</td>
+                <td onClick={() => setVer(!ver)}>{paso.usuario.nombre}</td>
 
-                  <td>
-                    {paso.longitud} {paso.latitud}
-                  </td>
-                  <td>
-                    <img src={paso.foto} alt="foto evidencia" />
-                  </td>
-                  <td>{paso.fecha}</td>
-                  <td>{paso.estado }</td>
-                </tr>
-              </>
-            ))}
-          </tbody>
-        </table>
+                <td>
+                  {paso.longitud} {paso.latitud}
+                </td>
+                <td>
+                  <img src={paso.foto} alt="foto evidencia" />
+                </td>
+                <td>{paso.fecha}</td>
+                <td>{paso.estado}</td>
+              </tr>
+            </>
+          ))}
+        </tbody>
+      </table>
     </ContainerUbicacion>
   );
 };

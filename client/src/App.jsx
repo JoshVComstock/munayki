@@ -28,6 +28,7 @@ import AlertasAdmin from "./pages/Dashboard/alertasAdmin";
 import DocumentoSlim from "./pages/documentoslim";
 import {ControlEstados} from "./pages/Dashboard/controlEstados";
 import InfoUserAlert from "./pages/Dashboard/infoUserAlert";
+import MapaReporte from "./pages/Dashboard/graficos/mapaReporte";
 
 function App() {
   return (
@@ -69,6 +70,7 @@ function App() {
               <Route path="/dashboard/Quizz" element={<QuizzUser />} />
               <Route path="/dashboard/DondeDenunciar" element={<Denunciasdonde />} />
               <Route path="/dashboard/ReportesdeUser" element={<InfoUserAlert />} />
+              <Route path="/dashboard/reportGraficos" element={<MapaReporte />} />
             </Route>
           </Routes>
           <Modal />
