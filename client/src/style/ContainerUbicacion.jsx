@@ -1,5 +1,5 @@
 import React from "react";
-import styled from"styled-components"
+import styled from "styled-components";
 import { colors } from "./StyleGlobal";
 
 export const ContainerUbicacion = styled.div`
@@ -24,6 +24,7 @@ export const ContainerUbicacion = styled.div`
       padding: 0.2em 0.5em;
     }
   }
+ & aside{
   & > table {
     width: 100%;
     border-collapse: collapse;
@@ -52,6 +53,9 @@ export const ContainerUbicacion = styled.div`
         background-color: ${colors.CC};
         color: ${colors.light};
         padding: 0.2em 1em;
+        border: none;
+        margin: 1em auto;
+        outline: none;
       }
       tr {
         height: 50px;
@@ -72,12 +76,26 @@ export const ContainerUbicacion = styled.div`
           overflow: hidden;
           text-overflow: ellipsis;
 
-          & > button {
+          & img {
+            width: 50px;
+            padding-top: 5px;
+            transition: all 1s ease-in-out;
+            &:hover {
+              transform: scale(1.5);
+              z-index: 100;
+              width: 100px;
+            }
+          }
+          & button {
             width: 100px;
             height: 30px;
             background: transparent;
             border: 1px solid ${colors.CC};
             cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5em;
             &:hover {
               background: ${colors.CC};
               color: ${colors.light};
@@ -93,4 +111,21 @@ export const ContainerUbicacion = styled.div`
       }
     }
   }
+}
+  @media screen and (max-width: 768px) {
+    & > h1{
+      padding:2em;
+    }
+  & aside{
+    width:90vw;
+    margin:0 auto;
+    overflow-x:scroll ;
+   
+    & table{
+      width:1200px;
+    }
+  }
+  }
+
+
 `;

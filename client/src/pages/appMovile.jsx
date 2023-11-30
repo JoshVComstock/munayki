@@ -1,14 +1,14 @@
 import React from "react";
 import { DivMobile } from "../style/compStyle";
 import mobil from "../assets/mobile.gif";
-import movil1 from "../assets/app/img1.jpeg";
-import movil2 from "../assets/app/img2.jpeg";
+import movil1 from "../assets/app/img1.jpg";
+import movil2 from "../assets/app/img2.jpg";
 import movil3 from "../assets/app/img3.jpeg";
-import movil4 from "../assets/app/img4.jpeg";
-import movil5 from "../assets/app/img5.jpeg";
-import movil6 from "../assets/app/img6.jpeg";
-import movil7 from "../assets/app/img7.jpeg";
-import movil8 from "../assets/app/img12.jpeg";
+import movil4 from "../assets/app/img4.jpg";
+import movil5 from "../assets/app/img5.jpg";
+import movil6 from "../assets/app/img6.jpg";
+import movil7 from "../assets/app/img7.jpg";
+import movil8 from "../assets/app/img12.jpg";
 
 import movilgif from "../assets/mobileMunaiky.gif";
 
@@ -29,7 +29,7 @@ const AppMovile = () => {
     <DivMobile>
       <div>
         <img src={movilgif} alt="" />
-        <p>
+        <p className="app">
           <h1>Munayki App</h1>
           La aplicación móvil Munayki está diseñada para ayudar a las personas
           que puedan encontrarse en situaciones de violencia o peligro. Ofrece
@@ -89,9 +89,9 @@ const AppMovile = () => {
       <section>
         <img src={img[5]} alt="" />
         <article>
-          <label>Paso 5: Realización de un Quiz de Riesgo</label>
+          <label>Paso 5: Realización de un Quizz de Riesgo</label>
           <p>
-            La aplicación cuenta con un Quiz que te permitirá evaluar tu nivel
+            La aplicación cuenta con un Quizz que te permitirá evaluar tu nivel
             de riesgo en situaciones de violencia. Responde a las preguntas y
             obtén una evaluación de tu situación.{" "}
           </p>

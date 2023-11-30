@@ -32,10 +32,11 @@ const Termometro = () => {
     }, 1000);
   }, []);
   const getResultados = async () => {
-    const response = await fetch("https://munayki-serve.vercel.app/resultadosCuestionarioPuntuacion");
+    const response = await fetch(url+"/resultadosCuestionarioPuntuacion");
     const data = await response.json();
     setUsuarioNombre(data);
   };
+  console.log(UsuarioNombre)
   const data = {
     datasets: [
       {
@@ -62,7 +63,7 @@ const Termometro = () => {
   };
 
   return (
-    <aside>
+    <aside className="termometro">
       <article>
         <Doughnut
           data={data}
@@ -70,9 +71,10 @@ const Termometro = () => {
       </article>
       <div>
         <h2>Niveles de riesgo</h2>
-        <li> 1. Estar atent@ a estas conductas</li>
-        <li> 2. Ten cuidado, no dejes que suceda, corres riesgo</li>
-        <li>
+        <p>Cada color corresponde a un nivel de riesgo </p>
+        <li style={{background:"#ffce56" , padding:".5em "}}> 1. Estar atent@ a estas conductas</li>
+        <li style={{background:"#ff6384" , padding:".5em "}}> 2. Ten cuidado, no dejes que suceda, corres riesgo</li>
+        <li style={{background:"#9966ff" , padding:".5em "}}>
           3. Tu integridad física y psicológica esta en riesgo, no
           calles,DENUNCIA!!!
         </li>

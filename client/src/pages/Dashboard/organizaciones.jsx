@@ -1,143 +1,80 @@
 import React, { useEffect, useState } from "react";
-import { colors } from "../../style/StyleGlobal";
-const url = import.meta.env.VITE_BACKEND_URL;
-import Datauser from "../../components/dashboard/datosuser";
-import useHttpGet from "../../hook/useHttpGet";
-import { useDelete } from "../../hook/useDelete";
-import { usePost } from "../../hook/usePost";
 import { ContainerUbicacion } from "../../style/ContainerUbicacion";
-
+import { peticionGet, peticionPostPut } from "../../services/getRequest";
+import Swal from "sweetalert2";
+import { peticionDelete } from "../../services/deletRequest";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSitemap, faTrash } from "@fortawesome/free-solid-svg-icons";
 const Organizaciones = () => {
-  let pamatro = "organizacion";
-  let userio = "user";
-  const organizacionUrl = `${url}/${pamatro}`;
-  const userUrl = `${url}/${userio}`;
-  const { data: getOrgData, loading, error } = useHttpGet(organizacionUrl);
-  const {
-    data: getUserData,
-    loading: loadingUser,
-    error: errorUser,
-  } = useHttpGet(userUrl);
-
-  const [filterCriteria, setFilterCriteria] = useState("");
+  const mapUrl = "https://www.google.com/maps/search/?api=1&query=";
   const [form, setForm] = useState({
     nombre: "",
     ubicacion: "",
-    ubicaciondata: "",
     areVulnerable: "",
-    usuarioId: "",
   });
-  const mapUrl = "https://www.google.com/maps/search/?api=1&query=";
-
- 
-  const handleDelete = (id) => {
-    useDelete(url, id, pamatro);
+  const [data, setData] = useState("");
+  const fetchData = async () => {
+    try {
+      const result = await peticionGet("/organizacion");
+      setData(result);
+    } catch (error) {
+      console.error("Error al obtener datos:", error);
+    }
   };
   useEffect(() => {
-    renderDatos();
-  }, [getOrgData]);
-  
-  const renderDatos = () => {
-    if (loading) {
-      return (
-        <section className="contenedor">
-          <div className="loader"></div>
-        </section>
-      );
-    }
+    fetchData();
+  }, []);
 
-    if (error) {
-      return <div>Error: {error.message}</div>;
-    }
-
-    if (getOrgData && getOrgData.length) {
-      const filteredData = getOrgData.filter((dato) => {
-        return (
-          dato.nombre.toLowerCase().includes(filterCriteria.toLowerCase()) ||
-          dato.usuario.nombre
-            .toLowerCase()
-            .includes(filterCriteria.toLowerCase())
-        );
+  const handleSend = async (e) => {
+    if (!form.nombre.trim() || !form.ubicacion.trim() || !form.areVulnerable.trim()) {
+      return Swal.fire({
+        icon: "error",
+        title: "¡Error!",
+        text: "Todos los campos son obligatorios",
       });
-
-      if (filteredData.length === 0) {
-        return (
-          <tr>
-            <td colSpan="6">No se encontraron resultados</td>
-          </tr>
-        );
-      }
-
-      return filteredData.map((dato, v) => (
-   
-       <tr key={dato.id}>
-          <td>{v + 1}</td>
-          <td>{dato.nombre}</td>
-          <td>
-            <a
-              href={dato.ubicacion}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                textDecoration: "none",
-                color: "#fff",
-                background: colors.C,
-                padding: "0.5em 2em",
-                borderRadius: 2,
-              }}
-            >
-              Ver Ubicación
-            </a>
-          </td>
-          <td>{dato.areVulnerable}</td>
-          <td>{dato.usuario.nombre}</td>
-          <td>
-            <button onClick={() => handleDelete(dato.id)}>Eliminar</button>
-          </td>
-        </tr>
-     
-        
-      ));
-    } else {
-      return (
-        <tr>
-          <td colSpan="6">
-            <section className="contenedor">
-              <div className="loader"></div>
-            </section>
-          </td>
-        </tr>
-      );
     }
+    const res = await peticionPostPut("/organizacion", {
+      nombre: form.nombre,
+      ubicacion: form.ubicacion,
+      areVulnerable: form.areVulnerable,
+    }, "POST");
+    res && res.message === "successully created"
+      ? (Swal.fire({
+        icon: "success",
+        title: "¡ organizacion creada !",
+        text: `se registrado conexito `,
+      }),
+        setForm({
+          nombre: "",
+          ubicacion: "",
+          areVulnerable: "",
+        }),
+        fetchData())
+      : alert(res.message);
+  };
+
+  const deleteData = async (data) => {
+    await peticionDelete("/organizacion/", data);
+    await fetchData();
   };
   return (
     <ContainerUbicacion>
       <div>
         <h1>Organizaciones </h1>
-        <input
-          type="text"
-          value={filterCriteria}
-          onChange={(e) => setFilterCriteria(e.target.value)}
-          placeholder="Filtrar por nombre o usuario"
-        />
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Nro</th>
-            <th>Nombre</th>
-            <th>Ubicacion</th>
-            <th>Area vulnerable</th>
-            <th>usuario</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        {loading ? (
-          <section className="contenedor">
-            {" "}
-            <div className="loader"></div>
-          </section>
-        ) : (
+
+      <aside>
+        <table>
+          <thead>
+            <tr>
+              <th>Nro</th>
+              <th>Nombre</th>
+              <th>Ubicacion</th>
+              <th>Area vulnerable</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+
           <tbody>
             <tr className="agregando">
               <td>Nueva organizacion</td>
@@ -181,66 +118,35 @@ const Organizaciones = () => {
                 />
               </td>
               <td>
-                <select
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      usuarioId: parseInt(e.target.value),
-                    })
-                  }
-                >
-                  <option>Busque usuario</option>
-                  {getUserData.map((v, i) => (
-                    <option key={v.id} value={v.id}>
-                      {v.nombre ? v.nombre : "Nombre no disponible"}
-                    </option>
-                  ))}
-                </select>
-              </td>
-              <td>
-                <button
-                  onClick={() => {
-                    usePost(`${url}/organizacion`, {
-                      ...form,
-                      ubicacion: mapUrl + form.ubicacion,
-                    });
-                  }}
-                >
-                  Agregar
-                </button>
+                <button onClick={(e) => handleSend()}>Agregar</button>
               </td>
             </tr>
-            {/* {renderDatos()} */}
-            <tr >
-          <td>1</td>
-          <td>Slim</td>
-          <td>
-            <a
-              href="https://www.google.com/maps/search/?api=1&query=slim"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                textDecoration: "none",
-                color: "#fff",
-                background: colors.C,
-                padding: "0.5em 2em",
-                borderRadius: 2,
-              }}
-            >
-              Ver Ubicación
-            </a>
-          </td>
-          <td>Muejers</td>
-          <td>hanz</td>
-          <td>
-            <button >Eliminar</button>
-          </td>
-        </tr>
-          </tbody>
-        )}
-      </table>
 
-      {/* <Datauser /> */}
+            {Array.isArray(data) &&
+              data.map((regis) => (
+                <tr key={regis.id}>
+                  <td>{regis.id}</td>
+                  <td>{regis.nombre}</td>
+                  <td>
+                    <a
+                      href={`${mapUrl}${regis.ubicacion}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <button>Ver Mapa</button>
+                    </a>
+                  </td>
+                  <td>{regis.areVulnerable}</td>
+
+                  <td>
+
+                    <button onClick={() => deleteData(regis.id)}> <FontAwesomeIcon icon={faTrash} />eliminar</button>
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </aside>
     </ContainerUbicacion>
   );
 };

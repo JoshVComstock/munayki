@@ -46,7 +46,7 @@ model ResultadoCuestionario {
 
 model Organizacion {
   id            Int      @id @default(autoincrement())
-  nombre        String
+  nombre        String   @unique
   ubicacion     String
   ubicacionData String
   areVulnerable String

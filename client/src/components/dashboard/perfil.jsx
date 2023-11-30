@@ -8,7 +8,7 @@ const Perfil = () => {
         <img src={Bell} alt="" />
         <p>9</p>
       </div>
-      <img src="https://static.nationalgeographic.es/files/styles/image_3200/public/01-leonardo-da-vinci-book-talk.jpg?w=1900&h=2279" alt="" />
+      <img src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png" alt="" />
     </Containerperfil>
   )
 }

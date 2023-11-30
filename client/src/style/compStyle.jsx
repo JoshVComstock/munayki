@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { Link } from "react-router-dom";
 import {
   BackgraundQuizz,
   FlexComun,
@@ -59,6 +60,70 @@ export const Section = styled.section`
     display: flex;
     animation: slideIn 1s ease-in-out;
   }
+  @media screen and (max-width: 768px) {
+    & .login {
+      height: 55vh;
+      width: 95vw;
+      & article {
+        height: 40vh;
+        & img {
+          width: 100px;
+        }
+      }
+    }
+    & .Register {
+      height: 70vh;
+      width: 95vw;
+      & article {
+        height: 50vh;
+        & img {
+          width: 100px;
+        }
+      }
+    }
+    .login > Form {
+      flex-wrap: nowrap;
+      gap: 0.5em;
+      & h1 {
+        margin-top: 1.6em;
+        margin-bottom: 0.5em;
+      }
+      label {
+        width: 100%;
+        text-align: start;
+      }
+    }
+    .Register > Form {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      gap: 0.5em;
+      & h1 {
+        margin-top: 1.6em;
+        margin-bottom: 0.5em;
+      }
+      label {
+        width: 100%;
+        text-align: start;
+      }
+    }
+
+    & .Register > form > div {
+      width: 100%;
+    }
+  }
+  @media screen and (max-width: 420px) {
+.login , .Register{
+  & >article{
+    display:none;
+  }
+  & form{
+    width:90vw;
+  }
+}
+  }
+  
+  
+
 `;
 
 export const Iniciodiv = styled.div`
@@ -67,6 +132,7 @@ export const Iniciodiv = styled.div`
   width:100%;
   position: relative;
   justify-content: space-evenly;
+  overflow: hidden;
   &::after {
     position: absolute;
     content: "";
@@ -107,19 +173,23 @@ export const Iniciodiv = styled.div`
     width: calc(90% / 3);
     position: relative;
     margin-top: 4em;
+    & > button {
+      display: none;
+    }
     & div {
       position: absolute;
       height: 55px;
       width: 55px;
       content: "";
       background-color: ${colors.CC};
-      top: 10%;
+      top: 5%;
       ${FlexComun}
       flex-direction:row;
       border-radius: 1em;
       z-index: 10;
       padding: 1em;
       animation: animloader 1s ease;
+      left: -15%;
       & > img {
         height: 40px;
         width: 40px;
@@ -147,7 +217,7 @@ export const Iniciodiv = styled.div`
         transform: translateX(70%);
       }
       &:nth-child(1) {
-        left: -15%;
+        left: -5%;
         top: 5%;
       }
       &:nth-child(2) {
@@ -213,6 +283,47 @@ export const Iniciodiv = styled.div`
         color: #fff;
         -webkit-text-stroke: 3px ${colors.CC};
         text-stroke: 2px black;
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    height: 450px;
+
+    & > p {
+      opacity: 0.4;
+    }
+    & > aside {
+      display: none;
+    }
+    & > section {
+      height: 100vw;
+      width: 20vw;
+      justify-content: start;
+      padding: 5em 8em 2em 8em;
+      transform: translateX(-100px);
+      & > div {
+        font-size: 0.7em;
+        & > p {
+          width: 200px;
+        }
+        & > button {
+          z-index: 10;
+        }
+      }
+      & > h1 {
+        width: 40%;
+        z-index: 2;
+        color: ${colors.BB};
+        font-size: 1.5em;
+        height: 50%;
+        & > strong {
+          width: 85%;
+          font-size: 2em;
+          font-weight: bold;
+          color: #fff;
+          -webkit-text-stroke: 3px ${colors.CC};
+          text-stroke: 2px black;
+        }
       }
     }
   }
@@ -297,22 +408,41 @@ export const ViolentimetroA = styled.div`
         }
       }
     }
+    @media screen and (max-width: 768px) {
+      height: 120vh;
+      flex-direction: column;
+
+      div {
+        flex-direction: column;
+        & section {
+          width: 100%;
+        }
+        gap: 2em;
+        & button {
+          width: 80vw;
+        }
+      }
+      p {
+        width: 300px;
+      }
+    }
   }
 `;
 
 export const Filtro = styled.div`
-  width: 100%;
+  width: 100vw;
   z-index: 8;
   height: auto;
   flex-wrap: wrap;
   box-shadow: 0 -4px 5px #0005;
   flex-direction: column;
+  overflow: hidden;
+
   & > section {
     ${FlexComun}
     justify-content:start;
     margin: 1em;
     gap: 2em;
-    width: 100%;
     & > article {
       ${FlexComun}
       background-color: ${colors.CC};
@@ -337,6 +467,12 @@ export const Filtro = styled.div`
         height: 100%;
       }
     }
+    @media screen and (max-width: 768px) {
+      flex-wrap: wrap;
+      & > article {
+        width: 180px;
+      }
+    }
   }
 
   & > article {
@@ -346,13 +482,18 @@ export const Filtro = styled.div`
   }
 `;
 export const Mapasstyle = styled.section`
-  height: 50vh;
-  margin:0 auto;
-  width:90%;
+  height: auto;
+  margin: 4em auto;
+  width: 80%;
   ${FlexComun}
-gap:2em;
-  & > iframe{
-box-shadow:0 10px 10px #0005;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2em;
+  & > div {
+    text-align: center;
+    & > iframe {
+      box-shadow: 0 10px 10px #0005;
+    }
   }
 `;
 export const DivMobile = styled.section`
@@ -384,11 +525,11 @@ export const DivMobile = styled.section`
   & section {
     ${FlexComun}
     gap :2em;
-    width:80%;
-    margin:0 auto;
-    height:100%;
-    &:nth-child(2n){
-      flex-direction:row-reverse;
+    width: 80%;
+    margin: 0 auto;
+    height: 100%;
+    &:nth-child(2n) {
+      flex-direction: row-reverse;
     }
     & p {
       width: 40em;
@@ -399,13 +540,45 @@ export const DivMobile = styled.section`
         padding: 1em;
       }
     }
-      & > img {
+    & > img {
       width: 15em;
     }
-    & label{
-      padding:2em;
+    & label {
+      padding: 2em;
     }
+  }
+  @media screen and (max-width: 768px) {
+    div {
+      flex-direction: column-reverse;
+      .app {
+        width: 100%;
+      }
     }
+    h2 {
+      width: 100%;
+
+      strong {
+      }
+    }
+    & section {
+      width: 100%;
+      flex-direction: column-reverse;
+      & label {
+        display: block;
+        color: ${colors.CC};
+        font-weight: 600;
+        width: 80vw;
+      }
+      & article {
+        & > p {
+          width: 80vw;
+        }
+      }
+      &:nth-child(2n) {
+        flex-direction: column-reverse;
+      }
+    }
+  }
 `;
 export const Recursos = styled.section`
   ${FlexComun}
@@ -448,15 +621,15 @@ export const Recursos = styled.section`
           padding: 1em;
           border: none;
           color: #fff;
+          cursor: pointer;
         }
         .estadoa {
           position: relative;
           padding: 1em 4em;
           bottom: -5em;
-          background-color: transparent;
           border-radius: 0.5em;
           border: solid 1px ${colors.BB};
-          color: ${colors.BB};
+          color: #fff;
         }
       }
     }
@@ -526,6 +699,169 @@ export const RutasStyle = styled.section`
           background-color: ${colors.CC};
           color: #fff;
           box-shadow: 0 5px 10px #0005;
+        }
+      }
+    }
+  }
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
+
+export const SlimStyle = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+  & > article {
+    width: 100vw;
+    margin: 0 auto;
+    ${FlexComun}
+    flex-direction:column;
+    padding: 2em;
+    position: relative;
+    & > p {
+      font-size: 2em;
+      color: ${colors.BB};
+      width: 60%;
+      ${FlexComun}
+      justify-content:space-around;
+      margin: 2em;
+      & > div {
+        width: 10%;
+        ${FlexComun}
+        color:#000;
+      }
+    }
+    @media screen and (max-width: 768px) {
+      &>div{
+        flex-direction:column;
+      }
+          flex-direction: column;
+        }
+    & > div {
+      width: 90%;
+      display: flex;
+      gap: 1em;
+      & > div {
+        flex: 1 0 21%;
+        scroll-snap-align: start;
+       
+        & > ${StyledLink} {
+          position: relative;
+          ${FlexComun}
+          flex-direction:column;
+          border: 2px solid ${colors.CC};
+          background-color: transparent;
+          border-radius: 10px;
+          text-align: center;
+          box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+          height: 425px;
+          overflow: hidden;
+          & p {
+            color: ${colors.D};
+            padding: 0.5em;
+            margin: 1em;
+          }
+          &:hover {
+            transform: scale(1.05);
+            &::before {
+              content: "";
+              position: absolute;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              background: linear-gradient(
+                to bottom right,
+                transparent 90%,
+                ${colors.C} 50%
+              );
+              transform: skewX(-20deg);
+              transform-origin: bottom right;
+            }
+          }
+          & .fade {
+            opacity: 0;
+          }
+        }
+      }
+    }
+    & button {
+      margin-top: 1em;
+      background-color: ${colors.BB};
+      padding: 1em;
+      border: none;
+      color: #fff;
+    }
+  }
+`;
+
+export const DocSlimStyle = styled.section`
+  & > article {
+    width: 100%;
+    margin: 0 auto;
+    ${FlexComun}
+    flex-direction:column;
+    padding: 2em;
+    position: relative;
+    & > p {
+      font-size: 2em;
+      color: ${colors.BB};
+      width: 60%;
+      ${FlexComun}
+      justify-content:space-around;
+      margin: 2em;
+      & > div {
+        width: 10%;
+        ${FlexComun}
+        color:#000;
+      }
+    }
+    & > div {
+      width: 50%;
+      display: ${FlexComun};
+      & > div {
+        width: 97%;
+        padding-left: 2em;
+        text-align: justify;
+      }
+    }
+  }
+`;
+
+export const LegalStyle = styled.section`
+  & > article {
+    width: 100%;
+    margin: 0 auto;
+    ${FlexComun}
+    flex-direction:column;
+    padding: 2em;
+    position: relative;
+    & > p {
+      font-size: 2em;
+      color: ${colors.BB};
+      width: 60%;
+      ${FlexComun}
+      justify-content:space-around;
+      margin: 2em;
+      & > div {
+        width: 10%;
+        ${FlexComun}
+        color:#000;
+      }
+    }
+    & > div {
+      width: 50%;
+      display: ${FlexComun};
+      & > aside {
+        text-align: justify;
+        & > p {
+          color: ${colors.AA};
+        }
+        & > div {
+          width: 90%;
+          padding-left: 2em;
         }
       }
     }

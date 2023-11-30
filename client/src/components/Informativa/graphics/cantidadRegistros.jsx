@@ -3,6 +3,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import resul from "../../../data/registara.json";
 ChartJS.register(ArcElement, Tooltip, Legend);
+const url = import.meta.env.VITE_BACKEND_URL;
 
 const CantidadRegistros = ({ datos }) => {
   const [usuarioNombre,setUsuarioNombre]=useState([]);
@@ -26,7 +27,7 @@ const CantidadRegistros = ({ datos }) => {
     }, 1000);
   }, []);
   const getResultados = async () => {
-    const response = await fetch("https://munayki-serve.vercel.app/resultadosCuestionarioUsuario");
+    const response = await fetch(url+"/resultadosCuestionarioUsuario");
     const data = await response.json();
     setUsuarioNombre(data);
   };

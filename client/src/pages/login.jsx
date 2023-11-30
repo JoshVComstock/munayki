@@ -9,20 +9,21 @@ import {
   faSignInAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import logo from "../../src/assets/logoChocha.png";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useUser } from "../context/userContextProvider";
-import toast from "react-hot-toast";
+import Swal from "sweetalert2";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { user, setUser } = useUser();
   const [irLogin, setIrLogin] = useState(true);
-  const url = import.meta.env.VITE_BACKEND_URL;  
+  const url = import.meta.env.VITE_BACKEND_URL;
 
   const Evaluando = () => {
     setIrLogin(!irLogin);
   };
-
+  const navigate = useNavigate();
   const postLogin = async (e) => {
     e.preventDefault();
     const login = await fetch(`${url}/login`, {
@@ -40,17 +41,27 @@ const Login = () => {
     if (login.ok) {
       const json = await login.json();
       if (json.error) {
-        alert(json.erro);
+        Swal.fire({
+          icon: "error",
+          title: "¡hubo un error en el ingreso!",
+          text: `Alerta  ID ${json.error} `,
+        });
       } else {
+        Swal.fire({
+          icon: "success",
+          title: "¡Bienvenido!",
+          text: `usuario ${json.data.nombre} `,
+        });
         setUser(json.data);
       }
     }
   };
   const volver = () => {
-    return <Navigate to="/"></Navigate>;
+    setUser(null);
+    return navigate("/");
   };
   if (user) {
-    return <Navigate to="/dashboard/Quizz"></Navigate>;
+    return navigate("/dashboard/DondeDenunciar");
   }
   return (
     <Section>

@@ -8,6 +8,18 @@ import { useUser } from "../context/userContextProvider";
 import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import UserComun from "./userComun";
+import UserNiv2 from "./userNiv2";
+import {
+  faArrowAltCircleLeft,
+  faChartBar,
+  faExclamationCircle,
+  faPaste,
+  faSitemap,
+  faUserTie,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { colors } from "../style/StyleGlobal";
+
 const Admin = () => {
   const navegate = useNavigate();
   const { user, logout } = useUser();
@@ -16,34 +28,58 @@ const Admin = () => {
     navegate("/");
   };
   if (!user) {
-    return <Navigate to={"/"}></Navigate>;
+    return navegate("/"), logout();
   }
+  let menuItems;
+  if (user.rol === "Administrador") {
+    menuItems = (
+      <div>
+        <Linkes to="/dashboard/organizacion">
+          <FontAwesomeIcon icon={faSitemap} />
+          Organizacion
+        </Linkes>
+        <Linkes to="/dashboard/alertasAdmin">
+          <FontAwesomeIcon icon={faExclamationCircle} />
+          Alertas
+        </Linkes>
+        <Linkes to="/dashboard/user">
+          <FontAwesomeIcon icon={faUserTie} /> Usuarios
+        </Linkes>
+        <Linkes to="/dashboard/ReportesdeUser">
+          <FontAwesomeIcon icon={faPaste} />
+          Reportes de ayuda
+        </Linkes>
+        {/* <Linkes to="/dashboard/reportGraficos">
+        <FontAwesomeIcon icon={faChartBar} />
+          Graficos
+        </Linkes> */}
+      </div>
+    );
+  } else if (
+    user.rol === "User" ||
+    user.rol === "loguedApp" ||
+    user.rol === "loggedWeb"
+  ) {
+    menuItems = <UserComun />;
+  } else if (user.rol == "Encargado") {
+    menuItems = <UserNiv2 />;
+  }
+
   return (
     <>
-      {user.rol == "admin" ? (
-        <div>
-          <Linkes to="/dashboard/organizacion">
-            <img src={Location} alt="" />
-            Organizacion
-          </Linkes>
-          <Linkes to="/dashboard/alertas">
-            <img src={Alert} alt="" /> Alertas
-          </Linkes>
-          <Linkes to="/dashboard/user">
-            <img src={Users} alt="" /> Usuarios
-          </Linkes>
-          <Linkes to="/dashboard/Quizz">
-            <img src={Users} alt="" /> Examinar Resultados
-          </Linkes>
-        </div>
-      ) : (
-        <>
-          <UserComun />
-        </>
-      )}
-      <section>
-        <button onClick={salir}>
-          <img src={logaut} alt="" /> Salir
+      {menuItems ? <>{menuItems}</> : "no perteneces a esta app"}
+      <section
+        style={{
+          backgroundColor: colors.CC,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <button
+          onClick={salir}
+          style={{ color: "#fff", border: "solid 1px #fff" }}
+        >
+          <FontAwesomeIcon icon={faArrowAltCircleLeft} /> Salir
         </button>
       </section>
     </>

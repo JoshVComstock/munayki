@@ -24,6 +24,11 @@ import Rutamujeres from "./pages/rutamujeres";
 import QuizzUser from "./pages/Dashboard/quizzUser";
 import Denunciasdonde from "./pages/Dashboard/denunciasdonde";
 import ReportesdeUser from "./pages/Dashboard/reportesdeUser";
+import AlertasAdmin from "./pages/Dashboard/alertasAdmin";
+import DocumentoSlim from "./pages/documentoslim";
+import {ControlEstados} from "./pages/Dashboard/controlEstados";
+import InfoUserAlert from "./pages/Dashboard/infoUserAlert";
+import MapaReporte from "./pages/Dashboard/graficos/mapaReporte";
 
 function App() {
   return (
@@ -42,6 +47,7 @@ function App() {
                 <Route path="/rutas" element={<Rutamujeres />} />
                 <Route path="/legal" element={<Legal />} />
                 <Route path="/slim" element={<Slim />} />
+                <Route path="/slim/documentoslim/:index" element={<DocumentoSlim/>}/>
               </Route>
               <Route path="/ubicaciones" element={<UbiciacionesCli />} />
               <Route path="/login" element={<Login />} />
@@ -57,11 +63,14 @@ function App() {
               }
             >
               <Route path="/dashboard/organizacion" element={<Organacion />} />
+              <Route path="/dashboard/controlEstado" element={<ControlEstados />} />
               <Route path="/dashboard/alertas" element={<Alertas />} />
+              <Route path="/dashboard/alertasAdmin" element={<AlertasAdmin />} />
               <Route path="/dashboard/user" element={<User />} />
               <Route path="/dashboard/Quizz" element={<QuizzUser />} />
               <Route path="/dashboard/DondeDenunciar" element={<Denunciasdonde />} />
-              <Route path="/dashboard/ReportesdeUser" element={<ReportesdeUser />} />
+              <Route path="/dashboard/ReportesdeUser" element={<InfoUserAlert />} />
+              <Route path="/dashboard/reportGraficos" element={<MapaReporte />} />
             </Route>
           </Routes>
           <Modal />

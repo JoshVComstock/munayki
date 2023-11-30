@@ -6,6 +6,9 @@ import { NavLink } from "react-router-dom";
 export const SectionNav = styled.section`
   width: 100%;
   background-color: ${colors.light};
+  & > button {
+    display: none;
+  }
   & nav {
     width: 100%;
     box-shadow: 0 2px 5px #0005;
@@ -52,11 +55,86 @@ export const SectionNav = styled.section`
   & outline {
     background-color: #000;
   }
+  .navVisible {
+    display: none;
+    width: 48px;
+    align-self: flex-start;
+  }
+  .navNoVisible {
+    display: none;
+    width: 48px;
+    align-self: flex-start;
+  }
+  @media screen and (max-width: 768px) {
+    & > button {
+      display: flex;
+      width: 100%;
+      border: none;
+      background-color: ${colors.CC};
+      justify-content: center;
+      align-items: center;
+      height: 60px;
+      font-size: 20px;
+      color: #fff;
+    }
+    nav {
+      display: none;
+    }
+    .navNoVisible {
+      opacity: 0;
+      animation: slideIn 1s ease-in-out;
+    }
+    .navVisible {
+      animation: slideIn 1s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      width: 70vw;
+      height: 100vh;
+      position: fixed;
+      z-index: 100;
+      top: 0;
+      left: 0;
+      background-color: #fff;
+      & button {
+        width: 48px;
+        align-self: flex-end;
+        border: none;
+        background-color: ${colors.CC};
+        color: #fff;
+        height: 48px;
+        margin: 2em;
+      }
+      & article {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        & div {
+          display: flex;
+          width: 70%;
+          justify-content: flex-start;
+          background-color: ${colors.CC};
+          align-items: center;
+          color: #fff;
+          padding: 0.5em 1em;
+          font-size: 0.8em;
+          border-radius: 0 0.5em 0.5em 0;
+          & img {
+            filter: invert(1);
+            width: 30px;
+            height: 30px;
+          }
+        }
+      }
+    }
+  }
 `;
 export const Sectionav = styled.section`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  & > button {
+    display: none;
+  }
   & > nav {
     ${FlexComun}
     flex-direction:column;
@@ -68,7 +146,9 @@ export const Sectionav = styled.section`
     position: sticky;
     top: 0;
     left: 0;
-
+    & > button {
+      display: none;
+    }
     & > div {
       width: 100%;
       height: 30%;
@@ -139,7 +219,19 @@ export const Sectionav = styled.section`
         }
       }
     }
+    .navV {
+      display: none;
+      width: 48px;
+      align-self: flex-start;
+      animation: slideIn 1s ease-in-out;
+    }
+    .navNoV {
+      display: none;
+      width: 48px;
+      align-self: flex-start;
+    }
   }
+
   & > .outline {
     width: calc(100% - 230px);
     display: flex;
@@ -150,8 +242,53 @@ export const Sectionav = styled.section`
       flex-direction: row;
       padding: 1.5rem;
       justify-content: space-between;
-    border-bottom:solid 1px #0005;
-
+      border-bottom: solid 1px #0005;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    & nav {
+      position: fixed;
+      width: 75vw;
+      z-index: 250;
+      & > button {
+        display: flex;
+        width: 40px;
+        height:40px;
+        border: none;
+        background-color: ${colors.CC};
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        color: #fff;
+        cursor: pointer;
+        position: absolute;
+        top: 1em;
+        right: 1em;
+      }
+    }
+    & nav.navV {
+      background: #fff;
+      animation: slideIn 1s ease-in-out;
+    }
+    & nav.navNoV {
+      opacity: 0;
+      z-index: -100;
+    }
+    & > button {
+      display: flex;
+      width: 100%;
+      border: none;
+      background-color: ${colors.CC};
+      justify-content: center;
+      align-items: center;
+      height: 60px;
+      font-size: 20px;
+      color: #fff;
+      cursor: pointer;
+    }
+    .outline {
+      width: 100vw;
     }
   }
 `;
@@ -224,6 +361,28 @@ export const Footerstyle = styled.section`
         text-decoration: none;
         border-left: solid 1px #fff;
         padding: 0.2em 1em;
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .logos {
+      width: 100%;
+      height: auto;
+      justify-content: start;
+      & img {
+        width: 100px;
+        height: auto;
+        &:nth-child(2) {
+          height: 40px;
+        }
+      }
+    }
+    section {
+      flex-direction: column;
+      & div {
+        a {
+          width: 100%;
+        }
       }
     }
   }

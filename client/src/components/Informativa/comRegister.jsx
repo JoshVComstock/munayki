@@ -9,6 +9,9 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logoChocha.png";
 import { useState } from "react";
 import { peticionPost } from "../../services/getRequest";
+import Swal from "sweetalert2";
+import { colors } from "../../style/StyleGlobal";
+
 const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
   const navigate = useNavigate();
   const [seguir, setSeguir] = useState(false);
@@ -26,6 +29,12 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
 
   const handleSend = async (e) => {
     e.preventDefault();
+    if (!dataRegister.apellido.trim() || !dataRegister.nombre.trim() || !dataRegister.edad.trim() || !dataRegister.telefono.trim() || !dataRegister.correo.trim() || !dataRegister.password.trim() || !dataRegister.carnet.trim() || !dataRegister.genero.trim()) {
+      return Swal.fire({
+        icon: "error",
+        title: "Llene todos los campos",
+      });
+    }
     const res = await peticionPost("/user", {
       nombre: dataRegister.nombre,
       apellido: dataRegister.apellido,
@@ -37,13 +46,16 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
       rol: dataRegister.rol,
       genero: dataRegister.genero,
     });
-    console.log(dataRegister);
     res && res.message === "sucessully create"
-      ? (navigate("/login"), alert("Registrado"))
+      ? (Swal.fire({
+        icon: "success",
+        title: "Usuario agregado!",
+        text: `Recuerda tu email y tu contraseña e inicia sesion`,
+      }),
+        navigate("/"))
       : alert(res.message);
   };
 
-  const volver = () => {};
   return (
     <div className={`Register ${irLogin ? "" : "active"}`}>
       <article>
@@ -57,12 +69,11 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
         <h1> Formuario de inicio</h1>
         {seguir ? (
           <>
-            <label > Genero</label>
+            <label> Género</label>
             <div>
               <FontAwesomeIcon icon={faEnvelope} />
-              <input
-                type="text"
-                name="genero"
+
+              <select
                 value={dataRegister.genero}
                 onChange={(event) =>
                   setDataRegister((old) => ({
@@ -70,7 +81,12 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
                     genero: event.target.value,
                   }))
                 }
-              />
+                style={{ background: colors.CC, color: "#fff", width: "90% ", padding: 8, border: "none" }}
+
+              >
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino ">Femenino</option>
+              </select>
             </div>
             <label htmlFor="password"> Contraseña:</label>
             <div>
@@ -90,7 +106,7 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
           </>
         ) : (
           <>
-            <label htmlFor="text">Nombre:</label>
+            <label htmlFor="text">Nombre (s):</label>
 
             <div>
               <FontAwesomeIcon icon={faEnvelope} />
@@ -106,7 +122,7 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
                 }
               />
             </div>
-            <label htmlFor="email">Apellido:</label>
+            <label htmlFor="email">Apellido (s):</label>
             <div>
               <FontAwesomeIcon icon={faEnvelope} />
               <input
@@ -151,7 +167,7 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
                 }
               />
             </div>
-            <label htmlFor="email">Telefono:</label>
+            <label htmlFor="email">Celular:</label>
             <div>
               <FontAwesomeIcon icon={faEnvelope} />
               <input
@@ -166,7 +182,7 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
                 }
               />
             </div>
-            <label htmlFor="text">carnet:</label>
+            <label htmlFor="text">Dirección:</label>
             <div>
               <FontAwesomeIcon icon={faEnvelope} />
               <input
@@ -190,23 +206,19 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
             }}
           >
             <FontAwesomeIcon icon={faSignInAlt} />
-            Contunuar con el registro
+            Continuar con el registro
           </button>
         ) : (
-          <div style={{ width: "100%" }}>
+          <div style={{ width: "100%", flexWrap: "wrap" }}>
             <button
               onClick={() => {
                 setSeguir(!seguir);
               }}
             >
-              registro anterior
+              Registro anterior
               <FontAwesomeIcon icon={faSignInAlt} />
             </button>
-            <button
-              
-               onClick={ handleSend}
-           
-            >
+            <button onClick={handleSend}>
               <FontAwesomeIcon icon={faSignInAlt} />
               Registrarse
             </button>
@@ -215,7 +227,7 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
 
         <button className="volver" onClick={Evaluando}>
           <FontAwesomeIcon icon={faArrowLeft} />
-          volver
+          Volver
         </button>
       </form>
     </div>

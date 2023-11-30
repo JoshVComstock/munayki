@@ -11,7 +11,6 @@ export const QuizzContent = styled.section`
     font-size: 0.7em;
     color: red;
   }
-
   & > div {
     width: 100%;
     ${FlexComun}
@@ -20,7 +19,6 @@ export const QuizzContent = styled.section`
       ${FlexComun}
       flex-direction:column;
       justify-content: start;
-
       & > h2 {
         text-align: center;
         font-size: 16px;
@@ -71,11 +69,8 @@ export const QuizzContent = styled.section`
             ${FlexComun}
             width:100%;
             gap: 4em;
-
-            
             & label {
                 font-size:1em;
-             
             }
           }
           & > div {
@@ -101,10 +96,19 @@ export const QuizzContent = styled.section`
             cursor: pointer;
             ${FlexComun}
             gap:1em;
-            
           }
         }
       }
     }
+    @media screen and (max-width: 768px) {
+    width:100vw;
+ 
+   & article{
+    width:95vw;
+
+   }
   }
+  }
+
+  
 `;

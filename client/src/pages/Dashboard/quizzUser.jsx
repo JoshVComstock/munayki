@@ -17,12 +17,9 @@ const QuizzUser = () => {
   const mostrarndo = () => {
     setMostrar(!mostrar);
   };
-
-  console.log("userData:es", data);
-  console.log("user es", user);
   return (
     <Dat style={{ margin: " 0 auto" }}>
-      <Quizz />
+      {/* <Quizz />
       <h3
         style={{
           fontSize: 14,
@@ -68,60 +65,12 @@ const QuizzUser = () => {
         ) : (
           ""
         )}
-      </article>
-      {/* <div> */}
-        {/* <Termometro /> */}
-        {/* <section>
-          <button> Conactate con Slim</button>
-          <button> Conactate con Fcc</button>
-          <button> Conactate con Fcn</button>
-        </section>
-      </div> */}
+      </article> */}
     </Dat>
   );
 };
 
 export default QuizzUser;
 const Dat = styled.div`
-  & div {
-    display: flex;
-    flex-direction: row;
-    & > aside {
-      width: 40%;
-      margin: 0 auto;
-
-      & div {
-        display: flex;
-        flex-direction: column;
-      }
-    }
-    & > section {
-      width: 40%;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 1em;
-      & button {
-        width: 70%;
-        height: 2.5em;
-        border: none;
-        font-size: 0.8em;
-        background-color: ${colors.CC};
-        color: #fff;
-        border-radius: 0.3em;
-      }
-    }
-  }
-  .dataa {
-    padding: 0.5em 5em;
-    display: flex;
-    justify-content: space-between;
-    & p {
-      background-color: ${colors.CC};
-      padding: 0.5em 1em;
-      color: #fff;
-      font-size: 0.8em;
-    }
-  }
+  
 `;

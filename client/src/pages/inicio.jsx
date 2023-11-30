@@ -10,6 +10,13 @@ import Filtros from "./InicioSecciones/filtros";
 import Footer from "../components/Informativa/footer";
 import { Link, useNavigate } from "react-router-dom";
 import { useScroll } from "../context/ScrollContext";
+import {
+  faBars,
+  faLongArrowAltRight,
+  faThLarge,
+  faThList,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Inicio = () => {
   const navegate = useNavigate();
   const { scrollPosition, setScrollPosition, handleScroll } = useScroll();
@@ -19,7 +26,15 @@ const Inicio = () => {
     navegate(`/${path}`);
     handleScroll();
   };
- 
+  const [claseCSS, setClaseCSS] = useState('clase-inicial'); 
+
+  const cambiarClase = () => {
+    if (claseCSS === 'clase-inicial') {
+      setClaseCSS('clase-alternativa');
+    } else {
+      setClaseCSS('clase-inicial');
+    }
+  };
   return (
     <>
       <Iniciodiv>
@@ -37,7 +52,9 @@ const Inicio = () => {
         <article>
           <img src={imgf} />
         </article>
-        <aside>
+        <aside className={claseCSS} >
+
+        <button><FontAwesomeIcon icon={faBars} onClick={cambiarClase}/></button>
           <div id="mover" onClick={() => ingresar("appmovil")}>
             <img src={tel} alt="" />
             <p>Aplicación móvil</p>

@@ -12,17 +12,30 @@ app.get("/organizacion", async (req, res) => {
   res.send(organizacion);
 });
 app.post("/organizacion", async (req, res) => {
-  const organizacion = await prisma.organizacion.create({
-    data: {
-      nombre: req.body.nombre,
-      areVulnerable: req.body.areVulnerable,
-      ubicacion: req.body.ubicacion,
-    },
-  });
-  res.json({
-    message: "successully created",
-    data: organizacion,
-  });
+  try {
+    const organizacion = await prisma.organizacion.create({
+      data: {
+        nombre: req.body.nombre,
+        areVulnerable: req.body.areVulnerable,
+        ubicacion: req.body.ubicacion,
+        ubicacionData:req.body.ubicacionData
+      }
+    });
+    res.json({
+      message: "successully created",
+      data: organizacion,
+    });
+  } catch (error) {
+    if (error.code === "P2002" && error.meta?.target?.includes("nombre")) {
+      return res.status(400).json({
+        error: "Ya existe una organización con este nombre.",
+      });
+    }
+    console.error(error);
+    res.status(500).json({
+      error: "Error interno del servidor al crear la organización.",
+    });
+  }
 });
 app.put("/organizacion/:id", async (req, res) => {
   const id = parseInt(req.params.id);
