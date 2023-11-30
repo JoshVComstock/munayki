@@ -53,7 +53,7 @@ const Admin = () => {
     );
   } else if (
     user.rol === "User" ||
-    user.rol === "loguedApp" ||
+    user.rol === "logedApp" ||
     user.rol === "loggedWeb"
   ) {
     menuItems = <UserComun />;

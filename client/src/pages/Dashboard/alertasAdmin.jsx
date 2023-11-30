@@ -95,7 +95,6 @@ const AlertasAdmin = () => {
       alert(res.message);
     }
   };
-
   return (
     <ContainerUbicacion>
       <div>
@@ -148,6 +147,7 @@ const AlertasAdmin = () => {
         </tbody>
       </table>
   </aside>
+  
     </ContainerUbicacion>
   );
 };
