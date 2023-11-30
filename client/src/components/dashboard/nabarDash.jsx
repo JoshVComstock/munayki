@@ -16,9 +16,7 @@ const NabarDash = ({ children }) => {
           <img src={Cocha} alt="" />
         </div>
         <section>{children}</section>
-      
       </nav>
-      
       <div className="outline">
         <header>
           <Perfil/>

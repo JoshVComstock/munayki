@@ -1,5 +1,4 @@
 import React from "react";
-
 import Alert from "../assets/icons/alert.svg";
 import Location from "../assets/icons/location.svg";
 import Users from "../assets/icons/users.svg";
