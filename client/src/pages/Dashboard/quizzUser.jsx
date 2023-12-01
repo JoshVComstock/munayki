@@ -19,7 +19,7 @@ const QuizzUser = () => {
   };
   return (
     <Dat style={{ margin: " 0 auto" }}>
-      {/* <Quizz />
+      <Quizz />
       <h3
         style={{
           fontSize: 14,
@@ -27,12 +27,13 @@ const QuizzUser = () => {
           whiteSpace: 10,
           border: "solid 1px ",
           padding: 10,
+          textAlign: "center",
         }}
       >
         Respuestas Realizadas
       </h3>
       {data &&
-        data.map((v) => (
+        data.filter((v)=>v.id===user.id).map((v) => (
           <div className="dataa" key={v.numero}>
             <label>{v.id} </label>
             <div>
@@ -65,7 +66,7 @@ const QuizzUser = () => {
         ) : (
           ""
         )}
-      </article> */}
+      </article>
     </Dat>
   );
 };

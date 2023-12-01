@@ -725,6 +725,17 @@ export const RutasStyle = styled.section`
         }
       }
     }
+    @media (max-width: 720px) {
+      &::before {
+        left: 5em; /* Ajusta este valor según sea necesario */
+      }
+    }
+    
+    @media (max-width: 480px) {
+      &::before {
+        left: 2em; /* Ajusta este valor según sea necesario */
+      }
+    }
   }
 `;
 

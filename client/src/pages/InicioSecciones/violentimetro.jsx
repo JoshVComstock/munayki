@@ -5,12 +5,14 @@ import CantidadRegistros from "../../components/Informativa/graphics/cantidadReg
 import Termometro from "../../components/Informativa/graphics/termometro";
 import { useNavigate } from "react-router-dom";
 import resul from "../../data/registara.json";
+import { useUser } from "../../context/userContextProvider";
 
 const Violentimetro = () => {
   const navegate = useNavigate();
   const { getQuizz, datos } = useStoreQuizz();
   const [gestionarRender, setGestionarRender] = useState(false);
   const [resultado, setResultado] = useState([]);
+  const { user } = useUser();
   const getResultados = async () => {
     const response = await fetch(
       "https://munayki-serve.vercel.app/resultadosCuestionario"
@@ -37,7 +39,11 @@ const Violentimetro = () => {
     }
   );
   const ingresar = (path) => {
-    navegate(`/${path}`);
+    if (user) {
+      navegate('/dashboard/Quizz');
+    } else {
+      navegate(`/${path}`);
+    }
   };
   return (
     <ViolentimetroA>
@@ -54,7 +60,7 @@ const Violentimetro = () => {
             tu pareja. !Solo debes responder las preguntas de manera honesta!
           </p>
           <div>
-            <button onClick={() => ingresar("login")}>Registrate</button>
+            <button onClick={() => ingresar("login")}>{user ? "Atrévete a Descubrirlo" : "Registrate"}</button>
             <button onClick={() => ingresar("quizz")}>
               Hacer el quizz de forma anónima
             </button>
