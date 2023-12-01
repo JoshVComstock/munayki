@@ -17,8 +17,10 @@ import cam from "../../assets/icons/camino.png";
 import ayu from "../../assets/icons/ayuda.png";
 import leg from "../../assets/icons/legal.png";
 import tel from "../../assets/icons/telefono.png";
+import { useUser } from "../../context/userContextProvider";
 const NavBar = () => {
   const { scrollPosition, setScrollPosition, handleScroll } = useScroll();
+  const { user } = useUser();
   const navegate = useNavigate();
   const ingresar = (path) => {
     setScrollPosition(window.scrollY);
@@ -37,7 +39,11 @@ const NavBar = () => {
   };
 
   const login = () => {
-    navegate("/login");
+    if(user){
+      navegate("/dashboard/DondeDenunciar");
+    }else{
+      navegate("/login");
+    }
     setClaseCSS("navNoVisible");
   };
 
@@ -52,8 +58,8 @@ const NavBar = () => {
           <img src={logo1} alt="logo" />
         </div>
         <section>
-          <Link to="/login" className="login">
-            Login
+          <Link to={user ? "/dashboard/DondeDenunciar" : "/login"} className="login">
+          {user ? "Tu cuenta" : "Inicia Sesión"}
             <FontAwesomeIcon icon={faLongArrowAltRight} />
           </Link>
         </section>
@@ -85,7 +91,7 @@ const NavBar = () => {
           </div>
           <div onClick={() => login()}>
             <FontAwesomeIcon icon={faLongArrowAltRight} />
-            <p> Login </p>
+            <p>{user ? "Tu cuenta" : "Inicia Sesión"}</p>
           </div>
         </article>
       </aside>
