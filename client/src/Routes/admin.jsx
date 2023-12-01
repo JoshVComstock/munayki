@@ -13,6 +13,7 @@ import {
   faArrowAltCircleLeft,
   faChartBar,
   faExclamationCircle,
+  faInfo,
   faPaste,
   faSitemap,
   faUserTie,
@@ -48,6 +49,10 @@ const Admin = () => {
         <Linkes to="/dashboard/ReportesdeUser">
           <FontAwesomeIcon icon={faPaste} />
           Reportes de ayuda
+        </Linkes>
+        <Linkes to="/dashboard/Informacion">
+          <FontAwesomeIcon icon={faInfo} />
+         Informacion
         </Linkes>
         {/* <Linkes to="/dashboard/reportGraficos">
         <FontAwesomeIcon icon={faChartBar} />

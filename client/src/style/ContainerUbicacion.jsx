@@ -24,108 +24,117 @@ export const ContainerUbicacion = styled.div`
       padding: 0.2em 0.5em;
     }
   }
- & aside{
-  & > table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
-    font-size: 0.8em;
-
-    & > thead {
-      height: 40px;
-      background: ${colors.CC};
-      color: ${colors.light};
-      box-shadow: 0 5px 10px #000;
-      font-weight: lighter;
+  & aside {
+    & > table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
       font-size: 0.8em;
 
-      text-transform: uppercase;
-    }
-    & > tbody {
-      height: 100%;
-      text-align: center;
-      & input {
-        border: solid 1px #0004;
-        padding: 0.2em 1em;
-        outline: none;
-      }
-      & select {
-        background-color: ${colors.CC};
+      & > thead {
+        height: 40px;
+        background: ${colors.CC};
         color: ${colors.light};
-        padding: 0.2em 1em;
-        border: none;
-        margin: 1em auto;
-        outline: none;
-      }
-      tr {
-        height: 50px;
+        box-shadow: 0 5px 10px #000;
         font-weight: lighter;
+        font-size: 0.8em;
 
-        &:nth-child(even) {
-          background-color: rgba(53, 19, 90, 0.219);
+        text-transform: uppercase;
+      }
+      & > tbody {
+        height: 100%;
+        text-align: center;
+        & input {
+          border: solid 1px #0004;
+          padding: 0.2em 1em;
+          outline: none;
         }
-        &:nth-child(odd) {
-          background-color: #fff;
+        & select {
+          background-color: ${colors.CC};
+          color: ${colors.light};
+          padding: 0.2em 1em;
+          border: none;
+          margin: 1em auto;
+          outline: none;
         }
-        .agregando {
-          background-color: ${colors.FF};
-        }
-
-        & > td {
+        tr {
           height: 50px;
-          overflow: hidden;
-          text-overflow: ellipsis;
+          font-weight: lighter;
 
-          & img {
-            width: 50px;
-            padding-top: 5px;
-            transition: all 1s ease-in-out;
-            &:hover {
-              transform: scale(1.5);
-              z-index: 100;
+          &:nth-child(even) {
+            background-color: rgba(53, 19, 90, 0.219);
+          }
+          &:nth-child(odd) {
+            background-color: #fff;
+          }
+          .agregando {
+            background-color: ${colors.FF};
+          }
+
+          & > td {
+            height: 50px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            &:nth-child(4) {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 100px;
+            }
+            a {
+              text-decoration: none;
+              background-color: ${colors.CC};
+              color: #fff;
+              padding: 0.2em;
+            }
+            & img {
+              width: 50px;
+              padding-top: 5px;
+              transition: all 1s ease-in-out;
+              &:hover {
+                transform: scale(1.5);
+                z-index: 100;
+                width: 100px;
+              }
+            }
+            & button {
               width: 100px;
+              height: 30px;
+              background: transparent;
+              border: 1px solid ${colors.CC};
+              cursor: pointer;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              gap: 0.5em;
+              &:hover {
+                background: ${colors.CC};
+                color: ${colors.light};
+                opacity: 0.8;
+              }
             }
           }
-          & button {
-            width: 100px;
-            height: 30px;
-            background: transparent;
-            border: 1px solid ${colors.CC};
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0.5em;
-            &:hover {
-              background: ${colors.CC};
-              color: ${colors.light};
-              opacity: 0.8;
-            }
-          }
-        }
-        color: ${colors.CC};
-        &:hover {
           color: ${colors.CC};
-          cursor: pointer;
+          &:hover {
+            color: ${colors.CC};
+            cursor: pointer;
+          }
         }
       }
     }
   }
-}
   @media screen and (max-width: 768px) {
-    & > h1{
-      padding:2em;
+    & > h1 {
+      padding: 2em;
     }
-  & aside{
-    width:90vw;
-    margin:0 auto;
-    overflow-x:scroll ;
-   
-    & table{
-      width:1200px;
+    & aside {
+      width: 90vw;
+      margin: 0 auto;
+      overflow-x: scroll;
+
+      & table {
+        width: 1200px;
+      }
     }
   }
-  }
-
-
 `;

@@ -99,54 +99,54 @@ const AlertasAdmin = () => {
       <div>
         <h1>Alerta</h1>
       </div>
-  <aside>
-  <table>
-        <thead>
-          <tr>
-            <th>Nro</th>
-            <th>Datos Usuario</th>
-            <th>Ubicacion</th>
-            <th>Evidencia</th>
-            <th>Fecha</th>
-            <th>estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((paso) => (
-            <tr key={paso.id}>
-              <td>{paso.id}</td>
-              <td
-                onClick={() => {
-                  setUseEspecifico(paso.usuario);
-                }}
-              >
-                {paso.usuario.nombre}
-              </td>
-              <td>
-                <button onClick={() => openMaps(paso.latitud, paso.longitud)}>
-                  Abrir Maps
-                </button>
-              </td>
-              <td>
-                <img src={paso.foto} alt="foto evidencia" />
-              </td>
-              <td>{paso.fecha}</td>
-              <td>
-                <select
-                  value={paso.estado}
-                  onChange={(e) => confirmUpdate(e.target.value, paso.id)}
-                  disabled={estadoActualizado.includes(paso.id)}
-                >
-                  <option value="pendiente">Pendiente</option>
-                  <option value="atendido">Atendido</option>
-                </select>
-              </td>
+      <aside>
+        <table>
+          <thead>
+            <tr>
+              <th>Nro</th>
+              <th>Datos Usuario</th>
+              <th>Ubicacion</th>
+              <th>Evidencia</th>
+              <th>Fecha</th>
+              <th>estado</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-  </aside>
-  
+          </thead>
+          <tbody>
+            {data.map((paso) => (
+              <tr key={paso.id}>
+                <td>{paso.id}</td>
+                <td
+                  onClick={() => {
+                    setUseEspecifico(paso.usuario);
+                  }}
+                >
+                  {paso.usuario.nombre}
+                </td>
+                <td>
+                  <button onClick={() => openMaps(paso.latitud, paso.longitud)}>
+                    Abrir Maps
+                  </button>
+                </td>
+                <td>
+                  <img src={paso.foto} alt="foto evidencia" />
+                  <a href={paso.audio} target="_blank">Descargar-audio</a>
+                </td>
+                <td>{paso.fecha}</td>
+                <td>
+                  <select
+                    value={paso.estado}
+                    onChange={(e) => confirmUpdate(e.target.value, paso.id)}
+                    disabled={estadoActualizado.includes(paso.id)}
+                  >
+                    <option value="pendiente">Pendiente</option>
+                    <option value="atendido">Atendido</option>
+                  </select>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </aside>
     </ContainerUbicacion>
   );
 };
