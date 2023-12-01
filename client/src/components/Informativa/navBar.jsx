@@ -38,6 +38,7 @@ const NavBar = () => {
 
   const login = () => {
     navegate("/login");
+    setClaseCSS("navNoVisible");
   };
 
   return (
@@ -51,8 +52,6 @@ const NavBar = () => {
           <img src={logo1} alt="logo" />
         </div>
         <section>
-          {/* <Link to="/">home</Link>
-          <Link to="/ubicaciones">Ubicaciones</Link> */}
           <Link to="/login" className="login">
             Login
             <FontAwesomeIcon icon={faLongArrowAltRight} />
@@ -64,7 +63,7 @@ const NavBar = () => {
           <FontAwesomeIcon icon={faBars} />
         </button>
         <article>
-          <div id="mover" onClick={() => ingresar("appmovil")}>
+          <div id="mover" onClick={() => (ingresar("appmovil"), !claseCSS)}>
             <img src={tel} alt="" />
             <p>Aplicación móvil</p>
           </div>
@@ -84,7 +83,7 @@ const NavBar = () => {
             <img src={leg} />
             <p> Ámbito legal </p>
           </div>
-          <div onClick={login}>
+          <div onClick={() => login()}>
             <FontAwesomeIcon icon={faLongArrowAltRight} />
             <p> Login </p>
           </div>
