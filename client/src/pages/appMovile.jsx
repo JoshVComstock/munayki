@@ -89,9 +89,9 @@ const AppMovile = () => {
       <section>
         <img src={img[5]} alt="" />
         <article>
-          <label>Paso 5: Realización de un Quiz de Riesgo</label>
+          <label>Paso 5: Realización de un Quizz de Riesgo</label>
           <p>
-            La aplicación cuenta con un Quiz que te permitirá evaluar tu nivel
+            La aplicación cuenta con un Quizz que te permitirá evaluar tu nivel
             de riesgo en situaciones de violencia. Responde a las preguntas y
             obtén una evaluación de tu situación.{" "}
           </p>

@@ -20,7 +20,6 @@ const NabarDash = ({ children }) => {
       setClaseCSS("navV");
     }
   };
-
   return (
     <Sectionav>
       <button onClick={cambiarClase}>
@@ -36,7 +35,6 @@ const NabarDash = ({ children }) => {
         </div>
         <section>{children}</section>
       </nav>
-
       <div className="outline">
         <header>
           <Perfil />

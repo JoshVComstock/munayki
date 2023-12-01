@@ -29,17 +29,21 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
 
   const handleSend = async (e) => {
     e.preventDefault();
-    for (const key in dataRegister) {
-      if (!dataRegister[key]) {
-        Swal.fire({
-          icon: "error",
-          title: "Campo obligatorio vacío",
-          text: `Por favor, complete el campo ${key}.`,
-        });
-        return;
-      }
+    if (
+      !dataRegister.apellido.trim() ||
+      !dataRegister.nombre.trim() ||
+      !dataRegister.edad.trim() ||
+      !dataRegister.telefono.trim() ||
+      !dataRegister.correo.trim() ||
+      !dataRegister.password.trim() ||
+      !dataRegister.ubicacion.trim() ||
+      !dataRegister.genero.trim()
+    ) {
+      return Swal.fire({
+        icon: "error",
+        title: "Llene todos los campos",
+      });
     }
-
     const res = await peticionPost("/user", {
       nombre: dataRegister.nombre,
       apellido: dataRegister.apellido,
@@ -51,16 +55,14 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
       rol: dataRegister.rol,
       genero: dataRegister.genero,
     });
-    if (res && res.message) {
-      if (res.message === "Usuario creado exitosamente") {
-        Swal.fire({
+    res && res.message === "Usuario creado exitosamente"
+      ? (Swal.fire({
           icon: "success",
-          title: "Usuario agregado",
-          text: "Recuerda tu email y contraseña e inicia sesión",
-        });
-        navigate("/");
-      }
-    }
+          title: "Usuario agregado!",
+          text: `Recuerda tu email y tu contraseña e inicia sesion`,
+        }),
+        navigate("/"))
+      : alert(res.message);
   };
 
   return (
@@ -221,7 +223,7 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
             }}
           >
             <FontAwesomeIcon icon={faSignInAlt} />
-            Contunuar con el registro
+            Continuar con el registro
           </button>
         ) : (
           <div style={{ width: "100%", flexWrap: "wrap" }}>
@@ -241,7 +243,7 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
         )}
         <button className="volver" onClick={Evaluando}>
           <FontAwesomeIcon icon={faArrowLeft} />
-          volver
+          Volver
         </button>
       </form>
     </div>

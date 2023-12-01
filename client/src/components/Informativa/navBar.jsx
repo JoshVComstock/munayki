@@ -24,6 +24,7 @@ const NavBar = () => {
     setScrollPosition(window.scrollY);
     navegate(`/${path}`);
     handleScroll();
+    cambiarClase();
   };
   const [claseCSS, setClaseCSS] = useState("navVisible");
 
@@ -69,7 +70,7 @@ const NavBar = () => {
           </div>
           <div onClick={() => ingresar("")}>
             <img src={term} />
-            <p> Violentometro</p>
+            <p> Violentómetro</p>
           </div>
           <div onClick={() => ingresar("rutadenuncias")}>
             <img src={cam} />
@@ -84,6 +85,7 @@ const NavBar = () => {
             <p> Ámbito legal </p>
           </div>
           <div onClick={login}>
+            <FontAwesomeIcon icon={faLongArrowAltRight} />
             <p> Login </p>
           </div>
         </article>

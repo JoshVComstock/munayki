@@ -61,7 +61,7 @@ const Login = () => {
     return navigate("/");
   };
   if (user) {
-    return navigate("/dashboard");
+    return navigate("/dashboard/DondeDenunciar");
   }
   return (
     <Section>

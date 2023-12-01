@@ -1,4 +1,8 @@
 import React from "react";
+import Alert from "../assets/icons/alert.svg";
+import Location from "../assets/icons/location.svg";
+import Users from "../assets/icons/users.svg";
+import logaut from "../assets/icons/logout.svg";
 import { Linkes } from "../style/navStyle";
 import { useUser } from "../context/userContextProvider";
 import { useNavigate } from "react-router-dom";

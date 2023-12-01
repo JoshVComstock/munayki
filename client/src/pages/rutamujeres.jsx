@@ -30,7 +30,7 @@ const  Rutamujeres=()=> {
               LA violencia se manifiesta en la vida cotidiana de mujeres y hombres, y que la mayoría de las veces no se tienen en cuenta o se confunden o desconocen.
             </p>
             <p>
-              Si crees estar sufriendo maltrato físico o psicológico o alguna persona cercana a ti, Puedes realizar el siguiente cuestionario del violentometro
+              Si crees estar sufriendo maltrato físico o psicológico o alguna persona cercana a ti, Puedes realizar el siguiente cuestionario del violentómetro
             </p>
             <button>Realizar ahora</button>
           </div>

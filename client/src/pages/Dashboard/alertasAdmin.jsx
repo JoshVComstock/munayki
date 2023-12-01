@@ -12,7 +12,6 @@ const AlertasAdmin = () => {
   const [useEspecifico, setUseEspecifico] = useState("");
   const { user, logout } = useUser();
   const [estadoActualizado, setEstadoActualizado] = useState([]);
-
   const fetchData = async () => {
     try {
       const result = await peticionGet(`/multimedia`);

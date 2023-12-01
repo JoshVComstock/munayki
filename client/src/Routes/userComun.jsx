@@ -18,7 +18,7 @@ const UserComun = () => {
         Donde Denunciar
       </Linkes>
       <Linkes to="/dashboard/alertas">
-        <FontAwesomeIcon icon={faBell} /> Mis alertas
+        <FontAwesomeIcon icon={faBell} />Alertas
       </Linkes>
     </div>
   );

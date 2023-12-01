@@ -40,7 +40,7 @@ const Carousel = () => {
           <section>
             <button onClick={prevResource}>Anterior</button>
             <button className="estadoa" onClick={() => setEstado(!estado)}>
-              {estado === true ? "ver portada" : "ver pdf"}
+              {estado === true ? "Ver portada" : "Ver pdf"}
             </button>
             <button onClick={nextResource}>Siguiente</button>
           </section>

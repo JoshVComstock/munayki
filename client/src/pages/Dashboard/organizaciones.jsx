@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ContainerUbicacion } from "../../style/ContainerUbicacion";
-import { peticionGet,  peticionPostPut } from "../../services/getRequest";
+import { peticionGet, peticionPostPut } from "../../services/getRequest";
 import Swal from "sweetalert2";
 import { peticionDelete } from "../../services/deletRequest";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -26,6 +26,13 @@ const Organizaciones = () => {
   }, []);
 
   const handleSend = async (e) => {
+    if (!form.nombre.trim() || !form.ubicacion.trim() || !form.areVulnerable.trim()) {
+      return Swal.fire({
+        icon: "error",
+        title: "¡Error!",
+        text: "Todos los campos son obligatorios",
+      });
+    }
     const res = await peticionPostPut("/organizacion", {
       nombre: form.nombre,
       ubicacion: form.ubicacion,
@@ -33,10 +40,10 @@ const Organizaciones = () => {
     }, "POST");
     res && res.message === "successully created"
       ? (Swal.fire({
-          icon: "success",
-          title: "¡ organizacion creada !",
-          text: `se registrado conexito `,
-        }),
+        icon: "success",
+        title: "¡ organizacion creada !",
+        text: `se registrado conexito `,
+      }),
         setForm({
           nombre: "",
           ubicacion: "",
@@ -56,90 +63,90 @@ const Organizaciones = () => {
         <h1>Organizaciones </h1>
       </div>
 
-    <aside>
-    <table>
-        <thead>
-          <tr>
-            <th>Nro</th>
-            <th>Nombre</th>
-            <th>Ubicacion</th>
-            <th>Area vulnerable</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
+      <aside>
+        <table>
+          <thead>
+            <tr>
+              <th>Nro</th>
+              <th>Nombre</th>
+              <th>Ubicacion</th>
+              <th>Area vulnerable</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
 
-        <tbody>
-          <tr className="agregando">
-            <td>Nueva organizacion</td>
-            <td>
-              <input
-                type="text"
-                value={form.nombre}
-                onChange={(e) =>
-                  setForm({
-                    ...form,
-                    nombre: e.target.value,
-                  })
-                }
-                placeholder="Organizacion"
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                value={form.ubicacion}
-                onChange={(e) =>
-                  setForm({
-                    ...form,
-                    ubicacion: e.target.value,
-                  })
-                }
-                placeholder="Ubicacion"
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                value={form.areVulnerable}
-                onChange={(e) =>
-                  setForm({
-                    ...form,
-                    areVulnerable: e.target.value,
-                  })
-                }
-                placeholder="Area vulnerable"
-              />
-            </td>
-            <td>
-              <button onClick={(e) => handleSend()}>Agregar</button>
-            </td>
-          </tr>
+          <tbody>
+            <tr className="agregando">
+              <td>Nueva organizacion</td>
+              <td>
+                <input
+                  type="text"
+                  value={form.nombre}
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      nombre: e.target.value,
+                    })
+                  }
+                  placeholder="Organizacion"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={form.ubicacion}
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      ubicacion: e.target.value,
+                    })
+                  }
+                  placeholder="Ubicacion"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={form.areVulnerable}
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      areVulnerable: e.target.value,
+                    })
+                  }
+                  placeholder="Area vulnerable"
+                />
+              </td>
+              <td>
+                <button onClick={(e) => handleSend()}>Agregar</button>
+              </td>
+            </tr>
 
-          {Array.isArray(data) &&
-            data.map((regis) => (
-              <tr key={regis.id}>
-                <td>{regis.id}</td>
-                <td>{regis.nombre}</td>
-                <td>
-                  <a
-                    href={`${mapUrl}${regis.ubicacion}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <button>Ver Mapa</button>
-                  </a>
-                </td>
-                <td>{regis.areVulnerable}</td>
+            {Array.isArray(data) &&
+              data.map((regis) => (
+                <tr key={regis.id}>
+                  <td>{regis.id}</td>
+                  <td>{regis.nombre}</td>
+                  <td>
+                    <a
+                      href={`${mapUrl}${regis.ubicacion}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <button>Ver Mapa</button>
+                    </a>
+                  </td>
+                  <td>{regis.areVulnerable}</td>
 
-                <td>
+                  <td>
 
-                  <button onClick={() => deleteData(regis.id)}> <FontAwesomeIcon icon={faTrash} />eliminar</button>
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
-    </aside>
+                    <button onClick={() => deleteData(regis.id)}> <FontAwesomeIcon icon={faTrash} />eliminar</button>
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </aside>
     </ContainerUbicacion>
   );
 };

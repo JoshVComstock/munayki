@@ -56,7 +56,7 @@ const Violentimetro = () => {
           <div>
             <button onClick={() => ingresar("login")}>Registrate</button>
             <button onClick={() => ingresar("quizz")}>
-              hacer el quiz de forma anónima
+              Hacer el quizz de forma anónima
             </button>
           </div>
         </section>

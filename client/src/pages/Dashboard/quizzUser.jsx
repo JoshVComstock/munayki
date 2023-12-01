@@ -17,9 +17,6 @@ const QuizzUser = () => {
   const mostrarndo = () => {
     setMostrar(!mostrar);
   };
-
-  console.log("userData:es", data);
-  console.log("user es", user);
   return (
     <Dat style={{ margin: " 0 auto" }}>
       {/* <Quizz />

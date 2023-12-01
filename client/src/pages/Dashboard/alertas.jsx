@@ -8,8 +8,6 @@ const Alertas = () => {
   const [data, setData] = useState([]);
   const [ver, setVer] = useState(false);
   let userId = user.id;
-  console.log(userId);
-
   const fetchData = async () => {
     try {
       const result = await peticionGet(`/Multimedia/` + userId);

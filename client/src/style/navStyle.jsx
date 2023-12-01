@@ -365,6 +365,7 @@ export const Footerstyle = styled.section`
     }
   }
   @media screen and (max-width: 768px) {
+    margin-top:'10%';
     .logos {
       width: 100%;
       height: auto;

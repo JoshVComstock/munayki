@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 import { BackgraundQuizz, colors } from "../../style/StyleGlobal";
+import { MapasDataURL } from "../../data/mapasdata";
 
 const Denunciasdonde = () => {
   const [origin, setOrigin] = useState("");
@@ -42,24 +43,29 @@ const Denunciasdonde = () => {
           <p>
             Visita el Slim más cercano a ti{" "}
             <button onClick={() => openGoogleMaps(origin, "Slim_muejeres")}>
-              {" "}
               Trazar Mapa
             </button>
           </p>
           <p>
             Visita la Fcc más cercana a ti{" "}
             <button onClick={() => openGoogleMaps(origin, "Fcc")}>
-              {" "}
               Trazar Mapa
             </button>
           </p>
           <p>
             Visita el Fcn más cercano a ti{" "}
             <button onClick={() => openGoogleMaps(origin, "Fcn")}>
-              {" "}
               Trazar Mapa
             </button>
           </p>
+          {MapasDataURL.entidades.map((data, index) => (
+            <p key={index}>
+              {data.nombre}
+              <button onClick={() => openGoogleMaps(origin, data.nombre)}>
+                Trazar Mapa
+              </button>
+            </p>
+          ))}
         </section>
       </div>
     </Denun>
@@ -69,36 +75,42 @@ const Denunciasdonde = () => {
 export default Denunciasdonde;
 
 const Denun = styled.section`
-  height: 80vh;
+  height: auto;
   flex-direction: column;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   & div {
-    width:40rem;
-    height: 20rem;
+    width: 40rem;
+    height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-  flex-direction: column;
-
+    align-items: end;
+    flex-direction: column;
+gap:2em;
+padding:2em;
     ${BackgraundQuizz}
   }
   & section {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap:wrap;
 
     & p {
       font-size: 0.9em;
       margin: 1em 3em;
+      display:flex;
+      width:100%;
+      justify-content:space-between;
       & button {
         margin: 0em 3em;
         padding: 0.2em 2em;
         cursor: pointer;
-        border:1px solid #0005;
-        &:hover{
-          background-color:${colors.CC};
-          color:#fff;
+        border: 1px solid #0005;
+        align-self:flex-end;
+        &:hover {
+          background-color: ${colors.CC};
+          color: #fff;
         }
       }
     }
