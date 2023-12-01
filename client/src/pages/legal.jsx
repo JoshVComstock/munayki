@@ -7,11 +7,11 @@ const Legal = () => {
     <LegalStyle>
       <article>
         <p>Marco Legal</p>
-        <div>
+        <div className='unputado'>
           {LegalData.puntos.map((punto, index)=>(
             <aside key={punto.index}>
               <p>{`Punto ${index+1}: ${punto.titulo}`}</p>
-              <div>
+              <div >
                 {punto.info.map((informacion, i)=>(
                   <p key={i}>{informacion}</p>
                 ))}

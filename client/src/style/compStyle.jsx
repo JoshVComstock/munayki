@@ -514,9 +514,8 @@ export const Mapasstyle = styled.section`
     }
   }
   @media screen and (max-width: 768px) {
-    flex-direction:column;
-  grid-template-columns: repeat(1,auto);
-
+    flex-direction: column;
+    grid-template-columns: repeat(1, auto);
   }
 `;
 export const DivMobile = styled.section`
@@ -730,7 +729,7 @@ export const RutasStyle = styled.section`
         left: 5em; /* Ajusta este valor según sea necesario */
       }
     }
-    
+
     @media (max-width: 480px) {
       &::before {
         left: 2em; /* Ajusta este valor según sea necesario */
@@ -918,6 +917,20 @@ export const LegalStyle = styled.section`
           padding-left: 2em;
         }
       }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    width: 100vw;
+    & article {
+      width: 100%;
+      & p {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    }
+    .unputado {
+      width: 100%;
     }
   }
 `;

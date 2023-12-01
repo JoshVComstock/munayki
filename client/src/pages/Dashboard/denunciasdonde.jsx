@@ -115,4 +115,14 @@ padding:2em;
       }
     }
   }
+  @media screen and (max-width: 768px) {
+    width:100vw;
+    overflow-x:hidden;
+    & div{
+      width:100%;
+     & section {
+      flex-direction:column;
+     }
+    }
+  }
 `;
