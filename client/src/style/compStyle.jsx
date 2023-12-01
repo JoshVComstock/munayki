@@ -513,6 +513,11 @@ export const Mapasstyle = styled.section`
       box-shadow: 0 10px 10px #0005;
     }
   }
+  @media screen and (max-width: 768px) {
+    flex-direction:column;
+  grid-template-columns: repeat(1,auto);
+
+  }
 `;
 export const DivMobile = styled.section`
   height: auto;
