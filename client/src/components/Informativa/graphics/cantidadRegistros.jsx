@@ -7,6 +7,7 @@ const url = import.meta.env.VITE_BACKEND_URL;
 
 const CantidadRegistros = ({ datos }) => {
   const [usuarioNombre,setUsuarioNombre]=useState([]);
+  
   const puntuacionTotal = usuarioNombre.reduce((valorActual, item) => {
     if (item.usuarioNombre == "Anónimo") {
       valorActual.Anónimo++;

@@ -19,7 +19,7 @@ const QuizzUser = () => {
   };
   return (
     <Dat style={{ margin: " 0 auto" }}>
-      <Quizz />
+      <Quizz user= {user} />
       <h3
         style={{
           fontSize: 14,

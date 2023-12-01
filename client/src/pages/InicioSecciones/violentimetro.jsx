@@ -13,9 +13,12 @@ const Violentimetro = () => {
   const [gestionarRender, setGestionarRender] = useState(false);
   const [resultado, setResultado] = useState([]);
   const { user } = useUser();
+  const url = import.meta.env.VITE_BACKEND_URL;
+
+
   const getResultados = async () => {
     const response = await fetch(
-      "https://munayki-serve.vercel.app/resultadosCuestionario"
+      url+"/resultadosCuestionario"
     );
     const data = await response.json();
   };
@@ -49,7 +52,7 @@ const Violentimetro = () => {
     <ViolentimetroA>
       <Termometro />
       <div>
-        <CantidadRegistros datos={[]} />
+        <CantidadRegistros datos={resul} />
         <section>
           <h2>¡Realiza nuestra encuesta sobre la violencia!</h2>
           <p>

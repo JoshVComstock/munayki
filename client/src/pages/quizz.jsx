@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
@@ -9,15 +9,24 @@ import { useModal } from "../hook/useModal";
 import { QuizzContent } from "../style/quizzStyle";
 import useHttpPost from "../hook/useHttpPost";
 import { preguntas } from "../data/quizz";
+import { peticionPostPut } from "../services/getRequest";
 
 const url = import.meta.env.VITE_BACKEND_URL;
-function Quizz() {
+function Quizz({ user }) {
   const [respuestas, setRespuestas] = useState({});
   const [puntuacionTotal, setPuntuacionTotal] = useState(0);
   const [preguntaActual, setPreguntaActual] = useState(0);
   const [validacion, setValidacion] = useState("");
 
   const nombreUsuarioGlobal = "Nombre del Usuario";
+  const [idUser, setIdUser] = useState("");
+
+  useEffect(() => {
+    if (user) {
+      setIdUser(user.id);
+    }
+  }, [user]);
+  console.log(idUser);
 
   const { openModal, closeModal } = useModal(
     "Tu puntuacion es :",
@@ -29,6 +38,20 @@ function Quizz() {
       }}
     />
   );
+
+  const enviarRegistrado = async () => {
+    console.log("pmu", idUser);
+    const res = await peticionPostPut(
+      "/resultadosCuestionario",
+      {
+        puntuacion: +puntuacionTotal,
+        respuestas: respuestas,
+        usuarioId: +idUser,
+        usuarioNombre: "registrados",
+      },
+      "POST"
+    );
+  };
 
   const handleRespuesta = (numero, respuesta, puntuacion) => {
     setRespuestas({
@@ -67,10 +90,8 @@ function Quizz() {
     const data = {
       puntuacion: puntuacionTotal,
       respuestas,
-      // "usuarioId": 1,
-      // usuarioNombre: nombreUsuarioGlobal,
     };
-   
+
     fetch(`${url}/resultadosCuestionario`, {
       method: "POST",
       headers: {
@@ -86,6 +107,15 @@ function Quizz() {
         console.error("Error al enviar datos al backend:", error);
       });
   };
+
+  const enviarData = async () => {
+    if (idUser.length > 0) {
+      await guardarPuntos();
+    } else {
+      await enviarRegistrado();
+    }
+  };
+
   return (
     <QuizzContent>
       {preguntas.preguntas[preguntaActual] && (
@@ -153,7 +183,7 @@ function Quizz() {
                   ) : (
                     <button
                       onClick={() => {
-                        guardarPuntos();
+                        enviarData();
                         openModal();
                       }}
                     >
