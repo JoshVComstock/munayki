@@ -97,6 +97,7 @@ const ComRegister = ({ irLogin, ingresar, Evaluando }) => {
                   border: "none",
                 }}
               >
+                <option value="">Escoga un genero</option>
                 <option value="Masculino">Masculino</option>
                 <option value="Femenino ">Femenino</option>
               </select>

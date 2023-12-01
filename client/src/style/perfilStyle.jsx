@@ -4,6 +4,7 @@ import { colors } from "./StyleGlobal";
 export const Containerperfil = styled.div`
 display: flex;
 flex-direction: row;
+gap:2em;
 &>div{
     margin: 0 1rem;
     width: 40px;
