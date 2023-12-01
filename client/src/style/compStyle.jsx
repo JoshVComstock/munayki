@@ -62,7 +62,7 @@ export const Section = styled.section`
   }
   @media screen and (max-width: 768px) {
     & .login {
-      height: 55vh;
+      height: 68vh;
       width: 95vw;
       & article {
         height: 40vh;
@@ -72,7 +72,7 @@ export const Section = styled.section`
       }
     }
     & .Register {
-      height: 70vh;
+      height: 100vh;
       width: 95vw;
       & article {
         height: 50vh;
