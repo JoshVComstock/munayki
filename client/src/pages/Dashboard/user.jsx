@@ -102,6 +102,7 @@ const User = () => {
               value={datos.rol}
               onChange={(e) => handleRolChange(e.target.value, datos.id)}
             >
+              <option value={datos.rol}>{datos.rol}</option>
               <option value="Administrador">Administrador</option>
               <option value="User">User</option>
               <option value="Encargado">Encargado</option>
@@ -122,7 +123,8 @@ const User = () => {
               onClick={() => {
                 handleDelete(datos.id);
               }}
-            ><FontAwesomeIcon icon={faTrash} />
+            >
+              <FontAwesomeIcon icon={faTrash} />
               Eliminar
             </button>
           </td>
@@ -136,35 +138,36 @@ const User = () => {
       userdata={idEspecifico}
       closeModal={() => {
         closeModal();
+        fetchData();
       }}
     />
   );
 
-  console.log(idEspecifico);
+  console.log(data);
   return (
     <ContainerUbicacion>
       <h1>Usuarios</h1>
 
-    <aside>
-    <table>
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>nombre</th>
-            <th>apellido</th>
-            <th>edad</th>
-            <th>telefono</th>
-            <th>carnet</th>
-            <th>correo</th>
-            <th>rol</th>
-            <th>genero</th>
-            <th>Organizacion</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>{renderDatos()}</tbody>
-      </table>
-    </aside>
+      <aside>
+        <table>
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>nombre</th>
+              <th>apellido</th>
+              <th>edad</th>
+              <th>telefono</th>
+              <th>carnet</th>
+              <th>correo</th>
+              <th>rol</th>
+              <th>genero</th>
+              <th>Organizacion</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>{renderDatos()}</tbody>
+        </table>
+      </aside>
     </ContainerUbicacion>
   );
 };

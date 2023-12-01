@@ -112,18 +112,16 @@ export const Section = styled.section`
     }
   }
   @media screen and (max-width: 420px) {
-.login , .Register{
-  & >article{
-    display:none;
+    .login,
+    .Register {
+      & > article {
+        display: none;
+      }
+      & form {
+        width: 90vw;
+      }
+    }
   }
-  & form{
-    width:90vw;
-  }
-}
-  }
-  
-  
-
 `;
 
 export const Iniciodiv = styled.div`
@@ -277,7 +275,7 @@ export const Iniciodiv = styled.div`
       font-size: 2.2em;
       height: 50%;
       & > strong:first-child {
-        display:inline;
+        display: inline;
         font-size: 2em;
         font-weight: bold;
         color: ${colors.BB};
@@ -325,7 +323,7 @@ export const Iniciodiv = styled.div`
         font-size: 1.5em;
         height: 50%;
         & > strong:first-child {
-          display:inline;
+          display: inline;
           font-size: 2em;
           font-weight: bold;
           color: ${colors.BB};
@@ -428,9 +426,11 @@ export const ViolentimetroA = styled.div`
       }
     }
     @media screen and (max-width: 768px) {
-      height: 120vh;
+      height: 180vh;
       flex-direction: column;
-
+      h2 {
+        width: 90vw;
+      }
       div {
         flex-direction: column;
         & section {
@@ -752,11 +752,11 @@ export const SlimStyle = styled.section`
       }
     }
     @media screen and (max-width: 768px) {
-      &>div{
-        flex-direction:column;
+      & > div {
+        flex-direction: column;
       }
-          flex-direction: column;
-        }
+      flex-direction: column;
+    }
     & > div {
       width: 90%;
       display: flex;
@@ -764,7 +764,7 @@ export const SlimStyle = styled.section`
       & > div {
         flex: 1 0 21%;
         scroll-snap-align: start;
-       
+
         & > ${StyledLink} {
           position: relative;
           ${FlexComun}
@@ -845,8 +845,8 @@ export const DocSlimStyle = styled.section`
         padding-left: 2em;
         text-align: justify;
       }
-      & > button{
-        margin-top:5%;
+      & > button {
+        margin-top: 5%;
         align-self: flex-start;
         background-color: transparent;
         border: 2px solid ${colors.CC};
@@ -859,7 +859,7 @@ export const DocSlimStyle = styled.section`
         &:active {
           background-color: rgba(0, 0, 0, 0.1);
         }
-        & > a{
+        & > a {
           color: ${colors.black};
           text-decoration: none;
         }
