@@ -2,7 +2,7 @@ import React from 'react'
 import { SlimData } from '../data/slimdata';
 import { DocSlimStyle} from '../style/compStyle';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {useParams} from 'react-router-dom';
+import {useParams, Link} from 'react-router-dom';
 
 const DocumentoSlim = () => {
     const {index} = useParams();
@@ -20,6 +20,7 @@ const DocumentoSlim = () => {
           {cartilla.puntos.map((punto, i)=>(
             <div key={i}>• {punto}</div>
           ))}
+          <button><Link to="/slim">Volver</Link></button>
         </div>
       </article>
     </DocSlimStyle>

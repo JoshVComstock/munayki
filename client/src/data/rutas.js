@@ -35,8 +35,8 @@ export const Rutas = {
     {
       numero: 5,
       descripcion:
-        "Este paso es guarda una similitud con el precedente, siendo la FELCV la encargada de brindar la atención necesaria a la víctima",
-      problemas: ["Presentan las mimas falencias que los SLIM’s."],
+        "Este paso guarda una similitud con el precedente, siendo la FELCV la encargada de brindar la atención necesaria a la víctima",
+      problemas: ["Presentan las mismas falencias que los SLIM’s."],
     },
     {
       numero: 6,

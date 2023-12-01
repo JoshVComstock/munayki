@@ -41,7 +41,7 @@ const Inicio = () => {
         <p>MUNAYKI</p>
         <section>
           <h1>
-            No +<br />
+            No <strong>+</strong><br />
             <strong>Violencia.</strong>
           </h1>
           <div>
@@ -61,7 +61,7 @@ const Inicio = () => {
           </div>
           <div onClick={() => ingresar("")}>
             <img src={term} />
-            <p> Violentometro</p>
+            <p> Violentómetro</p>
           </div>
           <div onClick={() => ingresar("rutadenuncias")}>
             <img src={cam} />

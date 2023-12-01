@@ -21,7 +21,7 @@ const Footer = () => {
         <img src={logo} alt="" />
 
         <div>
-          <Link to="/"> Violentometro</Link>
+          <Link to="/"> Violentómetro</Link>
           <Link to="/quizz"> Quizz</Link>
           <Link to="/appmovil"> App</Link>
           <Link to="/rutadenuncias"> Rutas de Denuncias</Link>

@@ -276,7 +276,13 @@ export const Iniciodiv = styled.div`
       color: ${colors.BB};
       font-size: 2.2em;
       height: 50%;
-      & > strong {
+      & > strong:first-child {
+        display:inline;
+        font-size: 2em;
+        font-weight: bold;
+        color: ${colors.BB};
+      }
+      & > strong:last-child {
         width: 85%;
         font-size: 2em;
         font-weight: bold;
@@ -288,7 +294,9 @@ export const Iniciodiv = styled.div`
   }
   @media screen and (max-width: 768px) {
     height: 450px;
-
+    &::after {
+      width: 27%;
+    }
     & > p {
       opacity: 0.4;
     }
@@ -316,7 +324,13 @@ export const Iniciodiv = styled.div`
         color: ${colors.BB};
         font-size: 1.5em;
         height: 50%;
-        & > strong {
+        & > strong:first-child {
+          display:inline;
+          font-size: 2em;
+          font-weight: bold;
+          color: ${colors.BB};
+        }
+        & > strong:last-child {
           width: 85%;
           font-size: 2em;
           font-weight: bold;
@@ -325,6 +339,11 @@ export const Iniciodiv = styled.div`
           text-stroke: 2px black;
         }
       }
+    }
+  }
+  @media (max-width: 460px) {
+    &::after {
+      width: 16%;
     }
   }
 `;
@@ -437,7 +456,6 @@ export const Filtro = styled.div`
   box-shadow: 0 -4px 5px #0005;
   flex-direction: column;
   overflow: hidden;
-
   & > section {
     ${FlexComun}
     justify-content:start;
@@ -793,6 +811,7 @@ export const SlimStyle = styled.section`
       padding: 1em;
       border: none;
       color: #fff;
+      border-radius: 4px;
     }
   }
 `;
@@ -825,6 +844,25 @@ export const DocSlimStyle = styled.section`
         width: 97%;
         padding-left: 2em;
         text-align: justify;
+      }
+      & > button{
+        margin-top:5%;
+        align-self: flex-start;
+        background-color: transparent;
+        border: 2px solid ${colors.CC};
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        width: 80px;
+        height: 30px;
+        overflow: hidden;
+        &:active {
+          background-color: rgba(0, 0, 0, 0.1);
+        }
+        & > a{
+          color: ${colors.black};
+          text-decoration: none;
+        }
       }
     }
   }
