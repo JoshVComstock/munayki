@@ -3,7 +3,7 @@ import { ContainerUbicacion } from "../../style/ContainerUbicacion";
 import { peticionDelete } from "../../services/deletRequest";
 import { peticionGet, peticionPostPut } from "../../services/getRequest";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
 
 const Informacion = () => {
@@ -15,6 +15,45 @@ const Informacion = () => {
     estado: "false",
   });
   const [data, setData] = useState("");
+  const [editar, setEditar] = useState("");
+
+  useEffect(() => {
+    if (editar) {
+      setForm({
+        titulo: editar.titulo || "",
+        cuerpo: editar.cuerpo || "",
+        imagen: editar.imagen || "",
+        url: editar.url || "",
+        estado: editar.estado || "",
+      });
+    }
+  }, [editar]);
+
+  const editdata = async () => {
+    const edit = await peticionPostPut("/info/" + editar.id, {
+      titulo: form.titulo,
+      cuerpo: form.cuerpo,
+      imagen: form.imagen,
+      url: form.url,
+    });
+    console.log(edit);
+    edit
+      ? (Swal.fire({
+          icon: "success",
+          title: "¡Informacion Actualizada !",
+          text: `a actulizado conexito `,
+        }),
+        await fetchData(),
+        setForm({
+          titulo: "",
+          cuerpo: "",
+          imagen: "",
+          url: "",
+          estado: "false",
+        }))
+      : console.log("error");
+  };
+
   const fetchData = async () => {
     try {
       const result = await peticionGet("/info");
@@ -67,10 +106,11 @@ const Informacion = () => {
       : alert(res.message);
   };
   const deleteData = async (data) => {
-    console.log(data)
-    await peticionDelete("/info/"+data);
+    console.log(data);
+    await peticionDelete("/info/" + data);
     await fetchData();
   };
+  console.log(editar);
 
   return (
     <ContainerUbicacion>
@@ -148,7 +188,9 @@ const Informacion = () => {
               </td>
 
               <td>
-                <button onClick={(e) => handleSend()}>Agregar</button>
+                <button onClick={(e) => (editar ? editdata() : handleSend())}>
+                  {editar ? "Actualizar" : "Agregar"}
+                </button>
               </td>
             </tr>
 
@@ -160,8 +202,11 @@ const Informacion = () => {
                   <td>{regis.cuerpo}</td>
                   <td>{regis.imagen}</td>
                   <td>{regis.url}</td>
-
-                  <td>
+                  <td className="acciones">
+                    <button onClick={() => setEditar(regis)}>
+                      <FontAwesomeIcon icon={faPenToSquare} />
+                      editar
+                    </button>
                     <button onClick={() => deleteData(regis.id)}>
                       <FontAwesomeIcon icon={faTrash} />
                       eliminar

@@ -5,7 +5,7 @@ import { colors } from "./StyleGlobal";
 export const ContainerUbicacion = styled.div`
   padding: 20px;
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   & > div {
     width: 100%;
     height: 15%;
@@ -25,6 +25,8 @@ export const ContainerUbicacion = styled.div`
     }
   }
   & aside {
+    height:70vh;
+    overflow-y:scroll;
     & > table {
       width: 100%;
       border-collapse: collapse;
@@ -70,22 +72,37 @@ export const ContainerUbicacion = styled.div`
           .agregando {
             background-color: ${colors.FF};
           }
-
+          .acciones{
+              display:flex;
+              gap:1em;
+            }
           & > td {
             height: 50px;
             overflow: hidden;
             text-overflow: ellipsis;
+          
+            &:nth-child(3) {
+              align-content: center;
+              & button {
+                margin: 0 auto;
+              }
+            }
+
             &:nth-child(4) {
               display: flex;
               justify-content: center;
               align-items: center;
               height: 100px;
+              gap: 1em;
+            }
+            .audio {
+              padding: 0.5em;
             }
             a {
               text-decoration: none;
               background-color: ${colors.CC};
               color: #fff;
-              padding: 0.2em;
+              /* padding: 0.2em; */
             }
             & img {
               width: 50px;

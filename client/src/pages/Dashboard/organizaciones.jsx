@@ -12,7 +12,38 @@ const Organizaciones = () => {
     ubicacion: "",
     areVulnerable: "",
   });
+  const [ediatar, setEdiatar] = useState("");
   const [data, setData] = useState("");
+
+  useEffect(() => {
+    if (ediatar) {
+      setForm({
+        nombre: ediatar.nombre,
+        ubicacion: ediatar.ubicacion,
+        areVulnerable: ediatar.areVulnerable,
+      });
+    }
+  }, [ediatar]);
+
+  const editarData = async () => {
+    const ediatando = await peticionPostPut("/organizacion", form);
+    ediatando
+      ? (Swal.fire({
+          icon: "success",
+          title: "¡Informacion Actualizada !",
+          text: `a actulizado conexito `,
+        }),
+        await fetchData(),
+        setForm({
+          titulo: "",
+          cuerpo: "",
+          imagen: "",
+          url: "",
+          estado: "false",
+        }))
+      : console.log("error");
+  };
+
   const fetchData = async () => {
     try {
       const result = await peticionGet("/organizacion");
@@ -26,24 +57,32 @@ const Organizaciones = () => {
   }, []);
 
   const handleSend = async (e) => {
-    if (!form.nombre.trim() || !form.ubicacion.trim() || !form.areVulnerable.trim()) {
+    if (
+      !form.nombre.trim() ||
+      !form.ubicacion.trim() ||
+      !form.areVulnerable.trim()
+    ) {
       return Swal.fire({
         icon: "error",
         title: "¡Error!",
         text: "Todos los campos son obligatorios",
       });
     }
-    const res = await peticionPostPut("/organizacion", {
-      nombre: form.nombre,
-      ubicacion: form.ubicacion,
-      areVulnerable: form.areVulnerable,
-    }, "POST");
+    const res = await peticionPostPut(
+      "/organizacion",
+      {
+        nombre: form.nombre,
+        ubicacion: form.ubicacion,
+        areVulnerable: form.areVulnerable,
+      },
+      "POST"
+    );
     res && res.message === "successully created"
       ? (Swal.fire({
-        icon: "success",
-        title: "¡ organizacion creada !",
-        text: `se registrado conexito `,
-      }),
+          icon: "success",
+          title: "¡ organizacion creada !",
+          text: `se registrado conexito `,
+        }),
         setForm({
           nombre: "",
           ubicacion: "",
@@ -118,7 +157,11 @@ const Organizaciones = () => {
                 />
               </td>
               <td>
-                <button onClick={(e) => handleSend()}>Agregar</button>
+                <button
+                  onClick={(e) => (ediatar ? handleSend() : editarData())}
+                >
+                  {ediatar ? "Actualizar" : "Agregar"}{" "}
+                </button>
               </td>
             </tr>
 
@@ -137,10 +180,15 @@ const Organizaciones = () => {
                     </a>
                   </td>
                   <td>{regis.areVulnerable}</td>
-
-                  <td>
-
-                    <button onClick={() => deleteData(regis.id)}> <FontAwesomeIcon icon={faTrash} />eliminar</button>
+                  <td >
+                    <button onClick={() => setEdiatar(regis)}>
+                      <FontAwesomeIcon icon={faTrash} />
+                      Editar
+                    </button>
+                    <button onClick={() => deleteData(regis.id)}>
+                      <FontAwesomeIcon icon={faTrash} />
+                      eliminar
+                    </button>
                   </td>
                 </tr>
               ))}

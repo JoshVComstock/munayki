@@ -94,7 +94,6 @@ const User = () => {
           <td>{datos.apellido}</td>
           <td>{datos.edad}</td>
           <td>{datos.telefono}</td>
-          <td>{datos.carnet}</td>
           <td>{datos.correo}</td>
           <td>
             {" "}
@@ -157,7 +156,6 @@ const User = () => {
               <th>apellido</th>
               <th>edad</th>
               <th>telefono</th>
-              <th>carnet</th>
               <th>correo</th>
               <th>rol</th>
               <th>genero</th>

@@ -129,7 +129,7 @@ const AlertasAdmin = () => {
                 </td>
                 <td>
                   <img src={paso.foto} alt="foto evidencia" />
-                  <a href={paso.audio} target="_blank">Descargar-audio</a>
+                  <a href={paso.audio} target="_blank" className="audio">Descargar-audio</a>
                 </td>
                 <td>{paso.fecha}</td>
                 <td>
